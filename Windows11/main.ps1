@@ -19,7 +19,7 @@ Clear-Host
 # DisableWidgets
 
 # UninstallBloat
-InstallAll
+# InstallAll
 
 
 
