@@ -1,13 +1,15 @@
 #Requires -RunAsAdministrator
 #Requires -Version 5.1
-Import-Module $PSScriptRoot\Modules\Registry.psm1 -Force
-Import-Module $PSScriptRoot\Modules\WinGet.psm1 -Force
+Import-Module $PSScriptRoot\modules\Registry.psm1 -Force
+Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
+Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
+Import-Module $PSScriptRoot\modules\VsCode.psm1 -Force
+
 $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration    -    23H2, Build Version: 10.0.22631"
 Clear-Host
 
 # BackupRegistry
 # RestoreRegistry   #Finish this function if you want the functionality, future Stan. I'm done with this this for now.
-
 
 
 # FileExplorerDefaultOpenTo
@@ -19,7 +21,8 @@ Clear-Host
 # DisableWidgets
 
 # UninstallBloat
-# InstallAll
+# InstallSoftware
 
 
-
+SetVsCodeUserSettingsFromFile
+SetVsCodeKeybindingsFromFile

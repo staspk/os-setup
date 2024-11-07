@@ -1,0 +1,65 @@
+{
+    "editor.tokenColorCustomizations": {
+        "comments": "#8d8d8d",
+        "functions": "#a2fff3",
+        "variables": "#e6bdfc",
+        "types": "#bda1ff",
+        "strings": "#ffffff",
+        "keywords": "#ffdcbf",
+        "numbers": "#ffffff",
+        "textMateRules":
+        [
+            {
+                "scope": [
+                    "keyword.operator",
+                    "keyword.operator.lua",
+                    "keyword.operator.logical",
+                    "punctuation",
+                    "variable.parameter"
+                ],
+                "settings": {
+                    "foreground": "#faf1ff",
+                    "fontStyle": ""
+                }
+            },
+            {
+                "scope": [
+                    "keyword.operator",
+                    "string.template"
+                ],
+                "settings": {
+                    "foreground": "#fcf7ff",
+                }
+            },
+            {
+                "scope": [
+                    
+                    "variable.other.property"
+                ],
+                "settings": {
+                    "foreground": "#e8d0fd",
+                }
+            },
+            {
+                "scope": [
+                    "variable.language",
+                    "variable.other",
+                    "variable.parameter"
+                ],
+                "settings": {
+                    "foreground": "#e3c4ff",
+                }
+            },
+            {
+                "scope": [
+                    "variable.other.object",
+                ],
+                "settings": {
+                    "foreground": "#92ceff",
+                }
+            }
+            
+        ]
+    },
+    "workbench.colorTheme": "One Monokai"
+}

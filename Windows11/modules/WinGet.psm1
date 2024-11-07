@@ -4,6 +4,7 @@ $TO_INSTALL =
 	"Git.Git"
 
 $TO_UNINSTALL =
+	"OneDrive",
 	"Copilot",
 	"Cortana",
 	"Feedback Hub",
@@ -23,7 +24,6 @@ $TO_UNINSTALL =
 	"Movies & TV",
 	"MSN Weather",
 	"News",
-	"OneDrive",
 	"Outlook for Windows",
 	"Quick Assist",
 	"Quick Assist",
@@ -49,4 +49,4 @@ function UninstallBloat {
 	
 }
 
-Export-ModuleMember -Function UninstallBloat, InstallAll
+Export-ModuleMember -Function UninstallBloat, InstallSoftware

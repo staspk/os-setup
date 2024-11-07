@@ -61,7 +61,5 @@
             
         ]
     },
-    "git.ignoreMissingGitWarning": true,
-    "liveServer.settings.donotShowInfoMsg": true,
     "workbench.colorTheme": "One Monokai"
 }
