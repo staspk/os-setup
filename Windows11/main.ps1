@@ -9,7 +9,7 @@ Clear-Host
 # RestoreRegistry   #Finish this function if you want the functionality, future Stan. I'm done with this this for now.
 
 
-		
+
 # FileExplorerDefaultOpenTo
 # VisibleFileExtensions
 # VisibleHiddenFiles
@@ -19,7 +19,7 @@ Clear-Host
 # DisableWidgets
 
 # UninstallBloat
-# InstallAll
+InstallAll
 
 
 

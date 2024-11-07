@@ -1,6 +1,7 @@
 $TO_INSTALL =
-	"notepad++",
-	"--id Git.Git -e --source winget"
+	"Microsoft.VisualStudioCode",
+	"Notepad++.Notepad++",
+	"Git.Git"
 
 $TO_UNINSTALL =
 	"Copilot",
