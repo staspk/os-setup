@@ -1,10 +1,10 @@
 $TO_INSTALL =
 	"Microsoft.VisualStudioCode",
 	"Notepad++.Notepad++",
-	"Git.Git"
+	"Git.Git",
+	"VideoLAN.VLC"
 
 $TO_UNINSTALL =
-	"OneDrive",
 	"Copilot",
 	"Cortana",
 	"Feedback Hub",
@@ -14,7 +14,6 @@ $TO_UNINSTALL =
 	"Microsoft Clipchamp",
 	"Microsoft Family",
 	"Microsoft Journal",
-	"Microsoft OneDrive",
 	"Microsoft OneNote - en-us",
 	"Microsoft People",
 	"Microsoft Sticky Notes",
