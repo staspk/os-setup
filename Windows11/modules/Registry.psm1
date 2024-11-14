@@ -1,3 +1,4 @@
+# Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion		"Registry::" may work to save it all?
 $EXPLORER_ADVANCED = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 $POLICIES_MICROSOFT = "HKLM:\SOFTWARE\Policies\Microsoft"
 $TOUCHED_KEYS = $EXPLORER_ADVANCED, $POLICIES_MICROSOFT
@@ -6,7 +7,7 @@ $BACKUP_FOLDER = ".\registry-backup"
 $BACKUP_FILE = "$BACKUP_FOLDER\registry-backup.reg"
 
 function BackupRegistry {
-	md -Force $BACKUP_FOLDER
+	mkdir -Force $BACKUP_FOLDER
 	foreach($key in $TOUCHED_KEYS) {
 		$key = $key.Replace(":","")
 		reg export $key $BACKUP_FOLDER\$key 
