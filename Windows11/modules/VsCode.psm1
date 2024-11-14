@@ -12,4 +12,9 @@ function SetVsCodeKeybindingsFromFile($newKeybindings = $MY_KEYBINDINGS) {
     Write-Host "VsCode keybindings ($VSCODE_KEYBINDINGS) updated from file: ($newKeybindings)"
 }
 
-Export-ModuleMember -Function SetVsCodeUserSettingsFromFile, SetVsCodeKeybindingsFromFile
+function ConfigureMyVsCode {
+    SetVsCodeUserSettingsFromFile
+    SetVsCodeKeybindingsFromFile
+}
+
+Export-ModuleMember -Function ConfigureMyVsCode

@@ -28,9 +28,11 @@ Clear-Host
 # Use at your own peril. Guesswork was used in assuming directory structures after OneDrive uninstall. FIX ON NEXT WINDOWS (RE)INSTALL ! ! !
 # UninstallAndDestroyOneDrive   
 
+# ConfigureMyVsCode
 
-# SetVsCodeUserSettingsFromFile
-# SetVsCodeKeybindingsFromFile
+SetupMyPowershellProfile
+
+
 
 
 
