@@ -2,7 +2,8 @@ $TO_INSTALL =
 	"Microsoft.VisualStudioCode",
 	"Notepad++.Notepad++",
 	"Git.Git",
-	"VideoLAN.VLC"
+	"VideoLAN.VLC",
+	"Rustlang.Rustup"
 
 $TO_UNINSTALL =
 	"Copilot",
@@ -35,15 +36,13 @@ $TO_UNINSTALL =
 	"Xbox Identity Provider",
 	"Xbox TCUI"
 
-function InstallAll {
+function InstallSoftware {
 	winget install $TO_INSTALL
-	Write-Host "Installed = $TO_INSTALL"
 }
 
 function UninstallBloat {
 	foreach ($name in $TO_UNINSTALL) {
 		winget uninstall $name	
-		Write-Host "Uninstalled = $name"
 	}
 	
 }

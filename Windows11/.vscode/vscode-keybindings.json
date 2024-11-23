@@ -1,3 +1,5 @@
-{
+[
+    { "key": "ctrl+k ctrl+0", "command": "editor.foldAll", "when": "editorTextFocus"  },
+    { "key": "ctrl+k ctrl+9", "command": "editor.unfoldAll", "when": "editorTextFocus"  },
 
-}
+]

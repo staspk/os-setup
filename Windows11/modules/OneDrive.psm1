@@ -36,6 +36,7 @@ function RemoveReferencesToOneDriveInRegistry {
 
 function CloseAllOpenWindows {
     Get-Process | Where-Object {
+        $_.ProcessName | Out-File "C:\Users\stasp\Desktop\OS-Setup\Windows11\output.txt" -Append
         $_.MainWindowTitle -ne "" -and
         $_.processname -ne "powershell" -and
         $_.processname -ne "Spotify"
@@ -44,14 +45,14 @@ function CloseAllOpenWindows {
     (New-Object -comObject Shell.Application).Windows() | foreach-object {$_.quit()}
 }
 
-# Must also clean registry:
-# Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
 
 function UninstallAndAttemptAnnihilationOfOneDrive {
     CloseAllOpenWindows
-    # winget uninstall OneDrive
-    # MoveOneDriveFoldersToUserHome
-    # RemoveReferencesToOneDriveInRegistry
+    winget uninstall OneDrive
+    RemoveReferencesToOneDriveInRegistry
+
+    # Double check that Move-Item will work on "Documnets"
+    MoveOneDriveFoldersToUserHome
 }
 
 
