@@ -6,9 +6,11 @@
 ### Windows 11 Instructions
 
 - Uncomment desired functionality in: .\main.ps1.
-	- Registry functions have a default param. Comments on alternate values/behaviors found in: .\modules\Registry.psm1
 	- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
-- Run Powershell as Admin. Run ./main.ps1. Note: Powershell 5.1 required, the current default pre-installed version on all Win11 machines.
+	- In Registry functions with enum params, call like so: `FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)`.  
+	  For alternate values/behaviors, see: .\modules\Registry.psm1
+- Run Powershell as Admin. CD into Windows11 folder and run: './main.ps1'. Note: Powershell 5.1 required, the current default pre-installed version on all Windows machines.
+- Restart computer.
 - VSCode:
 	- Download ‘One Monokai Theme' extension
 	- Ctrl+Shift+P -> “Preferences: Open User Settings (JSON)”

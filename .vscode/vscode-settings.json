@@ -1,7 +1,4 @@
 {
-    "editor.mouseWheelScrollSensitivity": 1.5,
-    "explorer.compactFolders": false,
-    
     "workbench.colorCustomizations": {
         "editorBracketHighlight.unexpectedBracket.foreground": "#D7ECFF",
         "editorBracketHighlight.foreground1": "#D7ECFF",
@@ -14,17 +11,15 @@
         // Foreground colors for filenames in sidebar / tab-bar
         "tab.activeForeground": "#f1fdf5",
         "tab.inactiveForeground": "#f1fdf5",    
-        "list.errorForeground": "#f5c0c0",
-        // "list.infoForeground": "#00FF00",                // delete if it doesnt bother in you in the future
+        // "list.errorForeground": "#FF0000",   // delete these two if it doesnt bother in you in the future
+        // "list.infoForeground": "#00FF00",
         "list.warningForeground": "#d8ffe6",
         "gitDecoration.modifiedResourceForeground": "#d8ffe6",
         "gitDecoration.untrackedResourceForeground": "#d8ffe6",
         "gitDecoration.stageModifiedResourceForeground": "#d8ffe6",
         "gitDecoration.addedResourceForeground": "#b5f5c1",
         "gitDecoration.ignoredResourceForeground": "#c4dfce",
-        "gitDecoration.deletedResourceForeground": "#ff26001a",
-
-        "editorWarning.foreground": "#eeff0042",
+        "gitDecoration.deletedResourceForeground": "#ff9380"
     },
     "editor.tokenColorCustomizations": {
         "comments": "#8d8d8d",
@@ -69,8 +64,7 @@
             }  
         ]
     },
+    "workbench.colorTheme": "One Monokai",
     "workbench.preferredDarkColorTheme": "One Monokai",
     "security.workspace.trust.untrustedFiles": "open",
-    "workbench.colorTheme": "One Monokai",
-    
 }

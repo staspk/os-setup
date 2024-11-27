@@ -1,13 +1,17 @@
 $TO_INSTALL =
+	"Microsoft.Powershell",
 	"Microsoft.VisualStudioCode",
 	"Notepad++.Notepad++",
 	"Git.Git",
 	"VideoLAN.VLC",
+	"Python.Python.3.13",
 	"Rustlang.Rustup"
 
 $TO_UNINSTALL =
 	"Copilot",
+	"Power Automate",
 	"Cortana",
+	"Phone Link",
 	"Feedback Hub",
 	"Game Bar",
 	"Get Help",
@@ -44,7 +48,6 @@ function UninstallBloat {
 	foreach ($name in $TO_UNINSTALL) {
 		winget uninstall $name	
 	}
-	
 }
 
 Export-ModuleMember -Function UninstallBloat, InstallSoftware

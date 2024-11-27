@@ -9,8 +9,7 @@ function RegistryPropertyEditOrAdd($path, $propertyName, [int]$value, $propertyT
 	$exists =  If ((Get-Item $path).property -match $propertyName) {"true"}
 
 	if($exists) {
-		Set-ItemProperty -Path $path -Name $propertyName -Value $value
-		Write-Host "entered exists ... path == $path; name == $propertyName; Value == $value"}
+		Set-ItemProperty -Path $path -Name $propertyName -Value $value  }
 	else {
 		New-ItemProperty -Path $path -Name $propertyName -PropertyType $propertyType -Value $value | Out-Null  }
 }
@@ -22,7 +21,7 @@ function FileExplorerDefaultOpenTo( [FileExplorerLaunchTo] $launchTo = "Download
 
 	RegistryPropertyEditOrAdd $path "LaunchTo" $enumAsInt
 
-	Write-Host "FILE EXPLORER: will now default-open to: $launchTo"
+	Write-Host "FILE EXPLORER: will now default-open to: $launchTo" -ForegroundColor Cyan
 }
 
 function ShowRecentInQuickAccess([bool]$bool = $false ) { 
@@ -31,8 +30,8 @@ function ShowRecentInQuickAccess([bool]$bool = $false ) {
 
 	RegistryPropertyEditOrAdd $path $propName $bool
 
-	if ($bool) {	Write-Host "FILE EXPLORER: Will stop automatically populating Quick Access with Recently Used Directories/Files" -ForegroundColor Green	 }
-	elseif ($bool) {	Write-Host "FILE EXPLORER: Quick Access will now be automatically populated with Recently Used Files [preset win11 behavior]" -ForegroundColor Green  }
+	if ($bool) {	Write-Host "FILE EXPLORER: Will stop automatically populating Quick Access with Recently Used Directories/Files" -ForegroundColor Cyan	 }
+	elseif ($bool) {	Write-Host "FILE EXPLORER: Quick Access will now be automatically populated with Recently Used Files [preset win11 behavior]" -ForegroundColor Cyan  }
 }
 
 function VisibleFileExtensions([bool] $bool = $true) {
@@ -43,7 +42,7 @@ function VisibleFileExtensions([bool] $bool = $true) {
 
 	RegistryPropertyEditOrAdd $path $propName $propVal
 
-	Write-Host "FILE EXPLORER: File's format/extension visibility boolean status updated: { $propName == $bool } " -ForegroundColor Green
+	Write-Host "FILE EXPLORER: File's format/extension visibility boolean status updated: { $propName == $bool } " -ForegroundColor Cyan
 }
 
 function VisibleHiddenFiles([bool]$bool = $true) {
@@ -54,7 +53,7 @@ function VisibleHiddenFiles([bool]$bool = $true) {
 
 	RegistryPropertyEditOrAdd $path $propName $propVal
 
-	Write-Host "FILE EXPLORER: Hidden files & folders boolean status set to: { $propName == $bool } " -ForegroundColor Green
+	Write-Host "FILE EXPLORER: Hidden files & folders boolean status set to: { $propName == $bool } " -ForegroundColor Cyan
 }
 
 
@@ -64,8 +63,8 @@ function TaskBarAlignment([ValidateRange(0, 1)] $alignment = 0) {
 
 	RegistryPropertyEditOrAdd $path $propName $alignment
 
-	if ($alignment -eq 0) {  Write-Host "TASKBAR: Alignment set to left." -ForegroundColor Green  }
-	elseif ($alignment -eq 1) {  Write-Host "TASKBAR: Alignment set to center." -ForegroundColor Green  }
+	if ($alignment -eq 0) {  Write-Host "TASKBAR: Alignment set to left." -ForegroundColor Cyan  }
+	elseif ($alignment -eq 1) {  Write-Host "TASKBAR: Alignment set to center." -ForegroundColor Cyan  }
 }
 
 function TaskBarRemoveTaskView {
@@ -74,7 +73,7 @@ function TaskBarRemoveTaskView {
 
 	ChangeRegistryValue $path $propName 0
 
-	Write-Host "TASKBAR: Task View Removed" -ForegroundColor Green
+	Write-Host "TASKBAR: Task View Removed" -ForegroundColor Cyan
 }
 
 function DisableWidgets {
@@ -84,7 +83,7 @@ function DisableWidgets {
 	NewRegistryKey $path $key
 	RegistryPropertyEditOrAdd "$path\$key" $propName 0
 	
-	Write-Host "Disabled Widgets. Please RESTART Computer to finalize." -ForegroundColor Green
+	Write-Host "Disabled Widgets. Please RESTART Computer to finalize." -ForegroundColor Cyan
 }
 
 

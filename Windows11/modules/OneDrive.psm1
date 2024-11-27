@@ -1,16 +1,9 @@
 $USER_HOME = "$env:USERPROFILE"
-$ONEDRIVE = "$env:OneDrive"
-
-$TO_MOVE = "Desktop", "Documents", "Pictures"
-
-function MoveDirectory($originalDir, $destDir) {
-    Move-Item -Path $originalDir -Destination $destDir
-    Write-Host "Moved Directory (originalDir = $originalDir, destDir = $destDir)."
-}
 
 function MoveOneDriveFoldersToUserHome {    # Unfinished. Please finish $USER_HOME
-    foreach ($dir in $TO_MOVE) {
-        MoveDirectory "$ONEDRIVE\$dir" "$USER_HOME\$dir"
+    $dirList = "$USER_HOME\OneDrive" | Get-ChildItem -Directory
+    foreach ($dir in $dirList) {
+        Move-Item -Path "$USER_HOME\OneDrive\$dir" -Destination "$USER_HOME\$dir"
     }
 }
 
@@ -38,7 +31,7 @@ function CloseAllOpenWindows {
     Get-Process | Where-Object {
         $_.ProcessName | Out-File "C:\Users\stasp\Desktop\OS-Setup\Windows11\output.txt" -Append
         $_.MainWindowTitle -ne "" -and
-        $_.processname -ne "powershell" -and
+        $_.processname -ne "powershell" -and    # For Some reason, this line only works on Admin-Run Powershell processes. Normal Powershell windows still close
         $_.processname -ne "Spotify"
     } | Stop-Process
 
@@ -48,13 +41,11 @@ function CloseAllOpenWindows {
 
 function UninstallAndAttemptAnnihilationOfOneDrive {
     CloseAllOpenWindows
+    MoveOneDriveFoldersToUserHome
     winget uninstall OneDrive
     RemoveReferencesToOneDriveInRegistry
-
-    # Double check that Move-Item will work on "Documnets"
-    MoveOneDriveFoldersToUserHome
 }
 
 
 
-Export-ModuleMember -Function UninstallAndAttemptAnnihilationOfOneDrive
+Export-ModuleMember -Function UninstallAndAttemptAnnihilationOfOneDrive, RemoveReferencesToOneDriveInRegistry

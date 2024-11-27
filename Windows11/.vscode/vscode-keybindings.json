@@ -2,4 +2,5 @@
     { "key": "ctrl+k ctrl+0", "command": "editor.foldAll", "when": "editorTextFocus"  },
     { "key": "ctrl+k ctrl+9", "command": "editor.unfoldAll", "when": "editorTextFocus"  },
 
+    { "key": "alt+q", "command": "editor.action.indentLines", "when": "editorTextFocus && !editorReadonly"  }
 ]
