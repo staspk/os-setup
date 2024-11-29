@@ -7,7 +7,6 @@
 class PowershellProfile {
     [string] $installFilesDir
     [string] $userDir
-    [string] $allUsersDir
 
     PowershellProfile($installFilesDir, $userDir) {
         $this.installFilesDir = $installFilesDir
@@ -18,19 +17,21 @@ class PowershellProfile {
     SetAllUsersDir($allUsersDir) {  $this.$allUsersDir = $allUsersDir }     #   <----
 
     SetupCurrentUser() {
-        WriteYellow($this.installFilesDir)
-        WriteYellow($this.userDir)
-        mkdir -Force ("$($this.userDir)")
-        # Get-ChildItem -Path $this.installFilesDir -Recurse | Move-Item -Destination $this.userDir
+        Write-Host "FROM: " $this.installFilesDir -ForegroundColor Cyan
+        Write-Host "TO: " $this.userDir -ForegroundColor Cyan
+        mkdir -Force ($this.userDir)
+        Copy-Item -Path "$($this.installFilesDir)\*" -Destination "$($this.userDir)" -Recurse
     }
 
     SetupAllUsers($allUsersDir)  {                                          #   <---- Sanitize before passing in param
-        WriteRed("In SetupAllUsers")
+        Write-Host "FROM: " $this.installFilesDir -ForegroundColor Cyan
+        Write-Host "TO: " $allUsersDir -ForegroundColor Cyan
+        Copy-Item -Path "$($this.installFilesDir)\*" -Destination $allUsersDir -Recurse
     }
 }
 
 class Profile5 : PowershellProfile {    # Profile 5.1                                 
-    static $userDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowershell"          # default => C:\Users\{userName}\Documents\WindowsPowerShell
+    static $userDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"          # default => C:\Users\{userName}\Documents\WindowsPowerShell
     static $allUsersDir = "$env:SystemRoot\System32\WindowsPowerShell\v1.0"                       # default => C:\Windows\System32\WindowsPowerShell\v1.0
 
     Profile5($installFilesDir) : base($installFilesDir, [Profile5]::userDir) {
@@ -40,12 +41,11 @@ class Profile5 : PowershellProfile {    # Profile 5.1
 
             do {
                 $newUserDir = Read-Host "Please enter location of your Powershell 5.1 user directory. Note: This can be found running '`$profile' in Powershell5 (or 'exit')"
-                if ($newUserDir -eq "exit") { exit }
+                if ($newUserDir -ieq "exit") { exit }
             } while (-not (TestPathSilently($newUserDir)) )
 
             $this.ChangeUserDir($newUserDir)
         }
-        WriteGreen "Profile5 Made. installFilesDir: $installFilesDir"
     }
 }
 
@@ -53,19 +53,18 @@ class Profile7 : PowershellProfile {    # Profile 7.4+
     static $userDir     =  "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"            #  default => C:\Users\{userName}\Documents\PowerShell 
     static $allUsersDir =  "$Env:ProgramFiles\PowerShell\7"                                       #  default => C:\Program Files\PowerShell\7
 
-    Profile7($installFilesDir) : base($installFilesDir, [Profile7]$userDir) {
+    Profile7($installFilesDir) : base($installFilesDir, [Profile7]::userDir) {
         if (-not(TestPathSilently([Profile7]::userDir))) {
             $newUserDir = ""
             WriteRed("Profile7.4+: Microsoft's Recommended Default Directory does not exist in default location: $([Profile7]::userDir)")
 
             do {
                 $newUserDir = Read-Host "Please enter location of your Powershell 7.4+ user directory. Note: This can be found running '`$profile' in Powershell7 (or 'exit')"
-                if ($newUserDir -eq "exit") { exit }
+                if ($newUserDir -ieq "exit") { exit }
             } while (-not (TestPathSilently($newUserDir)) )
 
             $this.ChangeUserDir($newUserDir)
         }
-        WriteGreen "Profile7 Made. installFilesDir: $installFilesDir"
     }
 }
 
@@ -105,19 +104,19 @@ class PowershellConfigurer {
         }
 
         if ($curHostOnTop -ne $null -or $allHostsOnTop -ne $null) {   # using files under .powershell, assuming user wants to only set up Powershell 5.1
-            WriteRed "Reached 1"
-            $this.profile5 = [Profile5]::new($pathToDirWithInstallFiles)
+            # WriteRed "Reached 1"
+            $this.profile5 = [Profile5]::new("$pathToDirWithInstallFiles")
         }
         elseif ($fileCountInDir -eq 0 -and $folder5Exists -and -not($folder7Exists)) {  # .powershell has correct structure, .powershell\5 exists, but not .powershell\7
-            WriteRed "Reached 2"
-            $this.profile5 = [Profile5]::new($pathToDirWithInstallFiles)
+            # WriteRed "Reached 2"
+            $this.profile5 = [Profile5]::new("$pathToDirWithInstallFiles\5")
         }
         elseif ($fileCountInDir -eq 0 -and $folder7Exists -and -not($folder5Exists)) {  #.powershell has correct structure, .powershell\7 exists, but not .powershell\5
-            WriteRed "Reached 3"
-            $this.profile7 = [Profile7]::new($pathToDirWithInstallFiles)
+            # WriteRed "Reached 3"
+            $this.profile7 = [Profile7]::new("$pathToDirWithInstallFiles\7")
         }
         elseif ($fileCountInDir -eq 0 -and $folder5Exists -and -$folder7Exists) {  #.powershell has correct structure, both .powershell\5 and .powershell\7 exist
-            WriteRed "Reached 4"
+            # WriteRed "Reached 4"
             $pathTo5Folder = "$pathToDirWithInstallFiles\5"
             $pathTo7Folder = "$pathToDirWithInstallFiles\7"
             $this.profile5 = [Profile5]::new($pathTo5Folder)
@@ -145,7 +144,7 @@ class PowershellConfigurer {
     [bool] IsPowershell7ExePath($path) {  return [PowershellConfigurer]::CheckIfPowershell7Exe($path)  }
 
     [PowershellConfigurer] Install() {
-        WriteGreen "In PowershellConfigurer.Install()"
+        # WriteGreen "In PowershellConfigurer.Install()"
         if ($this.profile5 -eq $null -and $this.profile7 -eq $null) {  WriteErrorExit("PowershellConfigurer: Fatal error In Install function. No install files found.")  }
 
         if ($this.profile5 -ne $null) {
@@ -155,12 +154,26 @@ class PowershellConfigurer {
         return $this
     }
 
+    [PowershellConfigurer] InstallOnlyPowershell5() {
+        if ($this.profile5 -eq $null) {  WriteErrorExit("PowershellConfigurer: Fatal error In InstallOnlyPowershell5 function. No install files found.")  }
+
+        $this.profile5.SetupCurrentUser()
+        return $this
+    }
+
+    [PowershellConfigurer] InstallOnlyPowershell7() {
+        if ($this.profile7 -eq $null) {  WriteErrorExit("PowershellConfigurer: Fatal error In InstallOnlyPowershell7 function. No install files found.")  }
+
+        $this.profile7.SetupCurrentUser()
+        return $this
+    }
+
     [PowershellConfigurer] Install_ForAllUsers() {      # Use $alternateInstallFolder if your CurrentUser and AllUsers Profile are different
         WriteGreen "In PowershellConfigurer.Install_ForAllUsers()"
         if ($this.profile5 -eq $null -and $this.profile7 -eq $null) {  WriteErrorExit("PowershellConfigurer: Fatal error In Install_ForAllUsers function. No install files found.")  }
 
         if ($this.profile5 -ne $null) {
-            $this.profile5.SetupAllUsers([Profile5]::allUsersDir)
+            $this.profile5.SetupAllUsers($([Profile5]::allUsersDir))
         }
 
         if ($this.profile7 -ne $null) {
@@ -177,7 +190,6 @@ class PowershellConfigurer {
             }
             $this.profile7.SetupAllUsers([Profile7]::allUsersDir)
         }
-        
         return $this
     }
 }

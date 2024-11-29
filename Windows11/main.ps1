@@ -1,4 +1,4 @@
-# # Requires -RunAsAdministrator
+# Requires -RunAsAdministrator
 # Requires -Version 5.1
 
 
@@ -13,10 +13,6 @@ Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
 Import-Module $PSScriptRoot\modules\VsCode.psm1 -Force
 
-
-
-
-# Import-Module $PSScriptRoot\modules\Utilities.Hello.psm1 -Force
 
 $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 
@@ -33,37 +29,12 @@ $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 
 # UninstallBloat
 # InstallSoftware
-# UninstallAndAttemptAnnihilationOfOneDrive     # Use at your own risk. ~10%% chance of failure ... Stan: Double-Check on NEXT WINDOWS (RE)INSTALL, RESEARCH EDGE CASES ! ! !
-
-# WriteErrorExit "Im in main"
+# UninstallAndAttemptAnnihilationOfOneDrive     # Use at your own risk. ~10%% chance of failure ... Stan: Double-Check on NEXT WINDOWS (RE)INSTALL ! ! !
 
 
-$configurer = [PowershellConfigurer]::new(".\.powershell").Install().Install_ForAllUsers()
+[PowershellConfigurer]::new("$PsScriptRoot\.powershell").InstallOnlyPowershell5()
 
-
-# $profile5 = [Profile5]::new(".\.powershell")
-
-# foreach ($member in $configurer | Select-Object *) {
-#     Write-Host $member
-# }
-
-
-# Write-Host $profile5.userDir
-# $PS_Config | Get-Member *
-
-# FindFileRecursively("C:\Program Files", "Powershell")
 
 # ConfigureMyVsCode
-
-
-
-
-
-
-
-
-
-
-
 
 
