@@ -37,11 +37,21 @@ $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 
 # WriteErrorExit "Im in main"
 
-$PS_Config = [PowershellConfigurer]::new(".\.powershell")
 
+$configurer = [PowershellConfigurer]::new(".\.powershell").Install().Install_ForAllUsers()
+
+
+# $profile5 = [Profile5]::new(".\.powershell")
+
+# foreach ($member in $configurer | Select-Object *) {
+#     Write-Host $member
+# }
+
+
+# Write-Host $profile5.userDir
 # $PS_Config | Get-Member *
 
-
+# FindFileRecursively("C:\Program Files", "Powershell")
 
 # ConfigureMyVsCode
 

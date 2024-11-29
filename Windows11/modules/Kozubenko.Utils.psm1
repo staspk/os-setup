@@ -1,11 +1,14 @@
-function Write-Green($string) {
+function WriteGreen($string) {
     Write-Host $string -ForegroundColor Green
 }
-function Write-Red($string) {
+function WriteRed($string) {
     Write-Host $string -ForegroundColor Red
 }
-function Write-DarkRed($string) {
+function WriteDarkRed($string) {
     Write-Host $string -ForegroundColor DarkRed
+}
+function WriteYellow($string) {
+    Write-Host $string -ForegroundColor Yellow
 }
 
 function WriteObj($varName, $obj) {
@@ -44,6 +47,16 @@ function SafeCreateDirectory($dirPath) {
 	}
 }
 
+function TestPathSilently($dirPath, $returnPath = $false) { 
+    $exists = Test-Path $dirPath -ErrorAction SilentlyContinue
+    
+    If (-not($returnPath)) { return $exists }
+    Else {
+        if (-not($exists)) {  return $null  }
+        return $dirPath
+    }
+}
+
 function GetRegistryPropertyValue($path, $propertyName) {     # Returns either property value or $false if not exist  # UNFINISHED!!!
     $exists =  If ((Get-Item $path).property -match $propertyName) {"true"}
 }
@@ -54,29 +67,38 @@ function WriteErrorExit([string]$errorMsg) {
     exit
 }
 
-function NumberOfFoldersInDir($pathToDir, $_isRecursive) {
-    Write-Red "In NumberOfFoldersInDi with isRecursive == $_isRecursive"
-    [int] $count = 0
-
-    $isRecursive = (Get-ChildItem -Path $pathToDir -Directory -Recurse).Count
-    $nonRecursive = (Get-ChildItem -Path $pathToDir -Directory).Count
+function CheckIfGivenStringIsPotentialFilePath([string] $potentialPath) {   # Returns bool
+    $invalidChars = [System.IO.Path]::InvalidPathChars
     
+    if ($potentialPath.IndexOfAny($invalidChars) -eq -1) {
+        return $true
+    }
+    return $false
+}
 
-    WriteObj "isRecursive" $isRecursive
-    Write-Host "isRecursive = $isRecursive"
-    Write-Host
-    WriteObj "nonRecursive" $nonRecursive
-    Write-Host "nonRecursive = $nonRecursive"
-    Write-Host
-    Write-Host
-    Write-Red "Leaving NumberOfFoldersInDir with isRecursive == $_isRecursive"
+function NumberOfItemsInDir($pathToDir, $isRecursive = $false) {
+    if($isRecursive) {
+        return (Get-ChildItem -Path $pathToDir -Recurse).Count  }
+    else {
+        return (Get-ChildItem -Path $pathToDir).Count
+    }
+}
 
-    if($_isRecursive) {
+function NumberOfFoldersInDir($pathToDir, $isRecursive = $false) {
+    if($isRecursive) {
         return (Get-ChildItem -Path $pathToDir -Directory -Recurse).Count  }
     else {
-        return (Get-ChildItem -Path $path -Directory).Count
+        return (Get-ChildItem -Path $pathToDir -Directory).Count
     }
+}
 
+function NumberOfFilesInDir($pathToDir) {
+    $itemsCount = NumberOfItemsInDir($pathToDir)
+    $foldersCount = NumberOfFoldersInDir($pathToDir)
+    return $($itemsCount - $foldersCount)
+}
+
+function SearchRecursivelyForFile($path, $fileName, $isRecursive) {
     
 }
 
@@ -97,8 +119,11 @@ function DoFoldersInPathExist($pathToFolder, $excludeFolderWithName = $null) {  
     }
 }
 
-function FindFileRecursively([string]$pathToFolder, [string]$fileName) {
-    return (Get-ChildItem -Path $pathToFolder -Filter $fileName -Recurse -ErrorAction SilentlyContinue -Force)
+function FindFileRecursively($startFromPath, $fileName) {
+    if ($pathToFolder) {
+        Test-Path $startFromPath
+    }
+    return (Get-ChildItem -Path $startFromPath -Filter $fileName -Recurse -ErrorAction SilentlyContinue -Force)
 }
 
 function ReadLineLoop([string]$message, [ScriptBlock]$condition) {
@@ -109,4 +134,4 @@ function ReadLineLoop([string]$message, [ScriptBlock]$condition) {
 }
 
 
-Export-ModuleMember -Function SafeCreateDirectory, GetRegistryPropertyValue, WriteErrorExit, DoFoldersInPathExist, FindFileRecursively, WriteObj, ReadLineLoop, NumberOfFoldersInDir, Write-Green, Write-Red, Write-DarkRed
+Export-ModuleMember -Function SafeCreateDirectory, GetRegistryPropertyValue, WriteErrorExit, TestPathSilently, DoFoldersInPathExist, FindFileRecursively, WriteObj, ReadLineLoop, NumberOfItemsInDir, CheckIfGivenStringIsPotentialFilePath, NumberOfFoldersInDir, NumberOfFilesInDir, WriteGreen, WriteRed, WriteDarkRed, WriteYellow
