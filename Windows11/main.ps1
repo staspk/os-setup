@@ -1,4 +1,4 @@
-#Requires -RunAsAdministrator
+# Requires -RunAsAdministrator
 #Requires -Version 5.1
 
 using module ".\modules\Powershell.psm1"
@@ -30,7 +30,7 @@ Clear-Host
 # UninstallAndAttemptAnnihilationOfOneDrive
 
 
-$PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell")#.InstallOnlyPowershell5()
+# $PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell")#.InstallOnlyPowershell5()
 
 # $VsCode = [VsCode]::new("$PsScriptRoot\.vscode").InstallUserSettings()
 
@@ -40,3 +40,12 @@ function GitConfig ($email, $names) {
     git config --global user.name $name
 }
 # GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
+
+
+function RemoveMicrosoftStorePythonLauncher {
+    Remove-Item $env:LOCALAPPDATA\Microsoft\WindowsApps\python.exe
+    RemoveFromEnvironmentPath("$Env:userprofile\AppData\Local\Microsoft\WindowsApps")
+}
+RemoveMicrosoftStorePythonLauncher
+
+

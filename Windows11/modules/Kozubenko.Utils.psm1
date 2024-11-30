@@ -100,10 +100,23 @@ function CheckIfGivenStringIsPotentialFilePath([string] $potentialPath) {   # Re
     return $false
 }
 
+function RemoveFromEnvironmentPath($toRemove) {     # example $toRemove: %USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+    $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "User")
+    $curArray = $currentPath.Split(";")
 
-
+    $newPath = ""
+    for ($i = 0; $i -lt $curArray.Count; $i++) {
+        if ($curArray[$i] -ne $toRemove -and $i -eq 0) {
+            $newPath = $newPath + $curArray[$i]
+        }
+        elseif ($curArray[$i] -ne $toRemove -and $i -gt 0) {
+            $newPath = $newPath + ";" + $curArray[$i]
+        }
+    }
+    [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
+}
 
 
 
 Export-ModuleMember -Function WriteObj, WriteCyan, WriteGreen, WriteRed, WriteDarkRed, WriteYellow, WriteErrorExit,
-NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, SafeCreateDirectory, TestPathSilently, IfNotExistCreateFile, GetRegistryPropertyValue
+NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, SafeCreateDirectory, TestPathSilently, IfNotExistCreateFile, GetRegistryPropertyValue, RemoveFromEnvironmentPath
