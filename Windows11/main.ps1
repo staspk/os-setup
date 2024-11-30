@@ -39,4 +39,4 @@ function GitConfig ($email, $names) {
     git config --global user.email $email
     git config --global user.name $name
 }
-# GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
+GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
