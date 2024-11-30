@@ -1,9 +1,9 @@
 # Requires -RunAsAdministrator
 # Requires -Version 5.1
 
-
 using module ".\modules\Powershell.psm1"
 using module ".\modules\Registry.psm1"
+using module ".\modules\VsCode.psm1"
 
 Import-Module $PSScriptRoot\modules\Kozubenko.Utils.psm1 -Force
 Import-Module $PSScriptRoot\modules\Powershell.psm1 -Force
@@ -11,8 +11,6 @@ Import-Module $PSScriptRoot\modules\Powershell.psm1 -Force
 Import-Module $PSScriptRoot\modules\Registry.psm1 -Force
 Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
-Import-Module $PSScriptRoot\modules\VsCode.psm1 -Force
-
 
 $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 
@@ -32,9 +30,8 @@ $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 # UninstallAndAttemptAnnihilationOfOneDrive     # Use at your own risk. ~10%% chance of failure ... Stan: Double-Check on NEXT WINDOWS (RE)INSTALL ! ! !
 
 
-[PowershellConfigurer]::new("$PsScriptRoot\.powershell").InstallOnlyPowershell5()
+$PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell")#.InstallOnlyPowershell5()
 
-
-# ConfigureMyVsCode
+$VsCode = [VsCode]::new("$PsScriptRoot\.vscode").InstallUserSettings()
 
 
