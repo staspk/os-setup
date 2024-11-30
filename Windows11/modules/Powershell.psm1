@@ -87,7 +87,7 @@ class PowershellConfigurer {
         if (-not (Test-Path $pathToDirWithInstallFiles\*)) {
             WriteErrorExit("PowershellConfigurer: Empty folder provided to PowershellConfigurer (pathToDirWithInstallFiles = '$pathToDirWithInstallFiles').")
         }
-        if ($modulesFolderOnTop -and $folderCountInDir -gt 1 -and $itemsCountInDir -gt 3) {     # Implies high likelihood of collisions
+        if ($modulesFolderOnTop -and $folderCountInDir -gt 1) {     # Implies high likelihood of collisions
             WriteErrorExit("PowershellConfigurer: .powershell folder structure is non-sensical. Fix before trying to use again.")
         }
         if (-not($modulesFolderOnTop) -and $folderCountInDir -gt 2) {   # Implies folder structure is correct, but can't be true if there are more than 2 folders

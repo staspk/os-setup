@@ -1,40 +1,46 @@
-Import-Module ".\modules\Kozubenko.Git.psm1" -Force
-
+# Import-Module "$PsScriptRoot\Kozubenko.Git.psm1" -Force
+# Import-Module "$PsScriptRoot\Kozubenko.Utils.psm1" -Force
+using module .\Kozubenko.Utils.psm1
+using module .\Kozubenko.Git.psm1
 function Restart { wt.exe; exit }
 function Open($path) {
     if($path) {  ii  $([System.IO.Path]::GetDirectoryName($path))  }
     else {  ii .  } 
 }
 function LoadInGlobals() {
-    $path = $([System.IO.Path]::GetDirectoryName($PROFILE))
-    $path = $path + "\globals"
-
-    foreach($line in [System.IO.File]::ReadLines($path)) {
+    $GLOBALS = "$([System.IO.Path]::GetDirectoryName($PROFILE))\globals"
+    foreach($line in [System.IO.File]::ReadLines($GLOBALS)) {
         $array = $line.Split("=")
         New-Variable -Name $array[0] -Value $array[1] -Scope Global
-        # Write-Host "Global Variable Added: $($array[0])=$($array[1])"
+        Write-Host "$($array[0])" -ForegroundColor White -NoNewline; Write-Host "=$($array[1])" -ForegroundColor Gray
     }
-    New-Variable -Name "pathToGlobals" -Value $path -Scope Global
+}
+function SaveToGlobals([string]$varName, $varValue) {
+    $GLOBALS = "$([System.IO.Path]::GetDirectoryName($PROFILE))\globals"
+    $lines = Get-Content -Path $GLOBALS
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        $left = $($lines[$i].Split("="))[0]
+        if ($left -eq $varName) {
+            $lines[$i] = "$($varName)=$($varValue)"
+            $lines | Set-Content -Path $GLOBALS;  return;
+        }
+    }
+    Add-Content -Path $GLOBALS -Value "$varName=$varValue"; New-Variable -Name $varName -Value $varValue -Scope Global
 }
 function SetLocation($path) {
-    if($path -eq $null) {
-        $openedTo = $PWD.Path
-        if ($openedTo -eq $null -or $openedTo -eq "") { break; }
-        if ($openedTo -eq "$env:userprofile" -or $openedTo -eq "C:\WINDOWS\system32") { Set-Location $startLocation }
-    }
+    if($path -eq $null) {  SaveToGlobals "startLocation" $PWD.Path  }
     elseif (Test-Path($path)) {
-        Set-Location $startLocation
-    }    
-}
-function NewLocation($path) {
-    $lines = Get-Content -Path "$([System.IO.Path]::GetDirectoryName($PROFILE))\globals"
-    if(Test-Path $path) {
-        $lines[0] = "startLocation=$path"
-        $lines | Set-Content -Path "$([System.IO.Path]::GetDirectoryName($PROFILE))\globals"
-        SetLocation($path)
-    }
+        SaveToGlobals "startLocation" $path
+    } 
+    Set-Location $startLocation
 }
 
-Clear-Host
-LoadInGlobals
-Set-Location $startLocation
+function OnOpen() {
+	$openedTo = $PWD.Path
+    Clear-Host
+	LoadInGlobals
+    Write-Host
+	if ($openedTo -eq "$env:userprofile" -or $openedTo -eq "C:\WINDOWS\system32") { Set-Location $startLocation }   # Did Not start Powershell, with specific directory in mind.
+    
+}
+OnOpen

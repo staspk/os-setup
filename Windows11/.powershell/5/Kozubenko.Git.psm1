@@ -5,6 +5,8 @@ function GitConfig ($email, $name) {
 
 function Push ($commitMsg = "No Commit Message") {
     git add .
-    git commit $commitMsg
+    git commit -a -m $commitMsg
     git push
 }
+
+Export-ModuleMember -Function GitConfig, Push

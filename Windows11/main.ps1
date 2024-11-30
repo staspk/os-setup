@@ -30,7 +30,7 @@ Clear-Host
 # UninstallAndAttemptAnnihilationOfOneDrive
 
 
-# $PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell").InstallOnlyPowershell5()
+$PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell")#.InstallOnlyPowershell5()
 
 # $VsCode = [VsCode]::new("$PsScriptRoot\.vscode").InstallUserSettings()
 
@@ -39,4 +39,4 @@ function GitConfig ($email, $names) {
     git config --global user.email $email
     git config --global user.name $name
 }
-GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
+# GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
