@@ -1,4 +1,0 @@
-1. Uncomment functionality / run main.ps1
-2. In VSCode, Download ‘One Monokai’ Theme
-3. Ctrl+Shift+P -> “Preferences: Open User Settings (JSON)”
-4. Copy vscode-theme-settings.json there.
