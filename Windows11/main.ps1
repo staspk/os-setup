@@ -42,10 +42,7 @@ function GitConfig ($email, $names) {
 # GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
 
 
-function RemoveMicrosoftStorePythonLauncher {
-    Remove-Item $env:LOCALAPPDATA\Microsoft\WindowsApps\python.exe
-    RemoveFromEnvironmentPath("$Env:userprofile\AppData\Local\Microsoft\WindowsApps")
-}
-RemoveMicrosoftStorePythonLauncher
+
+Remove-Item $env:LOCALAPPDATA\Microsoft\WindowsApps\python.exe      # Remove MicrosoftStore PythonLauncher that shows as version 0.0.0.0
 
 
