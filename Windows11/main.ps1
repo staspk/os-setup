@@ -1,5 +1,5 @@
-# Requires -RunAsAdministrator
-# Requires -Version 5.1
+#Requires -RunAsAdministrator
+#Requires -Version 5.1
 
 using module ".\modules\Powershell.psm1"
 using module ".\modules\Registry.psm1"
