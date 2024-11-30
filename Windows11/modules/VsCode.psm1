@@ -1,25 +1,3 @@
-$TO_INSTALL =
-	"Microsoft.Powershell",
-	"Microsoft.VisualStudioCode",
-	"Notepad++.Notepad++",
-	"Git.Git",
-	"VideoLAN.VLC",
-	"Python.Python.3.13",
-	"Rustlang.Rustup"
-
-function SetVsCodeUserSettingsFromFile($newSettings = $MY_USER_SETTINGS) {
-    Write-Host "VsCode settings ($VSCODE_USER_SETTINGS) updated from file: ($newSettings)"
-}
-
-function SetVsCodeKeybindingsFromFile($newKeybindings = $MY_KEYBINDINGS) {
-    Write-Host "VsCode keybindings ($VSCODE_KEYBINDINGS) updated from file: ($newKeybindings)"
-}
-
-function ConfigureMyVsCode {
-    SetVsCodeUserSettingsFromFile
-    SetVsCodeKeybindingsFromFile
-}
-
 class VsCode {
     static [string] $VSCODE_USER_SETTINGS_DIR = "$env:APPDATA\Code\User"
     static [string] $VSCODE_USER_SETTINGS = "$([VsCode]::VSCODE_USER_SETTINGS_DIR)\settings.json"
@@ -38,11 +16,7 @@ class VsCode {
     }
 
     [VsCode] InstallUserSettings() {
-        Write-Host("VsCode: Installing user settings from: $($this.installFilesDir)")
-        Write-Host("$($this.installFilesDir)\settings.json")
-        Write-Host("$($this.installFilesDir)\keybindings.json")
-        WriteYellow([VsCode]::VSCODE_USER_SETTINGS)
-        WriteYellow([VsCode]::VSCODE_KEYBINDINGS)
+        WriteCyan("VsCode: Installing user settings from: $($this.installFilesDir)")
         Copy-Item -Path "$($this.installFilesDir)\settings.json" -Destination "$([VsCode]::VSCODE_USER_SETTINGS)"
         Copy-Item -Path "$($this.installFilesDir)\keybindings.json" -Destination "$([VsCode]::VSCODE_KEYBINDINGS)"
         return $this
@@ -72,6 +46,8 @@ class VsCode {
     [VsCode] SaveExtensionListToScriptFiles() {
         $SAVE_TO = "$($this.installFilesDir)\extensions-list"
 
+        WriteCyan("VsCode: Saving current extensions VsCode has on this machine to directory: $($this.installFilesDir)\extensions-list")
+
         IfNotExistCreateFile($SAVE_TO)
     
         code --list-extensions > $SAVE_TO
@@ -79,6 +55,7 @@ class VsCode {
     }
 
     [VsCode] SaveLocalVsCodeSettingsToScriptFiles() {
+        WriteCyan("VsCode: Saving settings.json/keybindings.json from VsCode AppData to file: $($this.installFilesDir)")
         Write-Host($this.installFilesDir)
         mkdir -Force ($this.installFilesDir)
         Copy-Item -Path [VsCode]::VSCODE_USER_SETTINGS -Destination $this.installFilesDir
@@ -87,7 +64,7 @@ class VsCode {
     }
 
     static [void] PrintPathsToVsCodeSettingFiles() {
-        Write-Host "UserSettings: $([VsCode]::VSCODE_USER_SETTINGS)"
-        Write-Host "Keybindings: $([VsCode]::VSCODE_KEYBINDINGS)"
+        WriteCyan "UserSettings: $([VsCode]::VSCODE_USER_SETTINGS)"
+        WriteCyan "Keybindings: $([VsCode]::VSCODE_KEYBINDINGS)"
     }
 }

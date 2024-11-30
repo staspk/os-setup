@@ -24,28 +24,32 @@ function RemoveReferencesToOneDriveInRegistry {
 
         Set-ItemProperty -Path $path -Name $_ -Value $newValue
     }
-    Write-Host "Removed Path References to OneDrive in: $path"
+    WriteRed("Removed Path References to OneDrive in: $path")
 }
 
 function CloseAllOpenWindows {
     Get-Process | Where-Object {
         $_.ProcessName | Out-File "C:\Users\stasp\Desktop\OS-Setup\Windows11\output.txt" -Append
         $_.MainWindowTitle -ne "" -and
-        $_.processname -ne "powershell" -and    # For Some reason, this line only works on Admin-Run Powershell processes. Normal Powershell windows still close
+        $_.processname -ne "powershell" -and    # For Some reason, this line only works on Admin-Run Powershell processes. Normal Powershell windows will close and script won't complete.
         $_.processname -ne "Spotify"
     } | Stop-Process
 
     (New-Object -comObject Shell.Application).Windows() | foreach-object {$_.quit()}
 }
 
-
 function UninstallAndAttemptAnnihilationOfOneDrive {
-    CloseAllOpenWindows
-    MoveOneDriveFoldersToUserHome
+    WriteRed("OneDrive Uninstallation")
+    WriteRed("Before Continuing, move items under OneDrive, up one level in the hierarchy to: '$env:userprofile'  [You could lose your desktop, if you skip this step]" )
+    WriteRed("If you'd rather not, type 'exit'")
+    do {
+        $userInput = Read-Host "Type 'ok' to proceed"
+        if ($userInput -ieq "exit") { exit }
+    } while ($userInput -ne "proceed" -and $userInput -ne "continue" -and $userInput -ne "ok")
+
     winget uninstall OneDrive
     RemoveReferencesToOneDriveInRegistry
 }
-
 
 
 Export-ModuleMember -Function UninstallAndAttemptAnnihilationOfOneDrive, RemoveReferencesToOneDriveInRegistry

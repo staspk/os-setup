@@ -23,6 +23,9 @@ function WriteObj($varName, $obj) {
     Write-Host "--------------------------------------------------" -ForegroundColor DarkYellow
     Write-Host
 }
+function WriteCyan ($string) {
+    Write-Host $string -ForegroundColor Cyan
+}
 function WriteGreen($string) {
     Write-Host $string -ForegroundColor Green
 }
@@ -102,5 +105,5 @@ function CheckIfGivenStringIsPotentialFilePath([string] $potentialPath) {   # Re
 
 
 
-Export-ModuleMember -Function WriteObj, WriteGreen, WriteRed, WriteDarkRed, WriteYellow, WriteErrorExit,
+Export-ModuleMember -Function WriteObj, WriteCyan, WriteGreen, WriteRed, WriteDarkRed, WriteYellow, WriteErrorExit,
 NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, SafeCreateDirectory, TestPathSilently, IfNotExistCreateFile, GetRegistryPropertyValue

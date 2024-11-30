@@ -13,7 +13,7 @@ Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
 
 $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
-
+Clear-Host
 
 
 # FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
@@ -27,11 +27,16 @@ $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 
 # UninstallBloat
 # InstallSoftware
-# UninstallAndAttemptAnnihilationOfOneDrive     # Use at your own risk. ~10%% chance of failure ... Stan: Double-Check on NEXT WINDOWS (RE)INSTALL ! ! !
+# UninstallAndAttemptAnnihilationOfOneDrive
 
 
-$PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell")#.InstallOnlyPowershell5()
+# $PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell").InstallOnlyPowershell5()
 
-$VsCode = [VsCode]::new("$PsScriptRoot\.vscode").InstallUserSettings()
+# $VsCode = [VsCode]::new("$PsScriptRoot\.vscode").InstallUserSettings()
 
 
+function GitConfig ($email, $names) {
+    git config --global user.email $email
+    git config --global user.name $name
+}
+# GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
