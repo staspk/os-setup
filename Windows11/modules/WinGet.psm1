@@ -5,6 +5,7 @@ $TO_INSTALL =
 	"Git.Git",
 	"VideoLAN.VLC",
 	"Python.Python.3.13",
+	"OpenJS.NodeJS",
 	"Rustlang.Rustup"
 
 $TO_UNINSTALL =
