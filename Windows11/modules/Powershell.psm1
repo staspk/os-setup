@@ -1,9 +1,6 @@
 #  "Microsoft.PowerShell_profile.ps1"   ==>   # For Console, but not ISE. Ideal for, like, code completions
 #  "profile.ps1"                        ==>   # Console, ISE, Ideal for global use
 
-# using module ".\Kozubenko.Utils.psm1"
-# Import-Module ".\Kozubenko.Utils.psm1" -Force
-
 class PowershellProfile {
     [string] $installFilesDir
     [string] $userDir
