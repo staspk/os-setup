@@ -40,7 +40,14 @@ function OnOpen() {
     Clear-Host
 	LoadInGlobals
     Write-Host
-	if ($openedTo -eq "$env:userprofile" -or $openedTo -eq "C:\WINDOWS\system32") { Set-Location $startLocation }   # Did Not start Powershell, with specific directory in mind.
-    
+	if ($openedTo -eq "$env:userprofile" -or $openedTo -eq "C:\WINDOWS\system32") {  # Did Not start Powershell from a specific directory in mind; Set-Location to default.
+        if (TestPathSilently $startLocation) {
+            Set-Location $startLocation  }
+        else {
+            Write-Host "`$startLocation path does not exist anymore. Defaulting to userdirectory..."  -ForegroundColor Red
+            Start-Sleep -Seconds 3
+            SetLocation $Env:USERPROFILE
+        }
+    }
 }
 OnOpen
