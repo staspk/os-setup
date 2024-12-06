@@ -6,3 +6,8 @@ function TestPathSilently($dirPath, $returnPath = $false) {
     
     return $dirPath
 }
+function WriteErrorExit([string]$errorMsg) {
+    Write-Host $errorMsg -ForegroundColor DarkRed
+    Write-Host "Exiting Script..." -ForegroundColor DarkRed
+    exit
+}

@@ -31,6 +31,7 @@ Clear-Host
 
 
 # $PsConfigurer = [PowershellConfigurer]::new("$PsScriptRoot\.powershell")#.InstallOnlyPowershell5()
+[PowershellConfigurer]::new("$PsScriptRoot\.powershell").SaveProfile5ToScriptPackage("$PsScriptRoot\.powershell\5")
 
 # $VsCode = [VsCode]::new("$PsScriptRoot\.vscode").InstallUserSettings()
 

@@ -189,5 +189,18 @@ class PowershellConfigurer {
         }
         return $this
     }
+
+    [PowershellConfigurer] SaveProfile5ToScriptPackage($toDir) {
+        $profileDir = "$env:USERPROFILE\Documents\WindowsPowerShell\"
+
+        Get-ChildItem -Path $toDir -Recurse | ForEach-Object {  
+            $_.Delete()
+            WriteRed "Deleted File: $_"
+        }
+        Copy-Item -Path "$profileDir\*" -Destination $toDir -Recurse
+        WriteGreen("PowershellConfigurer: Saved New Powershell 5.1 Profile files to: $toDir")
+
+        return $this
+    }
 }
 
