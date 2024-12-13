@@ -27,7 +27,7 @@ FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
 
 
 
-$configurer = [PowershellConfigurer]::new().SetUserDir()#.SaveProfileFilesToScriptPackage()
+$configurer = [PowershellConfigurer]::new().SetUserDir().SaveProfileFilesToScriptPackage()
 
 
 
