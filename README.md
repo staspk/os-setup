@@ -1,10 +1,10 @@
-![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](https://github.com/staspk/OS-Setup/blob/main/.git/images/Os_Setup.jpg)
+![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](https://github.com/staspk/OS-Setup/blob/main/images/Os_Setup.jpg)
 
 ### Windows 11:Home Instructions
 
 - Uncomment desired functionality in: .\main.ps1.
 	- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
-	- In Registry functions with enum params, call like so:
+	- In Registry functions with enum params, call like so:s
 	  `FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)`.  
 	  For alternate values/behaviors, see: .\modules\Registry.psm1
 - PowershellConfigurer. 
