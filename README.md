@@ -1,5 +1,5 @@
 # OS-Setup
-## Collection of scripts/files to setup/debloat/configure a clean OS install.
+##    Collection of scripts/files to setup/debloat/configure a clean OS install.
 
 ### Windows 11:Home Instructions
 
