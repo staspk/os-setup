@@ -4,10 +4,12 @@
 class PowershellProfile {
     [string] $installFilesDir
     [string] $currentUserDir
+    [string] $allUsersDir
 
-    PowershellProfile($installFilesDir, $currentUserDir) {
+    PowershellProfile($installFilesDir, $currentUserDir, $allUsersDir) {
         $this.installFilesDir = $installFilesDir
         $this.currentUserDir = $currentUserDir
+        $this.allUsersDir = $allUsersDir
     }
 
     SetCurUserDir($currentUserDir) {
@@ -34,17 +36,17 @@ class PowershellProfile {
 }
 
 class Profile5 : PowershellProfile {    # Profile 5.1                                 
-    static $currentUserDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"          # default => C:\Users\{userName}\Documents\WindowsPowerShell
-    static $allUsersDir = "$env:SystemRoot\System32\WindowsPowerShell\v1.0"                       # default => C:\Windows\System32\WindowsPowerShell\v1.0
+    static $currentUserDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"     # default => C:\Users\{userName}\Documents\WindowsPowerShell
+    static $allUsersDir = "$env:SystemRoot\System32\WindowsPowerShell\v1.0"                         # default => C:\Windows\System32\WindowsPowerShell\v1.0
 
-    Profile5($installFilesDir) : base($installFilesDir, [Profile5]::currentUserDir) {   }
+    Profile5($installFilesDir) : base($installFilesDir, [Profile5]::currentUserDir, [Profile5]::allUsersDir) {   }
 }
 
 class Profile7 : PowershellProfile {    # Profile 7.4+                               
-    static $currentUserDir     =  "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"            #  default => C:\Users\{userName}\Documents\PowerShell 
-    static $allUsersDir =  "$Env:ProgramFiles\PowerShell\7"                                       #  default => C:\Program Files\PowerShell\7
+    static $currentUserDir     =  "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"       #  default => C:\Users\{userName}\Documents\PowerShell 
+    static $allUsersDir =  "$Env:ProgramFiles\PowerShell\7"                                         #  default => C:\Program Files\PowerShell\7
 
-    Profile7($installFilesDir) : base($installFilesDir, [Profile7]::currentUserDir) {   }
+    Profile7($installFilesDir) : base($installFilesDir, [Profile7]::currentUserDir, [Profile7]::allUsersDir) {   }
 }
 
 class PowershellConfigurer {
