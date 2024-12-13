@@ -1,4 +1,4 @@
-![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](\images\Os_Setup.jpg)
+![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](https://github.com/staspk/OS-Setup/blob/main/.git/images/Os_Setup.jpg)
 
 ### Windows 11:Home Instructions
 
