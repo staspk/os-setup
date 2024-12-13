@@ -1,9 +1,9 @@
 # OS-Setup
 
 ## Description
-- Collection of scripts and files to setup/debloat/customize an OS on a clean install of Windows11:Home.
+- Collection of scripts & config-files to setup/debloat/customize an OS on a clean install.
 
-### Windows 11 Instructions
+### Windows 11:Home Instructions
 
 - Uncomment desired functionality in: .\main.ps1.
 	- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
