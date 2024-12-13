@@ -1,7 +1,6 @@
 # OS-Setup
 
-## Description
-- Collection of scripts & config-files to setup/debloat/customize an OS on a clean install.
+## Collection of scripts & files to setup/debloat/customize an OS on a clean install.
 
 ### Windows 11:Home Instructions
 
