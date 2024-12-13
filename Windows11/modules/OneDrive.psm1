@@ -40,10 +40,9 @@ function CloseAllOpenWindows {
 
 function UninstallAndAttemptAnnihilationOfOneDrive {
     WriteRed("OneDrive Uninstallation")
-    WriteRed("Before Continuing, move items under OneDrive, up one level in the hierarchy to: '$env:userprofile'  [You could lose your desktop, if you skip this step]" )
-    WriteRed("If you'd rather not, type 'exit'")
+    WriteRed("Before Continuing, MOVE (select-drag-drop) all items under OneDrive, up one level in the hierarchy to: '$env:userprofile'  [You could lose your desktop, if you skip this step...]" )
     do {
-        $userInput = Read-Host "Type 'ok' to proceed"
+        $userInput = Read-Host "Type 'ok' to proceed, or 'exit'"
         if ($userInput -ieq "exit") { exit }
     } while ($userInput -ne "proceed" -and $userInput -ne "continue" -and $userInput -ne "ok")
 

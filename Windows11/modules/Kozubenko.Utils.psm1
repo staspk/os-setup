@@ -23,21 +23,15 @@ function WriteObj($varName, $obj) {
     Write-Host "--------------------------------------------------" -ForegroundColor DarkYellow
     Write-Host
 }
-function WriteCyan ($string) {
-    Write-Host $string -ForegroundColor Cyan
-}
-function WriteGreen($string) {
-    Write-Host $string -ForegroundColor Green
-}
-function WriteRed($string) {
-    Write-Host $string -ForegroundColor Red
-}
-function WriteDarkRed($string) {
-    Write-Host $string -ForegroundColor DarkRed
-}
-function WriteYellow($string) {
-    Write-Host $string -ForegroundColor Yellow
-}
+function WriteCyan ($string)     {  Write-Host $string -ForegroundColor Cyan      }
+function WriteGreen($string)     {  Write-Host $string -ForegroundColor Green     }
+function WriteDarkGreen($string) {  Write-Host $string -ForegroundColor DarkGreen }
+
+function WriteYellow($string)    {  Write-Host $string -ForegroundColor Yellow    }
+function WriteGray($string)      {  Write-Host $string -ForegroundColor Gray      }
+function WriteRed($string, $noNewLine = $false)     {  if($noNewLine) { Write-Host $string -ForegroundColor Red -NoNewline } else { Write-Host $string -ForegroundColor Red } }
+function WriteDarkRed($string, $noNewLine = $false) {  if($noNewLine) { Write-Host $string -ForegroundColor DarkRed -NoNewline } else { Write-Host $string -ForegroundColor DarkRed }   }
+function WriteWhite($string, $noNewLine = $false)   {  if($noNewLine) { Write-Host $string -ForegroundColor White -NoNewline } else { Write-Host $string -ForegroundColor White }     }
 function WriteErrorExit([string]$errorMsg) {
     Write-Host $errorMsg -ForegroundColor DarkRed
     Write-Host "Exiting Script..." -ForegroundColor DarkRed
@@ -67,11 +61,10 @@ function NumberOfFilesInDir($pathToDir) {
 function TestPathSilently($dirPath, $returnPath = $false) { 
     $exists = Test-Path $dirPath -ErrorAction SilentlyContinue
     
-    If (-not($returnPath)) { return $exists }
-    Else {
-        if (-not($exists)) {  return $null  }
-        return $dirPath
-    }
+    If (-not($returnPath)) {  return $exists }
+    if (-not($exists))     {  return $null   }
+    
+    return $dirPath
 }
 
 function IfNotExistCreateFile($filePath) {
@@ -118,5 +111,5 @@ function RemoveFromEnvironmentPath($toRemove) {     # example $toRemove: %USERPR
 
 
 
-Export-ModuleMember -Function WriteObj, WriteCyan, WriteGreen, WriteRed, WriteDarkRed, WriteYellow, WriteErrorExit,
+Export-ModuleMember -Function WriteObj, WriteCyan, WriteGreen, WriteDarkGreen, WriteRed, WriteDarkRed, WriteYellow, WriteGray, WriteWhite, WriteErrorExit,
 NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, SafeCreateDirectory, TestPathSilently, IfNotExistCreateFile, GetRegistryPropertyValue, RemoveFromEnvironmentPath

@@ -5,8 +5,13 @@ class VsCode {
 
     [string] $installFilesDir
 
+    VsCode() {
+        $DEFAULT = "$PsScriptRoot\..\.vscode"
+        $this.installFilesDir = (Resolve-Path -Path $DEFAULT).Path
+    }
+
     VsCode($installFilesDir) {
-        $this.installFilesDir = $installFilesDir
+        $this.installFilesDir = (Resolve-Path -Path $installFilesDir).Path
     }
 
     [VsCode] SetupVsCode() {
