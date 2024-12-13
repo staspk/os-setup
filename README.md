@@ -1,6 +1,8 @@
-### Collection of scripts & files to setup/debloat/customize an OS on a clean install.
+## OS-Setup
+- Collection of scripts & files to setup/debloat/customize an OS on a clean install.
 
 ### Windows 11:Home Instructions
+
 - Uncomment desired functionality in: .\main.ps1.
 	- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
 	- In Registry functions with enum params, call like so:
