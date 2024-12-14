@@ -19,7 +19,9 @@
 	- Example use: `[PowershellConfigurer]::new().Install().Install_ForAllUsers()`
 
 ### VsCode
-- VsCode Configuration has been automated. Inversely, 'VsCode::new().BackupVsCode()', will pull your VsCode settings from the computer and save them to this ScriptPackage. 
+- VsCode Configuration has been automated.
+	- `VsCode::new().InstallUserSettings().InstallExtensions()`, Short Version: `VsCode::new().SetupVsCode()`
+	- `VsCode::new().BackupVsCode()`, save the VsCode settings on your computer to ScriptPackage. 
 
 ### Final Notes
 - Run Powershell as Admin. CD into Windows11 folder and run: './main.ps1'. Note: Powershell 5.1+ required, the standard default pre-installed version on modern Windows machines.

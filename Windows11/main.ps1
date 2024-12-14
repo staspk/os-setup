@@ -43,6 +43,6 @@ function GitConfig ($email, $names) {
 
 
 
-# Remove-Item $env:LOCALAPPDATA\Microsoft\WindowsApps\python.exe      # Remove MicrosoftStore PythonLauncher that shows as version 0.0.0.0
+# Remove-Item $env:LOCALAPPDATA\Microsoft\WindowsApps\python.exe      # Remove MicrosoftStore PythonLauncher that shows up as version 0.0.0.0
 
 
