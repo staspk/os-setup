@@ -13,7 +13,7 @@
 	- The discouraged, yet likely default path will look like:  
 	`C:\Users\{username}\OneDrive\Documents\...`
 - Nevertheless, if you'd like to continue with the latter setup, just chain in `SetCurUserDir()` to force the use of your environment $profile value(s) before proceeding as you normally would.  
-Example use: `[PowershellConfigurer]::new().SetCurUserDir().SaveProfileFilesToScriptPackage()`
+	- Example use: `[PowershellConfigurer]::new().SetCurUserDir().SaveProfileFilesToScriptPackage()`
 - Besides using `Install()` for CurrentUser, you can also chain in `Install_ForAllUsers`. [PowershellConfigurer]::new()
 - VsCode
 	- VsCode Configuration has been automated. Inversely, 'VsCode::new().BackupVsCode()', will pull your VsCode settings from the computer and save them to this ScriptPackage. 
