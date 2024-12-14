@@ -4,8 +4,6 @@
 - All possible behaviors/values of Enums, are defined right above/alongside Function Definitions that use the Enum in question. Use like so: `TaskBarAlignment ([Alignment]::Left)`
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
 ### PowershellConfigurer
-
-#### $Profile
 - PowershellConfigurer standard behavior uses hard-coded values set to [Microsoft Standard Spec](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-5.1).  
 	- However, in current versions of Win10/11 Home, OneDrive sets the Powershell global automatic variable: $profile to [Specifically what Microsoft Recommends Against](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4).  
 	- If you uncommented: `UninstallAndAttemptAnnihilationOfOneDrive` in main.ps1, your $profile paths have already been fixed and set back to recommended specs. Otherwise, read on...
