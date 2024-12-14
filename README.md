@@ -10,7 +10,8 @@
 - To quickly check your status, run `$profile` in powershell console.
 	- The older, correct, classic path for WindowsPowershell(5.1) is:  
 	`C:\Users\{username}\Documents\WindowsPowershell\{profileFile}.ps1`
-	- The discouraged, yet likely default path will look like: `C:\Users\{username}\OneDrive\Documents\...`
+	- The discouraged, yet likely default path will look like:  
+	`C:\Users\{username}\OneDrive\Documents\...`
 - Nevertheless, if you'd like to continue with the latter setup, make sure to chain in `SetCurUserDir()` before proceeding as you normally would. Example use: `[PowershellConfigurer]::new().SetCurUserDir().SaveProfileFilesToScriptPackage()`
 - Besides using `Install()` for CurrentUser, you can also chain in `Install_ForAllUsers`. [PowershellConfigurer]::new()
 - VsCode
