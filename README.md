@@ -1,10 +1,10 @@
 [![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](./assets/Os_Setup.png)](https://github.com/staspk/OS-Setup)
 ## Windows 11 Instructions
-- Uncomment desired functionality in: .\main.ps1.
-	- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
-	- In Registry functions with enum params, call like so:s
-	  `FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)`.  
-	  For alternate values/behaviors, see: .\modules\Registry.psm1
+### Uncomment desired functionality in: .\main.ps1.
+- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
+- In Registry functions with enum params, call like so:
+`FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)`.  
+For alternate values/behaviors, see: .\modules\Registry.psm1
 - PowershellConfigurer. 
 	- `[PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()` => Save Pwsh-Profiles to ScriptPackage.
 	- PowershellProfile Derived Classes have hard-coded $profile paths set to [Microsoft Standard Spec](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-5.1). However, in current versions of Win10/11 Home, OneDrive will default to setting the global automatic variable $profile [to what Microsoft Specifically Advises to Avoid](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4): `C:\Users\{username}\OneDrive\Documents\...`, as opposed to the older, correct, classic path at: `C:\Users\{username}\Documents\...`.
