@@ -172,12 +172,12 @@ class PowershellConfigurer {
     [PowershellConfigurer] SaveProfileFilesToScriptPackage() {
         $profileDir = 
 
-        Get-ChildItem -Path $toDir -Recurse | ForEach-Object {  
-            $_.Delete()
-            WriteRed "Deleted File: $_"
-        }
-        Copy-Item -Path "$profileDir\*" -Destination $toDir -Recurse
-        WriteGreen("PowershellConfigurer: Saved New Powershell 5.1 Profile files to: $toDir")
+        # Get-ChildItem -Path $toDir -Recurse | ForEach-Object {  
+        #     $_.Delete()
+        #     WriteRed "Deleted File: $_"
+        # }
+        # Copy-Item -Path "$profileDir\*" -Destination $toDir -Recurse
+        # WriteGreen("PowershellConfigurer: Saved New Powershell 5.1 Profile files to: $toDir")
 
         return $this
     }

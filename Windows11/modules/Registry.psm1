@@ -17,10 +17,8 @@ function RegistryPropertyEditOrAdd($path, $propertyName, [int]$value, $propertyT
 enum FileExplorerLaunchTo {  ThisPC = 1; QuickAccess = 2; Downloads = 3  }
 function FileExplorerDefaultOpenTo( [FileExplorerLaunchTo] $launchTo = "Downloads") { 
 	$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-	[int]$enumAsInt = [Enum]::Parse([FileExplorerLaunchTo], $launchTo)
 
-	RegistryPropertyEditOrAdd $path "LaunchTo" $enumAsInt
-
+	RegistryPropertyEditOrAdd $path "LaunchTo" $launchTo.value__
 	WriteCyan("FILE EXPLORER: will now default-open to: $launchTo")
 }
 
@@ -59,14 +57,14 @@ function VisibleHiddenFiles([bool]$bool = $true) {
 }
 
 
-function TaskBarAlignment([ValidateRange(0, 1)] $alignment = 0) {
+enum Alignment { Left = 0; Center = 1 }
+function TaskBarAlignment([Alignment]$alignment = [Alignment]::Left) {
 	$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 	$propName = "TaskbarAl"
 
-	RegistryPropertyEditOrAdd $path $propName $alignment
+	RegistryPropertyEditOrAdd $path $propName $alignment.value__
 
-	if ($alignment -eq 0) {  WriteCyan("TASKBAR: Alignment set to left.")  }
-	elseif ($alignment -eq 1) {  WriteCyan("TASKBAR: Alignment set to center.") }
+	WriteCyan("TASKBAR: Alignment set to: $alignment")
 }
 
 function TaskBarRemoveTaskView {

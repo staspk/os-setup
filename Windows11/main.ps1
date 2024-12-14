@@ -14,10 +14,10 @@ $host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
 
 FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
 # ShowRecentInQuickAccess $false
-# VisibleFileExtensions "$true"
-# VisibleHiddenFiles $true 
+# VisibleFileExtensions $true
+# VisibleHiddenFiles $true
 
-# TaskBarAlignment 0
+TaskBarAlignment ([Alignment]::Left)
 # TaskBarRemoveTaskView
 # DisableWidgets
 
@@ -27,7 +27,7 @@ FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
 
 
 
-$configurer = [PowershellConfigurer]::new().SetUserDir().SaveProfileFilesToScriptPackage()
+# $configurer = [PowershellConfigurer]::new().SetUserDir().SaveProfileFilesToScriptPackage()
 
 
 
