@@ -1,7 +1,7 @@
 [![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](./assets/Os_Setup.png)](https://github.com/staspk/OS-Setup)
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
-- All possible behaviors/values of Enums, are defined right above Function Definitions that use the Enum in question. Use like so: `TaskBarAlignment ([Alignment]::Left)`
+- All possible behaviors/values of Enums, are defined right above/alongside Function Definitions that use the Enum in question. Use like so: `TaskBarAlignment ([Alignment]::Left)`
 - Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
 ### PowershellConfigurer
 - `[PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()` => Save Pwsh-Profiles to ScriptPackage.
