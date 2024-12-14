@@ -5,8 +5,8 @@
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
 ### PowershellConfigurer
 - PowershellConfigurer standard behavior uses hard-coded values set to [Microsoft Standard Spec](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-5.1).  
-However, in current versions of Win10/11 Home, OneDrive sets the Powershell global automatic variable: $profile to [Specifically what Microsoft Recommends Against](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4).  
-If you uncommented: `UninstallAndAttemptAnnihilationOfOneDrive` in main.ps1, your $profile paths have already been fixed and set back to recommended specs. Otherwise, read on...
+	-However, in current versions of Win10/11 Home, OneDrive sets the Powershell global automatic variable: $profile to [Specifically what Microsoft Recommends Against](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4).  
+	-If you uncommented: `UninstallAndAttemptAnnihilationOfOneDrive` in main.ps1, your $profile paths have already been fixed and set back to recommended specs. Otherwise, read on...
 - To quickly check your status, run `$profile` in powershell console. The older, correct, classic path for WindowsPowershell(5.1) is:  
 `C:\Users\{username}\Documents\WindowsPowershell\{profileFile}.ps1`, while the discouraged path will look like:  
 `C:\Users\{username}\OneDrive\Documents\...`.
