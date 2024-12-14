@@ -1,4 +1,4 @@
-![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](https://github.com/staspk/OS-Setup/blob/main/images/Os_Setup.png)
+![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](https://github.com/staspk/OS-Setup/blob/main/assets/Os_Setup.png)
 ### Windows 11 Instructions
 - Uncomment desired functionality in: .\main.ps1.
 	- Change List of bloat/software to uninstall/install in: .\modules\Winget.psm1
