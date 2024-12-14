@@ -30,7 +30,7 @@ class VsCode {
     [VsCode] InstallExtensions() {
         $exists = TestPathSilently("$($this.installFilesDir)\extensions-list")
         if ($exists -eq $null) {
-            WriteRed("extensions-list file not found. Skipping InstallExtensions()")
+            WriteRed "extensions-list file not found. Skipping InstallExtensions()" 
             return $this
         }
 

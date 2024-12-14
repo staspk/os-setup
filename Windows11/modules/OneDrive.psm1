@@ -1,13 +1,19 @@
 $USER_HOME = "$env:USERPROFILE"
-
-function MoveOneDriveFoldersToUserHome {
+function MoveOneDriveDirectoryContentsToUserHome {
     if (TestPathSilently "$USER_HOME\OneDrive\" -AND -not(TestPathSilently "$USER_HOME\OneDrive\*" )) {  # OneDrive folder exists and is not empty
-        try {
-            Move-Item -Path "$USER_HOME\OneDrive\*" -Destination "$USER_HOME" -Recurse
+        $to_move = @('Desktop', 'Pictures')
+        foreach ($folder in $to_move) {
+            if (TestPathSilently "$USER_HOME\OneDrive\$folder") {
+                WriteCyan "OneDrive: attempting to move $folder from OneDrive directory to: $USER_HOME"
+                Move-Item -Path "$USER_HOME\OneDrive\$folder" -Destination "$USER_HOME"
+            }
         }
-        catch {
-            WriteRed "Attempted to move contents of OneDrive folder to $USER_HOME, but entered catch:"
-            WriteRed "$_.Exception.Message"
+        $path_to_documents = $([Environment]::GetFolderPath("MyDocuments"))
+        foreach ($folder in $path_to_documents.Split("\")) {
+            if ($folder -ieq "OneDrive") {
+                WriteCyan "OneDrive: Environment confirmed MyDocuments primary residence under OneDrive. Attempting to move to: $USER_HOME"
+                Move-Item -Path "$USER_HOME\OneDrive\Documents" -Destination "$USER_HOME"
+            }
         }
     }
 }
@@ -29,7 +35,7 @@ function RemoveReferencesToOneDriveInRegistry {
 
         Set-ItemProperty -Path $path -Name $_ -Value $newValue
     }
-    WriteRed("Removed Path References to OneDrive in: $path")
+    WriteGreen "Removed Path References to OneDrive in: $path"
 }
 
 function CloseAllOpenWindows {
@@ -41,10 +47,19 @@ function CloseAllOpenWindows {
     } | Stop-Process
 }
 
-function UninstallAndAttemptAnnihilationOfOneDrive {
-    WriteRed("OneDrive Uninstallation")
-    MoveOneDriveFoldersToUserHome
-    WriteRed("Before Continuing, MOVE (select-drag-drop) all items under OneDrive, up one level in the hierarchy to: '$env:userprofile'  [You could lose your desktop, if you skip this step...]" )
+function UninstallAndAttemptAnnihilationOfOneDrive($deleteOneDriveAfter = $false) {
+    WriteCyan "OneDrive: UninstallAndAttemptAnnihilationOfOneDrive..."
+    Start-Sleep -Seconds 1
+    WriteCyan "OneDrive: MoveOneDriveDirectoryContentsToUserHome..."
+    MoveOneDriveDirectoryContentsToUserHome
+    Start-Sleep -Seconds 1
+    if(TestPathSilently("$USER_HOME\OneDrive")) {
+        WriteCyan "OneDrive: Opening OneDrive directory for manual check..."
+        Start-Sleep -Seconds 1
+        explorer.exe "$USER_HOME\OneDrive"
+    }
+    WriteRed "Before Continuing, double-check that all important directories have been moved out from under OneDrive. Don't Copy-Paste! Move(select-drag-drop) folders up one level in the hierarchy to: '$env:userprofile'"
+    WriteRed "[Warning: Skipping this step can risk you losing your important dirs (your Desktop, for example!)...]"
     do {
         $userInput = Read-Host "Type 'ok' to proceed, or 'exit'"
         if ($userInput -ieq "exit") { exit }
@@ -52,7 +67,9 @@ function UninstallAndAttemptAnnihilationOfOneDrive {
 
     winget uninstall OneDrive
     RemoveReferencesToOneDriveInRegistry
+    if (TestPathSilently "$USER_HOME\OneDrive" -and $deleteOneDriveAfter) {
+        Remove-Item "$USER_HOME\OneDrive" -Recurse -Force
+    }
 }
-
 
 Export-ModuleMember -Function UninstallAndAttemptAnnihilationOfOneDrive, RemoveReferencesToOneDriveInRegistry

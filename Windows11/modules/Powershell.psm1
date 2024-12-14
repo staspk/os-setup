@@ -145,7 +145,7 @@ class PowershellConfigurer {
                 $this.profile7.SetupAllUsers([Profile7]::allUsersDir)
             }
             else {
-                WriteRed("PowershellConfigurer: Powershell 7.4+ Not Installed to Default Directory. Default Path to pwsh.exe: $([Profile7]::allUsersDir)\pwsh.exe")
+                WriteRed "PowershellConfigurer: Powershell 7.4+ Not Installed to Default Directory. Default Path to pwsh.exe: $([Profile7]::allUsersDir)\pwsh.exe"
                 [string] $pathToExe = ""
                 do {
                     $pathToExe = Read-Host "Please enter location of your Powershell 7 exe (or 'exit'): "
@@ -180,7 +180,7 @@ class PowershellConfigurer {
         #     WriteRed "Deleted File: $_"
         # }
         # Copy-Item -Path "$profileDir\*" -Destination $toDir -Recurse
-        # WriteGreen("PowershellConfigurer: Saved New Powershell 5.1 Profile files to: $toDir")
+        # WriteGreen "PowershellConfigurer: Saved New Powershell 5.1 Profile files to: $toDir" 
 
         return $this
     }

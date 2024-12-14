@@ -2,7 +2,7 @@ function NewRegistryKey($path, $name) {
 	if (-not (Test-Path $path)) {
 		New-Item -Path $path -Name $name
 	}
-	else {  WriteRed("New Registry Function used, but registry key already exists. Path: $path. Name: $name")  }
+	else {  WriteRed "New Registry Function used, but registry key already exists. Path: $path. Name: $name"  }
 }
 
 function RegistryPropertyEditOrAdd($path, $propertyName, [int]$value, $propertyType = "DWORD") {
@@ -83,7 +83,7 @@ function DisableWidgets {
 	NewRegistryKey $path $key
 	RegistryPropertyEditOrAdd "$path\$key" $propName 0
 	
-	WriteRed("Disabled Widgets. Please RESTART Computer to finalize.")
+	WriteRed "Disabled Widgets. Please RESTART Computer to finalize."
 }
 
 
