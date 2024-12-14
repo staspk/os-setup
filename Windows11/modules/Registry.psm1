@@ -86,6 +86,15 @@ function DisableWidgets {
 	WriteRed "Disabled Widgets. Please RESTART Computer to finalize."
 }
 
+function SetVerticalScrollSpeed([int]$scrollSpeed = 3) {
+	$path = "HKCU:\Control Panel\Desktop"
+	$propName = "WheelScrollLines"
 
-Export-ModuleMember -Function FileExplorerDefaultOpenTo, ShowRecentInQuickAccess, VisibleFileExtensions, VisibleHiddenFiles, TaskBarAlignment, TaskBarRemoveTaskView, DisableWidgets
+	Set-ItemProperty -Path $path -Name $propName -Value $scrollSpeed
+	WriteCyan "Registry: Vertical Scroll Speed set to $scrollSpeed. Changes will take effect after Computer Restart"
+}
+
+
+Export-ModuleMember -Function FileExplorerDefaultOpenTo, ShowRecentInQuickAccess, VisibleFileExtensions, VisibleHiddenFiles, TaskBarAlignment, TaskBarRemoveTaskView, DisableWidgets,
+SetVerticalScrollSpeed
 

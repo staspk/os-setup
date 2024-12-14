@@ -21,15 +21,15 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 # TaskBarRemoveTaskView
 # DisableWidgets
 
+# SetVerticalScrollSpeed 9
+
 # UninstallBloat
 # InstallSoftware
 # UninstallAndAttemptAnnihilationOfOneDrive
 
 # $configurer = [PowershellConfigurer]::new()#.SetUserDir().SaveProfileFilesToScriptPackage()
 
-
-
-# $VsCode = [VsCode]::new().BackupVsCode()
+$VsCode = [VsCode]::new().BackupVsCode()
 
 
 function GitConfig ($email, $names) {
