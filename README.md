@@ -14,8 +14,13 @@
 	`C:\Users\{username}\OneDrive\Documents\...`
 - Nevertheless, if you'd like to continue with the latter setup, just chain in `SetCurUserDir()` to force the use of your environment $profile value(s) before proceeding as you normally would.  
 	- Example use: `[PowershellConfigurer]::new().SetCurUserDir().SaveProfileFilesToScriptPackage()`
-- Besides using `Install()` for CurrentUser, you can also chain in `Install_ForAllUsers`. [PowershellConfigurer]::new()
-- VsCode
-	- VsCode Configuration has been automated. Inversely, 'VsCode::new().BackupVsCode()', will pull your VsCode settings from the computer and save them to this ScriptPackage. 
+
+- `.powershell\` is where you should place your profile files and custom libraries, if doing manually. `Install()` will setup CurrentUser, `Install_ForAllUsers` will do so for All Users.
+	- Example use: `[PowershellConfigurer]::new().Install().Install_ForAllUsers()`
+
+### VsCode
+- VsCode Configuration has been automated. Inversely, 'VsCode::new().BackupVsCode()', will pull your VsCode settings from the computer and save them to this ScriptPackage. 
+
+### Final Notes
 - Run Powershell as Admin. CD into Windows11 folder and run: './main.ps1'. Note: Powershell 5.1+ required, the standard default pre-installed version on modern Windows machines.
-- Restart computer.
+- Restart computer to finalize changes.
