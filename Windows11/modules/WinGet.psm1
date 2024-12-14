@@ -42,7 +42,13 @@ $TO_UNINSTALL =
 	"Xbox TCUI"
 
 function InstallSoftware {
-	winget install $TO_INSTALL
+	$TO_INSTALL | ForEach-Object {
+		if($_ -ne "Microsoft.VisualStudioCode") {
+			winget install $_
+		}
+		else {  winget install Microsoft.VisualStudioCode --override "/verysilent /suppressmsgboxes /mergetasks='!runcode,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath'"  }
+	}
+	
 }
 
 function UninstallBloat {

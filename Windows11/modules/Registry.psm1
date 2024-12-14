@@ -76,12 +76,14 @@ function TaskBarRemoveTaskView {
 	WriteCyan("TASKBAR: Task View Removed")
 }
 
-function DisableWidgets {
+function DisableWidgets($enable = $false) {
 	$path = "HKLM:\SOFTWARE\Policies\Microsoft"
 	$key = "DSH";  $propName = "AllowNewsAndInterests"
 
 	NewRegistryKey $path $key
 	RegistryPropertyEditOrAdd "$path\$key" $propName 0
+
+	if ($enable) {  Set-ItemProperty -Path $path\$key -Name $propName -Value 1  }
 	
 	WriteRed "Disabled Widgets. Please RESTART Computer to finalize."
 }

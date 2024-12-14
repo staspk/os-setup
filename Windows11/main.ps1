@@ -19,7 +19,7 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 
 # TaskBarAlignment ([Alignment]::Left)
 # TaskBarRemoveTaskView
-# DisableWidgets
+DisableWidgets $true
 
 # SetVerticalScrollSpeed 9
 
@@ -29,7 +29,7 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 
 # $configurer = [PowershellConfigurer]::new()#.SetUserDir().SaveProfileFilesToScriptPackage()
 
-$VsCode = [VsCode]::new().BackupVsCode()
+# $VsCode = [VsCode]::new().BackupVsCode()
 
 
 function GitConfig ($email, $names) {
