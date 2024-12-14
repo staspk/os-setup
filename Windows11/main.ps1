@@ -8,16 +8,16 @@ using module ".\modules\VsCode.psm1"
 Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
 
-$host.ui.RawUI.WindowTitle = "Windows 11 Automatic Configuration  -  23H2"
+$host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 # Clear-Host
 
 
-FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
+# FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
 # ShowRecentInQuickAccess $false
 # VisibleFileExtensions $true
 # VisibleHiddenFiles $true
 
-TaskBarAlignment ([Alignment]::Left)
+# TaskBarAlignment ([Alignment]::Left)
 # TaskBarRemoveTaskView
 # DisableWidgets
 
@@ -26,12 +26,11 @@ TaskBarAlignment ([Alignment]::Left)
 # UninstallAndAttemptAnnihilationOfOneDrive
 
 
-
-# $configurer = [PowershellConfigurer]::new().SetUserDir().SaveProfileFilesToScriptPackage()
-
+$configurer = [PowershellConfigurer]::new()#.SetUserDir().SaveProfileFilesToScriptPackage()
 
 
-# $VsCode = [VsCode]::new().InstallUserSettings()
+
+# $VsCode = [VsCode]::new().BackupVsCode()
 
 
 function GitConfig ($email, $names) {

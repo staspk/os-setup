@@ -1,9 +1,14 @@
 $USER_HOME = "$env:USERPROFILE"
 
-function MoveOneDriveFoldersToUserHome {    # Unfinished. Please finish $USER_HOME
-    $dirList = "$USER_HOME\OneDrive" | Get-ChildItem -Directory
-    foreach ($dir in $dirList) {
-        Move-Item -Path "$USER_HOME\OneDrive\$dir" -Destination "$USER_HOME\$dir"
+function MoveOneDriveFoldersToUserHome {
+    if (TestPathSilently "$USER_HOME\OneDrive\" -AND -not(TestPathSilently "$USER_HOME\OneDrive\*" )) {  # OneDrive folder exists and is not empty
+        try {
+            Move-Item -Path "$USER_HOME\OneDrive\*" -Destination "$USER_HOME" -Recurse
+        }
+        catch {
+            WriteRed "Attempted to move contents of OneDrive folder to $USER_HOME, but entered catch:"
+            WriteRed "$_.Exception.Message"
+        }
     }
 }
 
@@ -28,18 +33,17 @@ function RemoveReferencesToOneDriveInRegistry {
 }
 
 function CloseAllOpenWindows {
-    Get-Process | Where-Object {
-        $_.ProcessName | Out-File "C:\Users\stasp\Desktop\OS-Setup\Windows11\output.txt" -Append
-        $_.MainWindowTitle -ne "" -and
-        $_.processname -ne "powershell" -and    # For Some reason, this line only works on Admin-Run Powershell processes. Normal Powershell windows will close and script won't complete.
-        $_.processname -ne "Spotify"
-    } | Stop-Process
-
     (New-Object -comObject Shell.Application).Windows() | foreach-object {$_.quit()}
+
+    Get-Process | Where-Object {
+        $_.MainWindowTitle -ne "" -and
+        $_.processname -ne "powershell"    # For Some reason, this line only works on Admin-Run WindowsPowershell5.1 processes. Normal Powershell windows will close and script won't complete.
+    } | Stop-Process
 }
 
 function UninstallAndAttemptAnnihilationOfOneDrive {
     WriteRed("OneDrive Uninstallation")
+    MoveOneDriveFoldersToUserHome
     WriteRed("Before Continuing, MOVE (select-drag-drop) all items under OneDrive, up one level in the hierarchy to: '$env:userprofile'  [You could lose your desktop, if you skip this step...]" )
     do {
         $userInput = Read-Host "Type 'ok' to proceed, or 'exit'"

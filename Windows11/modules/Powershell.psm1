@@ -36,44 +36,47 @@ class PowershellProfile {
 }
 
 class Profile5 : PowershellProfile {    # Profile 5.1                                 
-    static $currentUserDir = "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"     # default => C:\Users\{userName}\Documents\WindowsPowerShell
-    static $allUsersDir = "$env:SystemRoot\System32\WindowsPowerShell\v1.0"                         # default => C:\Windows\System32\WindowsPowerShell\v1.0
+    static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"     # default => C:\Users\{userName}\Documents\WindowsPowerShell, unless Documents folder moved by OneDrive
+    static $allUsersDir    =    "$Env:ProgramFiles\WindowsPowershell\7"                                # default => C:\Program Files\WindowsPowerShell\v1.0
 
     Profile5($installFilesDir) : base($installFilesDir, [Profile5]::currentUserDir, [Profile5]::allUsersDir) {   }
 }
 
 class Profile7 : PowershellProfile {    # Profile 7.4+                               
-    static $currentUserDir     =  "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"       #  default => C:\Users\{userName}\Documents\PowerShell 
-    static $allUsersDir =  "$Env:ProgramFiles\PowerShell\7"                                         #  default => C:\Program Files\PowerShell\7
+    static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"            #  default => C:\Users\{userName}\Documents\PowerShell, unless Documents folder moved by OneDrive
+    static $allUsersDir    =    "$Env:ProgramFiles\PowerShell\7"                                       #  default => C:\Program Files\PowerShell\7
 
     Profile7($installFilesDir) : base($installFilesDir, [Profile7]::currentUserDir, [Profile7]::allUsersDir) {   }
 }
 
 class PowershellConfigurer {
-    $PROFILE = $Global:PROFILE             # auto variable set with constructor param
+    $PROFILE = $Global:PROFILE
     
     [Profile5] $profile5 = $null
     [Profile7] $profile7 = $null
 
     [string] $installFilesDir = $null
 
-    PowershellConfigurer() {
-        $DEFAULT = "$PsScriptRoot\..\.powershell"
-        if (-not(TestPathSilently($DEFAULT))) {  mkdir -Force $DEFAULT  }
-        $this.Init($DEFAULT)
+    PowershellConfigurer() {    # Use Default Constructor when using hard-coded static variables In Profile5 / Profile7 (set to Microsoft Recommended values: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4
+        $this.Init($false)
     }
-    PowershellConfigurer($pathToDirWithInstallFiles) {
-        if (-not(TestPathSilently($pathToDirWithInstallFiles))) {  WriteErrorExit "PowershellConfigurer: Constructor Param not a valid path: $pathToDirWithInstallFiles" }
-        $this.Init($pathToDirWithInstallFiles)
+    PowershellConfigurer($profile) {    # Use when using automatic global variable $profile to set paths
+        if ($profile -ne $Global:PROFILE) {  WriteErrorExit "PowershellConfigurer: If using constructor with param, you must pass in the automatic-variable `$profile. Try again next time with command: '[PowershellConfigurer]::new(`$profile)' in .main.ps1" }
+        $this.Init($true)
     }
 
-    [PowershellConfigurer] Init($pathToDirWithInstallFiles) {
-        $this.installFilesDir = (Resolve-Path -Path $pathToDirWithInstallFiles).Path
+    [PowershellConfigurer] Init([bool]$useProfile) {
+        if (-not(TestPathSilently("$PsScriptRoot\..\.powershell"))) { mkdir -Force $PsScriptRoot\..\.powershell }
+        $this.installFilesDir = (Resolve-Path -Path "$PsScriptRoot\..\.powershell").Path
 
         if (-not(TestPathSilently "$($this.installFilesDir)\*")) {    # Provided directory is completely empty. Making sub-folders 5 and 7 ...
             mkdir -Force "$($this.installFilesDir)\5"
             mkdir -Force "$($this.installFilesDir)\7"
         }
+
+        return $this;
+
+        # Reached Branch
 
         $curHostOnTop = TestPathSilently "$($this.installFilesDir)\Microsoft.PowerShell_profile.ps1" $true
         $allHostsOnTop = TestPathSilently "$($this.installFilesDir)\profile.ps1" $true

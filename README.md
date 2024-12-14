@@ -25,4 +25,5 @@
 
 ### Final Notes
 - Run Powershell as Admin. CD into Windows11 folder and run: './main.ps1'. Note: Powershell 5.1+ required, the standard default pre-installed version on modern Windows machines.
+- Highly Recommended to Close All Extraneous Programs, especially FileExplorer and Terminals open at any paths.
 - Restart computer to finalize changes.
