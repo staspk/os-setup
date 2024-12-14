@@ -1,8 +1,5 @@
 function NewRegistryKey($path, $name) {
-	if (-not (Test-Path $path)) {
-		New-Item -Path $path -Name $name
-	}
-	else {  WriteRed "New Registry Function used, but registry key already exists. Path: $path. Name: $name"  }
+	New-Item -Path $path -Name $name | Out-Null
 }
 
 function RegistryPropertyEditOrAdd($path, $propertyName, [int]$value, $propertyType = "DWORD") {
@@ -83,9 +80,10 @@ function DisableWidgets($enable = $false) {
 	NewRegistryKey $path $key
 	RegistryPropertyEditOrAdd "$path\$key" $propName 0
 
-	if ($enable) {  Set-ItemProperty -Path $path\$key -Name $propName -Value 1  }
-	
-	WriteRed "Disabled Widgets. Please RESTART Computer to finalize."
+	if ($enable) {  Remove-Item  "$path\$key" }
+	else {
+		WriteGreen "Disabled Widgets. Please RESTART Computer to finalize."
+	}
 }
 
 function SetVerticalScrollSpeed([int]$scrollSpeed = 3) {
@@ -96,7 +94,14 @@ function SetVerticalScrollSpeed([int]$scrollSpeed = 3) {
 	WriteCyan "Registry: Vertical Scroll Speed set to $scrollSpeed. Changes will take effect after Computer Restart"
 }
 
+function RestoreClassicContextMenu {
+	$guid = "{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}" 
+	New-Item -Path "HKCU:\Software\Classes\CLSID\" -Name $guid | Out-Null
+	New-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Name InprocServer32 -Value "" | Out-Null
+	Get-Process explorer | Stop-Process -ErrorAction Ignore
+}
+
 
 Export-ModuleMember -Function FileExplorerDefaultOpenTo, ShowRecentInQuickAccess, VisibleFileExtensions, VisibleHiddenFiles, TaskBarAlignment, TaskBarRemoveTaskView, DisableWidgets,
-SetVerticalScrollSpeed
+SetVerticalScrollSpeed, RestoreClassicContextMenu
 

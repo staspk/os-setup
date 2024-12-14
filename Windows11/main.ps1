@@ -16,10 +16,11 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 # ShowRecentInQuickAccess $false
 # VisibleFileExtensions $true
 # VisibleHiddenFiles $true
+# RestoreClassicContextMenu
 
 # TaskBarAlignment ([Alignment]::Left)
 # TaskBarRemoveTaskView
-DisableWidgets $true
+# DisableWidgets
 
 # SetVerticalScrollSpeed 9
 
