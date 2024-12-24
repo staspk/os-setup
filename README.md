@@ -3,10 +3,11 @@
 ### Uncomment desired functionality in: .\main.ps1.
 - All possible behaviors/values of Enums, are defined right above/alongside Function Definitions that use the Enum in question. Use like so: `TaskBarAlignment ([Alignment]::Left)`
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
+
 ### PowershellConfigurer
 - `.powershell\` is where you should place your profile files and custom libraries, if doing manually.
 	- `[PowershellConfigurer]::PrintCorrectFolderStruture()` --> Use this static method see how .powershell should be structured.
-	- `[PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()` --> Only pulls $profile.CurrentUser files for Powershell5 and Powershell7+ (Core). Will implement if I ever need the functionality.
+	- `[PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()` --> Only pulls $profile.CurrentUser files for Powershell5 and Powershell7+ (Core). Will implement pulling AllUsers if I ever need the functionality.
 	- `[PowershellConfigurer]::new().Install_forCurrentUser().Install_forCurrentUser()`
 
 ### VsCode
