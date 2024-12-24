@@ -1,54 +1,14 @@
-#  "Microsoft.PowerShell_profile.ps1"   ==>   # For Console, but not ISE. Ideal for, like, code completions
+﻿#  "Microsoft.PowerShell_profile.ps1"   ==>   # For Console, but not ISE. Ideal for, like, code completions
 #  "profile.ps1"                        ==>   # Console, ISE, Ideal for global use
 
-class PowershellProfile {
-    [string] $installFilesDir
-    [string] $currentUserDir
-    [string] $allUsersDir
-
-    PowershellProfile($installFilesDir, $currentUserDir, $allUsersDir) {
-        $this.installFilesDir = $installFilesDir
-        $this.currentUserDir = $currentUserDir
-        $this.allUsersDir = $allUsersDir
-    }
-
-    SetCurUserDir($currentUserDir) {
-        $this.currentUserDir = $currentUserDir;
-    }                  
-    SetAllUsersDir($allUsersDir) {
-        if (-not(TestPathSilently $allUsersDir)) {  mkdir -Force $allUsersDir  }
-        $this.$allUsersDir = $allUsersDir
-    }
-
-    SetupCurrentUser() {
-        if(-not(TestPathSilently($this.currentUserDir))) { mkdir -Force ($this.currentUserDir) }
-        Write-Host "FROM: " $this.installFilesDir -ForegroundColor Cyan
-        Write-Host "TO: " $this.currentUserDir -ForegroundColor Cyan
-        Copy-Item -Path "$($this.installFilesDir)\*" -Destination "$($this.currentUserDir)" -Recurse
-    }
-
-    SetupAllUsers($allUsersDir)  {
-        if(-not(TestPathSilently($allUsersDir))) { mkdir -Force ($this.allUsersDir) }
-        Write-Host "FROM: " $this.installFilesDir -ForegroundColor Cyan
-        Write-Host "TO: " $allUsersDir -ForegroundColor Cyan
-        Copy-Item -Path "$($this.installFilesDir)\*" -Destination $allUsersDir -Recurse
-    }
+class Profile5 {    # Profile 5.1                                 
+    static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"      # default => C:\Users\{userName}\Documents\WindowsPowerShell, unless Documents folder moved by OneDrive
+    static $allUsersDir    =    "$Env:ProgramFiles\WindowsPowershell"                                   # default => C:\Program Files\WindowsPowerShell
 }
-
-class Profile5 : PowershellProfile {    # Profile 5.1                                 
-    static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"     # default => C:\Users\{userName}\Documents\WindowsPowerShell, unless Documents folder moved by OneDrive
-    static $allUsersDir    =    "$Env:ProgramFiles\WindowsPowershell\7"                                # default => C:\Program Files\WindowsPowerShell\v1.0
-
-    Profile5($installFilesDir) : base($installFilesDir, [Profile5]::currentUserDir, [Profile5]::allUsersDir) {   }
+class Profile7 {    # Profile 7.4+                               
+    static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"             #  default => C:\Users\{userName}\Documents\PowerShell, unless Documents folder moved by OneDrive
+    static $allUsersDir    =    "$Env:ProgramFiles\PowerShell\7"                                        #  default => C:\Program Files\PowerShell\7
 }
-
-class Profile7 : PowershellProfile {    # Profile 7.4+                               
-    static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"            #  default => C:\Users\{userName}\Documents\PowerShell, unless Documents folder moved by OneDrive
-    static $allUsersDir    =    "$Env:ProgramFiles\PowerShell\7"                                       #  default => C:\Program Files\PowerShell\7
-
-    Profile7($installFilesDir) : base($installFilesDir, [Profile7]::currentUserDir, [Profile7]::allUsersDir) {   }
-}
-
 class PowershellConfigurer {
     $PROFILE = $Global:PROFILE
     
@@ -57,132 +17,116 @@ class PowershellConfigurer {
 
     [string] $installFilesDir = $null
 
-    PowershellConfigurer() {    # Use Default Constructor when using hard-coded static variables In Profile5 / Profile7 (set to Microsoft Recommended values: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4
-        $this.Init($false)
-    }
-    PowershellConfigurer($profile) {    # Use when using automatic global variable $profile to set paths
-        if ($profile -ne $Global:PROFILE) {  WriteErrorExit "PowershellConfigurer: If using constructor with param, you must pass in the automatic-variable `$profile. Try again next time with command: '[PowershellConfigurer]::new(`$profile)' in .main.ps1" }
-        $this.Init($true)
-    }
-
-    [PowershellConfigurer] Init([bool]$useProfile) {
+    PowershellConfigurer() {
         if (-not(TestPathSilently("$PsScriptRoot\..\.powershell"))) { mkdir -Force $PsScriptRoot\..\.powershell }
-        $this.installFilesDir = (Resolve-Path -Path "$PsScriptRoot\..\.powershell").Path
 
-        if (-not(TestPathSilently "$($this.installFilesDir)\*")) {    # Provided directory is completely empty. Making sub-folders 5 and 7 ...
-            mkdir -Force "$($this.installFilesDir)\5"
-            mkdir -Force "$($this.installFilesDir)\7"
-        }
+        $this.installFilesDir = (Resolve-Path -Path "$PsScriptRoot\..\.powershell").Path    # Changes Path from relative to absolute syntax. Will fail to resolve, if path doesn't exist
 
-        return $this;
+        if (-not(TestPathSilently "$($this.installFilesDir)\WindowsPowerShell")) {  mkdir -Force "$($this.installFilesDir)\WindowsPowerShell"  }
+        if (-not(TestPathSilently "$($this.installFilesDir)\Powershell"))        {  mkdir -Force "$($this.installFilesDir)\Powershell"         }
 
-        # Reached Branch
-
+        $modulesFolderOnTop = TestPathSilently "$($this.installFilesDir)\Modules" $true
         $curHostOnTop = TestPathSilently "$($this.installFilesDir)\Microsoft.PowerShell_profile.ps1" $true
         $allHostsOnTop = TestPathSilently "$($this.installFilesDir)\profile.ps1" $true
-        $folder5Exists = TestPathSilently "$($this.installFilesDir)\5"
-        $folder7Exists = TestPathSilently "$($this.installFilesDir)\7"
 
-        if ($folder5Exists) {  $this.profile5 = [Profile5]::new("$($this.installFilesDir)\5")  }
-        if ($folder7Exists) {  $this.profile7 = [Profile7]::new("$($this.installFilesDir)\7")  }
-
-        if (-not($folder5Exists) -and -not($folder7Exists) -AND ($curHostOnTop -or $allHostsOnTop)) {  # sub-folders '5' & '7' don't exist, but valid $profile file exists
-            WriteRed "PowershellConfigurer: Microsoft.PowerShell_profile.ps1 or profile.ps1 found, but Ambiguity Exists in folder structure. Choose Behavior: "
-            WriteWhite "1" $true; WriteRed ": Use given files to setup only Powershell 5.1"
-            WriteWhite "2" $true; WriteRed ": Use given files to setup only Powershell 7.4+"
-            WriteWhite "3" $true; WriteRed ": Duplicate and use same files to setup both Powershell 5.1 / 7.4+"
-            WriteWhite "exit" $true; WriteRed ": EXIT SCRIPT! " $true; WriteDarkGreen "Remove ambiguity in folder structure by organizing into sub-folders: '.powershell\5' and '.powershell\7"
-            
-            $userInput = $null
-            do {
-                $userInput = Read-Host "CHOICE"
-            } while ($userInput -ne 1 -AND $userInput -ne 2 -AND $userInput -ne 3 -AND $userInput -ne 'exit')
-
-            if ($userInput -eq "exit") { exit }
-            elseif ($userInput -eq 1) {  $this.profile5 = [Profile5]::new($this.installFilesDir) }
-            elseif ($userInput -eq 2) {  $this.profile7 = [Profile7]::new($this.installFilesDir) }
-            elseif ($userInput -eq 3) {  $this.profile5 = [Profile5]::new($this.installFilesDir); $this.profile7 = [Profile7]::new($this.installFilesDir) }
-        }
-        return $this
-    }
-
-
-    static [bool] CheckIfPowershell7Exe($pathToExe) {
-        Write-Host "CheckIfPowershell7Exe entered with pathtoexe: $pathtoexe" -ForegroundColor Yellow
-        $fileName = [System.IO.Path]::GetFileName($pathToExe)
-    
-        if((Test-Path $pathToExe) -and ($fileName -ieq "pwsh.exe")) {
-            Write-Host "Entered CheckIfPowershell7Exists() if clause" -ForegroundColor Green
-            return $true
-        }
-        else {
-            Write-Host "Entered CheckIfPowershell7Exists() else clause" -ForegroundColor Red
-            return $false
+        if ($modulesFolderOnTop -or $curHostOnTop -or $allHostsOnTop) {
+            WriteRed "PowershellConfigurer: Use correct folder structure before trying again:"
+            [PowershellConfigurer]::PrintCorrectFolderStruture()
+            exit
         }
     }
-    [bool] IsPowershell7InstalledInStandardLocation() {  return [PowershellConfigurer]::CheckIfPowershell7Exe("$([Profile7]::allUsersDir)\pwsh.exe")  }
-    [bool] IsPowershell7ExePath($path) {  return [PowershellConfigurer]::CheckIfPowershell7Exe($path)  }
 
-    [PowershellConfigurer] Install() {
-        if ($this.profile5 -eq $null -and $this.profile7 -eq $null) {  WriteErrorExit("PowershellConfigurer: Fatal error In Install function. No install files found.")  }
+    static [void] PrintCorrectFolderStruture() {
+        Write-Host
+        WriteGreen "Example of Correct Folder Structure:"
+        WriteDarkGreen ".powershell\"
+        WriteDarkGreen  " ├── WindowsPowerShell\    " $true; WriteDarkRed "--> for 5.1"
+        WriteDarkGreen  " ├───├── Modules\"
+        WriteDarkGreen  " ├───├── Microsoft.PowerShell_profile.ps1"
+        WriteDarkGreen  " ├───├── profile.ps1"
         
-        if ($this.profile5 -ne $null) {  $this.profile5.SetupCurrentUser()  }
-        if ($this.profile7 -ne $null) {  $this.profile7.SetupCurrentUser()  }
+        WriteDarkGreen  " ├── Powershell\           " $true; WriteDarkRed "--> for 7+ (core)"
+        WriteDarkGreen  " ├───├── Modules\"
+        WriteDarkGreen  " ├───├── Microsoft.PowerShell_profile.ps1"
+        WriteDarkGreen  " ├───├── profile.ps1"
 
+        WriteDarkGreen  " ├── WindowsPowerShell_AllUsers\    " $true; WriteDarkRed "--> Create, if your AllUsers profile differs from CurrentUser"
+        WriteDarkGreen  " ├───├── ***"
+        WriteDarkGreen  " ├── Powershell_AllUsers\           " $true; WriteDarkRed "--> Otherwise, Install_forAllUsers() will use the folders/files above"
+        WriteDarkGreen  " ├───├── ***"
+        Write-Host
+    }
+
+    [void] SaveCurrentUserProfilesToScriptPackage() {
+        $profile5Exists = TestPathSilently "$([Profile5]::currentUserDir)\*"
+        $profile7Exists = TestPathSilently "$([profile7]::currentUserDir)\*"
+
+        if ($profile5Exists) {
+            Copy-Item -Path "$([Profile5]::currentUserDir)\*" -Destination "$($this.installFilesDir)\WindowsPowerShell" -Recurse -Force
+            WriteGreen "PowershellConfigurer: Copied files from $([Profile5]::currentUserDir) to: .powershell\WindowsPowerShell"
+        }
+        if ($profile7Exists) {
+            Copy-Item -Path "$([Profile7]::currentUserDir)\*" -Destination "$($this.installFilesDir)\Powershell" -Recurse -Force
+            WriteGreen "PowershellConfigurer: Copied files from $([Profile7]::currentUserDir) to: .powershell\Powershell"
+        }
+    }
+
+    [void] SaveProfileFilesToScriptPackage() {   # Only pulls CurrentUser profiles. Someday will implement AllUsers functionality, if I actually need it
+        $this.SaveCurrentUserProfilesToScriptPackage()
+      # $this.SaveAllUsersProfilesToScriptPackage
+    }
+
+    [PowershellConfigurer] Install_forCurrentUser() {   # Will overwrite files
+        $folder5HasFiles = TestPathSilently "$($this.installFilesDir)\WindowsPowerShell\*"
+        $folder7HasFiles = TestPathSilently "$($this.installFilesDir)\Powershell\*"
+
+        if (-not($folder5HasFiles) -and -not($folder7HasFiles)) {  WriteRed "PowershellConfigurer:InstallCurrentUser() cannot complete. Directories with install files empty."; [PowershellConfigurer]::PrintCorrectFolderStruture(); exit  }
+        
+        if ($folder5HasFiles) {
+            if(-not(TestPathSilently([Profile5]::currentUserDir))) {  mkdir -Force ([Profile5]::currentUserDir)  }
+            Copy-Item -Path "$($this.installFilesDir)\WindowsPowerShell\*" -Destination "$([Profile5]::currentUserDir)\WindowsPowerShell" -Recurse -Force
+            WriteGreen "PowershellConfigurer: Copied files from .powershell\WindowsPowershell to: $([Profile5]::currentUserDir)"
+        }
+        if ($folder7HasFiles) {
+            if(-not(TestPathSilently([Profile7]::currentUserDir))) {  mkdir -Force ([Profile7]::currentUserDir)  }
+            Copy-Item -Path "$($this.installFilesDir)\Powershell\*" -Destination "$([Profile7]::currentUserDir)\Powershell" -Recurse -Force
+            WriteGreen "PowershellConfigurer: Copied files from .powershell\Powershell to: $([Profile7]::currentUserDir)"
+        }
         return $this
     }
 
-    [PowershellConfigurer] Install_ForAllUsers() {
-        WriteGreen "In PowershellConfigurer.Install_ForAllUsers()"
-        if ($this.profile5 -eq $null -and $this.profile7 -eq $null) {  WriteErrorExit("PowershellConfigurer: Fatal error In Install_ForAllUsers function. No install files found.")  }
+    [PowershellConfigurer] Install_forAllUsers() {   # Will use same files as CurrentUser profile.
+        $folder5AllUsersHasFiles = TestPathSilently "$($this.installFilesDir)\WindowsPowerShell_AllUsers\*"
+        $folder7AllUsersHasFiles = TestPathSilently "$($this.installFilesDir)\Powershell_AllUsers\*"
 
-        if ($this.profile5 -ne $null) {
-            $this.profile5.SetupAllUsers($([Profile5]::allUsersDir))
+        if(-not(TestPathSilently([Profile5]::allUsersDir))) {  mkdir -Force ([Profile5]::allUsersDir)  }
+        if ($folder5AllUsersHasFiles) {  Copy-Item -Path "$($this.installFilesDir)\WindowsPowerShell_AllUsers\*" -Destination "$([Profile5]::allUsersDir)" -Recurse -Force; WriteGreen "PowershellConfigurer: Copied files from .powershell\WindowsPowerShell_AllUsers to: $([Profile5]::allUsersDir)"  }
+        else {                           Copy-Item -Path "$($this.installFilesDir)\WindowsPowerShell\*"          -Destination "$([Profile5]::allUsersDir)" -Recurse -Force; WriteGreen "PowershellConfigurer: Copied files from .powershell\WindowsPowerShell to: $([Profile5]::allUsersDir)"  }
+        
+        if ($this.IsPowershell7InstalledInStandardLocation()) {
+            if ($folder7AllUsersHasFiles) {  Copy-Item -Path "$($this.installFilesDir)\Powershell_AllUsers\*" -Destination "$([Profile7]::allUsersDir)" -Recurse -Force; WriteGreen "PowershellConfigurer: Copied files from .powershell\PowerShell_AllUsers to: $([Profile7]::allUsersDir)"  }
+            else {                           Copy-Item -Path "$($this.installFilesDir)\Powershell\*"          -Destination "$([Profile7]::allUsersDir)" -Recurse -Force; WriteGreen "PowershellConfigurer: Copied files from .powershell\Powershell to: $([Profile7]::allUsersDir)"  }
+            return $this
         }
 
-        if ($this.profile7 -ne $null) {
-            if ($this.IsPowershell7InstalledInStandardLocation()) {
-                $this.profile7.SetupAllUsers([Profile7]::allUsersDir)
-            }
-            else {
-                WriteRed "PowershellConfigurer: Powershell 7.4+ Not Installed to Default Directory. Default Path to pwsh.exe: $([Profile7]::allUsersDir)\pwsh.exe"
-                [string] $pathToExe = ""
-                do {
-                    $pathToExe = Read-Host "Please enter location of your Powershell 7 exe (or 'exit'): "
-                    if ($pathToExe -eq "exit") { exit }
-                } while (-not ($this.IsPowershell7ExePath($pathToExe)) )
-    
-                $this.profile7.SetupAllUsers($([System.IO.Path]::GetDirectoryName($pathToExe)))
-            }
-        }
+        WriteRed "PowershellConfigurer: Powershell 7+ Not Installed to Default Directory. Default Path to pwsh.exe: $([Profile7]::allUsersDir)\pwsh.exe"
+        [string] $pathToExe = ""
+        do {
+            $pathToExe = Read-Host "Please enter location of your Powershell 7 exe (or 'exit'): "
+            if ($pathToExe -eq "exit") {  exit  }
+        } while (-not ($this.IsPowershell7ExePath($pathToExe)) )
+
+        $containingDir = [System.IO.Path]::GetDirectoryName($pathToExe)
+        if ($folder7AllUsersHasFiles) {  Copy-Item -Path "$($this.installFilesDir)\Powershell_AllUsers\*" -Destination "$containingDir" -Recurse -Force; WriteGreen "PowershellConfigurer: Copied files from .powershell\PowerShell_AllUsers to: $containingDir"  }
+        else {                           Copy-Item -Path "$($this.installFilesDir)\Powershell\*"          -Destination "$containingDir" -Recurse -Force; WriteGreen "PowershellConfigurer: Copied files from .powershell\Powershell to: $containingDir"  }
+
         return $this
     }
 
-    # Chain in if your global auto-var $profile doesn't point to Microsoft's recommended dirs. If you uncommented UninstallAndAttemptAnnihilationOfOneDrive in ./main.ps1, this issue has already been resolved.
-    # Open WindowsPowershell/Powershell7, depends which Version(s) you need, then Run: '$profile | select-object *'. Microsoft's recommended Values are Hard-Coded in static variables of Profile5 / Profile7 (Concrete implementations of PowershellProfile)
-    #   5.1:   C:\Users\{userName}\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-    #   7.4+:  C:\Users\{userName}\Documents\Powershell\Microsoft.PowerShell_profile.ps1s
-    # During Windows11 (Re)Install, OneDrive defaults to setting $profile under: 'C:\Users\OneDrive\Documents\...', against Microsoft's own warnings: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-5.1
-    [PowershellConfigurer] SetCurUserDir() {   # example use: 
-        $path = ($Global:profile).Split("\");
-        $newPath = ""; for ($i = 0; $i -lt $path.Count - 2; $i++) {  $newPath += "$($path[$i])\"  }
-
-        if ($this.profile5 -ne $null) {  $this.profile5.SetCurUserDir("$newPath\WindowsPowerShell")  }
-        if ($this.profile7 -ne $null) {  $this.profile7.SetCurUserDir("$newPath\PowerShell")  }
-        return $this
-    }
-
-    [PowershellConfigurer] SaveProfileFilesToScriptPackage() {
-        $profileDir = 
-
-        # Get-ChildItem -Path $toDir -Recurse | ForEach-Object {  
-        #     $_.Delete()
-        #     WriteRed "Deleted File: $_"
-        # }
-        # Copy-Item -Path "$profileDir\*" -Destination $toDir -Recurse
-        # WriteGreen "PowershellConfigurer: Saved New Powershell 5.1 Profile files to: $toDir" 
-
-        return $this
+    [bool] IsPowershell7InstalledInStandardLocation() {  return TestPathSilently("$([Profile7]::allUsersDir)\pwsh.exe")  }
+    [bool] IsPowershell7ExePath($pathToExe) {
+        $fileName = [System.IO.Path]::GetFileName($pathToExe)
+        return (TestPathSilently $pathToExe -and ($fileName -ieq "pwsh.exe"))
     }
 }
 

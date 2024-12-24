@@ -28,7 +28,9 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 # InstallSoftware
 # UninstallAndAttemptAnnihilationOfOneDrive
 
-# $configurer = [PowershellConfigurer]::new()#.SetUserDir().SaveProfileFilesToScriptPackage()
+$configurer = [PowershellConfigurer]::PrintCorrectFolderStruture()
+# $configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
+# $configurer = [PowershellConfigurer]::new().Install_forCurrentUser()
 
 # $VsCode = [VsCode]::new().BackupVsCode()
 

@@ -25,13 +25,12 @@ function WriteObj($varName, $obj) {
 }
 function WriteCyan ($string)     {  Write-Host $string -ForegroundColor Cyan      }
 function WriteGreen($string)     {  Write-Host $string -ForegroundColor Green     }
-function WriteDarkGreen($string) {  Write-Host $string -ForegroundColor DarkGreen }
-
-function WriteYellow($string)    {  Write-Host $string -ForegroundColor Yellow    }
-function WriteGray($string)      {  Write-Host $string -ForegroundColor Gray      }
-function WriteRed($string, $noNewLine = $false)     {  if($noNewLine) { Write-Host $string -ForegroundColor Red -NoNewline } else { Write-Host $string -ForegroundColor Red } }
-function WriteDarkRed($string, $noNewLine = $false) {  if($noNewLine) { Write-Host $string -ForegroundColor DarkRed -NoNewline } else { Write-Host $string -ForegroundColor DarkRed }   }
-function WriteWhite($string, $noNewLine = $false)   {  if($noNewLine) { Write-Host $string -ForegroundColor White -NoNewline } else { Write-Host $string -ForegroundColor White }     }
+function WriteYellow($string, $noNewLine = $false)   {  if($noNewLine) { Write-Host $string -ForegroundColor Yellow -NoNewline } else { Write-Host $string -ForegroundColor Yellow }  }
+function WriteDarkGreen($string, $noNewLine = $false){  if($noNewLine) { Write-Host $string -ForegroundColor DarkGreen -NoNewline } else { Write-Host $string -ForegroundColor DarkGreen }  }
+function WriteGray($string, $noNewLine = $false)     {  if($noNewLine) { Write-Host $string -ForegroundColor Gray -NoNewline } else { Write-Host $string -ForegroundColor Gray }  }
+function WriteRed($string, $noNewLine = $false)      {  if($noNewLine) { Write-Host $string -ForegroundColor Red -NoNewline } else { Write-Host $string -ForegroundColor Red }  }
+function WriteDarkRed($string, $noNewLine = $false)  {  if($noNewLine) { Write-Host $string -ForegroundColor DarkRed -NoNewline } else { Write-Host $string -ForegroundColor DarkRed }  }
+function WriteWhite($string, $noNewLine = $false)    {  if($noNewLine) { Write-Host $string -ForegroundColor White -NoNewline } else { Write-Host $string -ForegroundColor White }  }
 function WriteErrorExit([string]$errorMsg) {
     Write-Host $errorMsg -ForegroundColor DarkRed
     Write-Host "Exiting Script..." -ForegroundColor DarkRed
