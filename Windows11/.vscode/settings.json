@@ -11,6 +11,19 @@
         "editorBracketHighlight.foreground5": "#D7ECFF",
         "editorBracketHighlight.foreground6": "#D7ECFF",
 
+        "editorIndentGuide.activeBackground1": "#b6b6b60e",
+        "editorIndentGuide.activeBackground2": "#b6b6b60e",
+        "editorIndentGuide.activeBackground3": "#b6b6b60e",
+        "editorIndentGuide.activeBackground4": "#b6b6b60e",
+        "editorIndentGuide.activeBackground5": "#b6b6b60e",
+        "editorIndentGuide.activeBackground6": "#b6b6b60e",
+        "editorIndentGuide.background1": "#b6b6b60e",
+        "editorIndentGuide.background2": "#b6b6b60e",
+        "editorIndentGuide.background3": "#b6b6b60e",
+        "editorIndentGuide.background4": "#b6b6b60e",
+        "editorIndentGuide.background5": "#b6b6b60e",
+        "editorIndentGuide.background6": "#b6b6b60e",
+        
         // Foreground colors for filenames in sidebar / tab-bar
         "tab.activeForeground": "#f1fdf5",
         "tab.inactiveForeground": "#f1fdf5",    
@@ -23,7 +36,7 @@
         "gitDecoration.addedResourceForeground": "#b5f5c1",
         "gitDecoration.ignoredResourceForeground": "#c4dfce",
         "gitDecoration.deletedResourceForeground": "#ff26001a",
-
+        
         "editorWarning.foreground": "#eeff0042",
     },
     "editor.tokenColorCustomizations": {
@@ -36,41 +49,66 @@
         "numbers": "#ffffff",
         "textMateRules": [
             {
-                "scope": [ "keyword.operator", "keyword.operator.logical", "punctuation", "variable.parameter" ],
+                "scope":   [ "variable.other.object" ],
+                "settings": { "foreground": "#addaff" }
+            },
+            {
+                "scope":   [ "keyword.operator", "keyword.operator.logical", "punctuation", "variable.parameter" ],
                 "settings": { "foreground": "#faf1ff" }
             },
             {
-                "scope": [ "keyword.operator", "string.template" ],
+                "scope":   [ "keyword.operator", "string.template" ],
                 "settings": { "foreground": "#fcf7ff", }
             },
             {
-                "scope": [ "variable.language", "variable.other", "variable.parameter" ],
+                "scope":   [ "variable.language", "variable.other", "variable.parameter", "variable.other.property" ],
                 "settings": { "foreground": "#f2d9ff", }
             },
             {
-                "scope": [ "meta.scriptblock.powershell" ],
+                "scope":   [ "meta.scriptblock.powershell" ],
                 "settings": { "foreground": "#D7ECFF", }
             },
             {
-                "scope": [ "source.powershell" ],
+                "scope":   [ "source.powershell" ],
                 "settings": { "foreground": "#d7ecff", }
             },
             {
-                "scope": [ "entity.name.function" ],
+                "scope":   [ "entity.name.function" ],
                 "settings": { "foreground": "#aff8fd", }
             },
             {
-                "scope": [ "support.function.attribute.powershell" ],
+                "scope":   [ "support.function.attribute.powershell" ],
                 "settings": { "foreground": "#F3E4D7", }
             },
             {
-                "scope": [ "constant.numeric.integer.powershell" ],
+                "scope":   [ "constant.numeric.integer.powershell" ],
                 "settings": { "foreground": "#fff6ef", }
-            }  
+            }
         ]
     },
     "workbench.preferredDarkColorTheme": "One Monokai",
     "security.workspace.trust.untrustedFiles": "open",
     "workbench.colorTheme": "One Monokai",
-    
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Windows PowerShell": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "git.openRepositoryInParentFolders": "never",
 }

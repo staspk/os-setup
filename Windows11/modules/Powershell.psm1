@@ -5,7 +5,7 @@ class Profile5 {    # Profile 5.1
     static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\WindowsPowerShell"      # default => C:\Users\{userName}\Documents\WindowsPowerShell, unless Documents folder moved by OneDrive
     static $allUsersDir    =    "$Env:ProgramFiles\WindowsPowershell"                                   # default => C:\Program Files\WindowsPowerShell
 }
-class Profile7 {    # Profile 7.4+                               
+class Profile7 {    # Profile 7+                               
     static $currentUserDir =    "$([Environment]::GetFolderPath("MyDocuments"))\Powershell"             #  default => C:\Users\{userName}\Documents\PowerShell, unless Documents folder moved by OneDrive
     static $allUsersDir    =    "$Env:ProgramFiles\PowerShell\7"                                        #  default => C:\Program Files\PowerShell\7
 }
@@ -18,7 +18,9 @@ class PowershellConfigurer {
     [string] $installFilesDir = $null
 
     PowershellConfigurer() {
-        if (-not(TestPathSilently("$PsScriptRoot\..\.powershell"))) { mkdir -Force $PsScriptRoot\..\.powershell }
+        $DEFAULT_INSTALL_FILES_DIRECTORY = "$PsScriptRoot\..\.powershell"
+
+        if (-not(TestPathSilently("$DEFAULT_INSTALL_FILES_DIRECTORY"))) {  mkdir -Force $DEFAULT_INSTALL_FILES_DIRECTORY  }
 
         $this.installFilesDir = (Resolve-Path -Path "$PsScriptRoot\..\.powershell").Path    # Changes Path from relative to absolute syntax. Will fail to resolve, if path doesn't exist
 

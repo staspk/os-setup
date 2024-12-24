@@ -8,7 +8,7 @@ using module ".\modules\VsCode.psm1"
 Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
 
-$host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
+$host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2+"
 # Clear-Host
 
 
@@ -28,9 +28,11 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2"
 # InstallSoftware
 # UninstallAndAttemptAnnihilationOfOneDrive
 
-$configurer = [PowershellConfigurer]::PrintCorrectFolderStruture()
+
+# $configurer = [PowershellConfigurer]::PrintCorrectFolderStruture()
 # $configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
 # $configurer = [PowershellConfigurer]::new().Install_forCurrentUser()
+
 
 # $VsCode = [VsCode]::new().BackupVsCode()
 
@@ -39,7 +41,7 @@ function GitConfig ($email, $names) {
     git config --global user.email $email
     git config --global user.name $name
 }
-# GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
+# GitConfig("someone@gmail.com", "George CarMichael")
 
 
 

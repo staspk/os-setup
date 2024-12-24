@@ -1,8 +1,9 @@
 [
-    { "key": "ctrl+k ctrl+0", "command": "editor.foldAll",              "when": "editorTextFocus"  },
-    { "key": "ctrl+k ctrl+9", "command": "editor.unfoldAll",            "when": "editorTextFocus"  },
+    { "key": "ctrl+k ctrl+9",  "command": "editor.foldLevel1",              "when": "editorTextFocus"  },
+    { "key": "ctrl+k ctrl+0",  "command": "editor.unfoldAll",               "when": "editorTextFocus"  },
 
-    { "key": "alt+q",         "command": "editor.action.indentLines",   "when": "editorTextFocus && !editorReadonly"  },
-    { "key": "alt+left",      "command": "cursorLineStart",             "when": "editorTextFocus" },
-    { "key": "alt+right",     "command": "cursorLineEnd",               "when": "editorTextFocus" }
+    { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus && !editorReadonly"  },
+    { "key": "alt+left",       "command": "cursorLineStart",                "when": "editorTextFocus" },
+    { "key": "alt+right",      "command": "cursorLineEnd",                  "when": "editorTextFocus" },
+    { "key": "alt+backspace",  "command": "editor.action.deleteLines",      "when": "editorTextFocus" }
 ]

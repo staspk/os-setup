@@ -24,7 +24,7 @@ function WriteObj($varName, $obj) {
     Write-Host
 }
 function WriteCyan ($string)     {  Write-Host $string -ForegroundColor Cyan      }
-function WriteGreen($string)     {  Write-Host $string -ForegroundColor Green     }
+function WriteGreen($string, $noNewLine)             {  if($noNewLine) { Write-Host $string -ForegroundColor Green -NoNewline } else { Write-Host $string -ForegroundColor Green }  }
 function WriteYellow($string, $noNewLine = $false)   {  if($noNewLine) { Write-Host $string -ForegroundColor Yellow -NoNewline } else { Write-Host $string -ForegroundColor Yellow }  }
 function WriteDarkGreen($string, $noNewLine = $false){  if($noNewLine) { Write-Host $string -ForegroundColor DarkGreen -NoNewline } else { Write-Host $string -ForegroundColor DarkGreen }  }
 function WriteGray($string, $noNewLine = $false)     {  if($noNewLine) { Write-Host $string -ForegroundColor Gray -NoNewline } else { Write-Host $string -ForegroundColor Gray }  }
