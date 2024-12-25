@@ -20,7 +20,10 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2+"
 
 # TaskBarAlignment ([Alignment]::Left)
 # TaskBarRemoveTaskView
+# DisableAdsInSearchBar
 # DisableWidgets
+# RestartExplorer
+
 
 # SetVerticalScrollSpeed 9
 

@@ -1,5 +1,11 @@
-function NewRegistryKey($path, $name) {
-	New-Item -Path $path -Name $name | Out-Null
+function NewRegistryKey($path, $keyName) {
+	if (-not(Test-Path "$path\$keyName")) {
+		New-Item -Path $path -Name $name | Out-Null
+		# WriteGreen "Registry: Key [$keyName] Created at: $path\$keyName"
+	}
+	else {
+		# WriteRed "Registry: NewRegistryKey skipped since Key [$keyName] already exists at: $path\$keyName"
+	}
 }
 
 function RegistryPropertyEditOrAdd($path, $propertyName, [int]$value, $propertyType = "DWORD") {
@@ -68,9 +74,20 @@ function TaskBarRemoveTaskView {
 	$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 	$propName = "ShowTaskViewButton"
 
-	ChangeRegistryValue $path $propName 0
+	RegistryPropertyEditOrAdd $path $propName 0
 
 	WriteCyan("TASKBAR: Task View Removed")
+}
+
+function DisableAdsInSearchBar {
+	$path = "HKCU:\Software\Policies\Microsoft\Windows"
+	$keyName = "Explorer"
+	$propName = "DisableSearchBoxSuggestions"
+
+	NewRegistryKey $path $keyName
+	RegistryPropertyEditOrAdd "$path\$keyName" $propName 1
+
+	WriteCyan("TASKBAR: Ads disabled in Search Bar")
 }
 
 function DisableWidgets($enable = $false) {
@@ -101,7 +118,14 @@ function RestoreClassicContextMenu {
 	Get-Process explorer | Stop-Process -ErrorAction Ignore
 }
 
+function RestartExplorer {
+	Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
+	Start-Process explorer
+}
 
-Export-ModuleMember -Function FileExplorerDefaultOpenTo, ShowRecentInQuickAccess, VisibleFileExtensions, VisibleHiddenFiles, TaskBarAlignment, TaskBarRemoveTaskView, DisableWidgets,
-SetVerticalScrollSpeed, RestoreClassicContextMenu
+
+Export-ModuleMember -Function FileExplorerDefaultOpenTo, ShowRecentInQuickAccess, VisibleFileExtensions, VisibleHiddenFiles,
+TaskBarAlignment, TaskBarRemoveTaskView, DisableAdsInSearchBar, DisableWidgets,
+SetVerticalScrollSpeed, RestoreClassicContextMenu,
+RestartExplorer
 
