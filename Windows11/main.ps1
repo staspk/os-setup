@@ -33,11 +33,11 @@ $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2+"
 
 
 # $configurer = [PowershellConfigurer]::PrintCorrectFolderStruture()
-# $configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
+$configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
 # $configurer = [PowershellConfigurer]::new().Install_forCurrentUser()
 
 
-# $VsCode = [VsCode]::new().BackupVsCode()
+$VsCode = [VsCode]::new().BackupVsCode()
 
 
 function GitConfig ($email, $names) {
