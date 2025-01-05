@@ -33,7 +33,7 @@ Clear-Host
 
 
 # $configurer = [PowershellConfigurer]::PrintCorrectFolderStruture()
-$configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
+# $configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
 # $configurer = [PowershellConfigurer]::new().Install_forCurrentUser()
 
 

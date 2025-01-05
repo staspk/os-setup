@@ -21,6 +21,12 @@ function WriteErrorExit([string]$errorMsg) {
     WriteDarkRed "Exiting Script..."
     exit
 }
+function IfNotExistCreateFile($filePath) {
+    if(-not(TestPathSilently($filePath))) {
+        New-Item -Path $filePath -ItemType File | Out-Null
+    }
+}
+
 function SetAliases($function, [Array]$aliases) {
     if ([string]::IsNullOrEmpty($function) -or [string]::IsNullOrEmpty($aliases)) {  return  }
 

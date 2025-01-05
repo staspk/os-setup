@@ -64,7 +64,6 @@ class VsCode {
     [VsCode] SaveExtensionListToScriptFiles() {     # Will overwrite extensions-list
         $extensionsFile = $this.getExtensionsListFile()
 
-        IfNotExistCreateFile $extensionsFile
         code --list-extensions > $extensionsFile
 
         WriteGreen "VsCode: Saved a list of VsCode's current extenions to: " $true; WriteDarkGreen $extensionsFile
