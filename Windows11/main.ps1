@@ -9,7 +9,7 @@ Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
 
 $host.ui.RawUI.WindowTitle = "Win11 Instant Setup - 23H2+"
-# Clear-Host
+Clear-Host
 
 
 # FileExplorerDefaultOpenTo ([FileExplorerLaunchTo]::Downloads)
