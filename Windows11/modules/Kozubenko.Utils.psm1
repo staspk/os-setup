@@ -23,7 +23,8 @@ function WriteObj($varName, $obj) {
     Write-Host "--------------------------------------------------" -ForegroundColor DarkYellow
     Write-Host
 }
-function WriteCyan ($string)     {  Write-Host $string -ForegroundColor Cyan      }
+
+function WriteCyan($string, $noNewLine)             {  if($noNewLine) { Write-Host $string -ForegroundColor Cyan -NoNewline } else { Write-Host $string -ForegroundColor Cyan }  }
 function WriteGreen($string, $noNewLine)             {  if($noNewLine) { Write-Host $string -ForegroundColor Green -NoNewline } else { Write-Host $string -ForegroundColor Green }  }
 function WriteYellow($string, $noNewLine = $false)   {  if($noNewLine) { Write-Host $string -ForegroundColor Yellow -NoNewline } else { Write-Host $string -ForegroundColor Yellow }  }
 function WriteDarkGreen($string, $noNewLine = $false){  if($noNewLine) { Write-Host $string -ForegroundColor DarkGreen -NoNewline } else { Write-Host $string -ForegroundColor DarkGreen }  }
@@ -66,23 +67,6 @@ function TestPathSilently($dirPath, $returnPath = $false) {
     return $dirPath
 }
 
-function IfNotExistCreateFile($filePath) {
-    if(-not(TestPathSilently($filePath))) {
-        New-Item -Path $filePath -ItemType File | Out-Null
-    }
-}
-
-function SafeCreateDirectory($dirPath) {
-    Write-Host "We were in SafeCreateDirectory"
-    if (-not (TestPathSilently($dirPath))) {
-        mkdir $dirPath
-	}
-}
-
-function GetRegistryPropertyValue($path, $propertyName) {     # Returns either property value or $false if not exist  # UNFINISHED!!!
-    $exists =  If ((Get-Item $path).property -match $propertyName) {"true"}
-}
-
 function CheckIfGivenStringIsPotentialFilePath([string] $potentialPath) {   # Returns bool
     $invalidChars = [System.IO.Path]::InvalidPathChars
     
@@ -111,4 +95,4 @@ function RemoveFromEnvironmentPath($toRemove) {     # example $toRemove: %USERPR
 
 
 Export-ModuleMember -Function WriteObj, WriteCyan, WriteGreen, WriteDarkGreen, WriteRed, WriteDarkRed, WriteYellow, WriteGray, WriteWhite, WriteErrorExit,
-NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, SafeCreateDirectory, TestPathSilently, IfNotExistCreateFile, GetRegistryPropertyValue, RemoveFromEnvironmentPath
+NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, TestPathSilently, RemoveFromEnvironmentPath
