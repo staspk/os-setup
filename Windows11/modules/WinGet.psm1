@@ -6,7 +6,8 @@ $TO_INSTALL =
 	"VideoLAN.VLC",
 	"Python.Python.3.13",
 	"OpenJS.NodeJS",
-	"Rustlang.Rustup"
+	"Rustlang.Rustup",
+	"7zip.7zip"
 
 $TO_UNINSTALL =
 	"Copilot",
