@@ -5,5 +5,5 @@
     { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus && !editorReadonly"  },
     { "key": "alt+left",       "command": "cursorLineStart",                "when": "editorTextFocus" },
     { "key": "alt+right",      "command": "cursorLineEnd",                  "when": "editorTextFocus" },
-    { "key": "alt+backspace",  "command": "editor.action.deleteLines",      "when": "editorTextFocus" }
+    { "key": "alt+backspace",  "command": "editor.action.deleteLines",      "when": "editorTextFocus" },
 ]
