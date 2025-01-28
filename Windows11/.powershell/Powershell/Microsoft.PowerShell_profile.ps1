@@ -3,7 +3,7 @@ using module .\Kozubenko.Git.psm1
 using module .\Kozubenko.Python.psm1
 
 [String] $global:GLOBALS = "$([System.IO.Path]::GetDirectoryName($PROFILE))\globals"
-[Array]  $global:Methods = @("NewVar(`$name, `$value = `$PWD.Path)", "SetVar(`$name, `$value)", "DeleteVar(`$varName)", "SetLocation(`$path = `$PWD.Path)")
+[Array]  $global:Methods = @("SetStartLocation(`$path = `$PWD.Path)", "NewVar(`$name, `$value = `$PWD.Path)", "SetVar(`$name, `$value)", "DeleteVar(`$varName)")
 function AddMethods([Array]$newMethods) {
     $global:Methods = $($global:Methods; $newMethods)
 }
@@ -32,6 +32,7 @@ function VsCode($path = $PWD.Path) {
     if (IsFile($path)) {  $containingDir = [System.IO.Path]::GetDirectoryName($path); code $containingDir; return; }
     else { code $path }
 }
+
 function LoadInGlobals($varToDelete = "") {   # Cleanup while loading-in, e.g. duplicate removal.
     $variables = @{}   # Dict{key==varName, value==varValue}
     $_globals = (Get-Content -Path $GLOBALS)
@@ -85,12 +86,19 @@ function SetVar($name, $value) {
     LoadInGlobals
 }
 function DeleteVar($varName) {  Clear-Host; Write-Host; LoadInGlobals($varName)  }
-function SetLocation($path = $PWD.Path) {
+function SetStartLocation($path = $PWD.Path) {  
     if (-not(TestPathSilently($path))) {
         WriteRed "Given `$path is not a real directory. `$path == $path"; WriteRed "Exiting SetLocation..."; return
 	}
 	SaveToGlobals "startLocation" $path
 	Restart
+}
+
+function Display($directory) {
+    if(IsDirectory($directory)) {  $directory | Get-ChildItem  }
+    else {
+        WriteRed "`$directory must be a valid directory. `$directory: $directory"
+    }
 }
 
 function CheckGlobalsFile() {
@@ -106,16 +114,16 @@ function OnOpen() {
         LoadInGlobals        
 
         $openedTo = $PWD.Path
-        if ($openedTo -ieq "$env:userprofile" -or $openedTo -ieq "C:\WINDOWS\system32") {  # Almost certainly, started powershell from taskbar/exe/shortcut and not from right_click->open_in_terminal. No specific directory in mind; defaulting to the global $startLocation.
+        if ($openedTo -ieq "$env:userprofile" -or $openedTo -ieq "C:\WINDOWS\system32") {   # Powershell almost certainly started from taskbar/shortcut, not from right_click->open_in_terminal... No specific directory in mind => checking $GLOBALS:$startLocation
             if ($startLocation -eq $null) {
                 # Do Nothing
             }
-            elseif (TestPathSilently $startLocation) {
-                Set-Location $startLocation  }
+            elseif(IsDirectory $startLocation) {  Set-Location $startLocation }
+            elseif(IsFile $startLocation)      {  Set-Location $([System.IO.Path]::GetDirectoryName($startLocation))  }
             else {
                 WriteRed "`$startLocation path does not exist anymore. Defaulting to userdirectory..."
                 Start-Sleep -Seconds 3
-                SetLocation $Env:USERPROFILE
+                Set-Location $Env:USERPROFILE
             }
         }
     }
@@ -125,7 +133,7 @@ function OnOpen() {
         [Microsoft.PowerShell.PSConsoleReadLine]::KillLine()
     }
     
-    SetAliases Restart @("r", "re", "res")
+    SetAliases Restart @("re", "res")
     SetAliases VsCode  @("vs", "vsc")
     SetAliases Clear-Host  @("z")
     SetAliases "C:\Program Files\Notepad++\notepad++.exe" @("note", "npp")

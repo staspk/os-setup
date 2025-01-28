@@ -9,6 +9,6 @@
     { "key": "alt+3",          "command": "editor.foldLevel3",              "when": "editorTextFocus"  },
     { "key": "alt+4",          "command": "editor.foldLevel4",              "when": "editorTextFocus"  },
     { "key": "alt+5",          "command": "editor.foldLevel5",              "when": "editorTextFocus"  },
-    { "key": "alt+9",          "command": "editor.foldAll",                 "when": "editorTextFocus"  },
+    { "key": "alt+`",          "command": "editor.foldAll",                 "when": "editorTextFocus"  },
     { "key": "alt+0",          "command": "editor.unfoldAll",               "when": "editorTextFocus"  },
 ]

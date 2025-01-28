@@ -16,8 +16,26 @@ function TestPathSilently($dirPath, $returnPath = $false) {
     return $dirPath
 }
 function IsFile($path) {
-    if ([string]::IsNullOrEmpty($path) -OR -not(Test-Path $path -ErrorAction SilentlyContinue)) {  return $false  }
-    if (Test-Path -Path $path -PathType Leaf) {  return $true  }
+    if ([string]::IsNullOrEmpty($path) -OR -not(Test-Path $path -ErrorAction SilentlyContinue)) {
+        Write-Host "Kozubenko.Utils:IsFile(`$path) has hit sanity check. `$path: $path"
+        return $false
+    }
+
+    if (Test-Path -Path $path -PathType Leaf) {  return $true;  }
+    else {
+        return $false
+    }
+}
+function IsDirectory($path) {
+    if ([string]::IsNullOrEmpty($path) -OR -not(Test-Path $path -ErrorAction SilentlyContinue)) {
+        Write-Host "Kozubenko.Utils:IsDirectory(`$path) has hit sanity check. `$path: $path"
+        return $false
+    }
+
+    if (Test-Path -Path $path -PathType Container) {  return $true  }
+    else {
+        return $false
+    }
 }
 function WriteErrorExit([string]$errorMsg) {
     WriteDarkRed $errorMsg
@@ -25,22 +43,34 @@ function WriteErrorExit([string]$errorMsg) {
     exit
 }
 
-function SetAliases($function, [Array]$aliases) {
-    if ([string]::IsNullOrEmpty($function) -or [string]::IsNullOrEmpty($aliases)) {  return  }
+function SetAliases($function, [Array]$aliases) {   # Includes functionality for overriding aliases currently in use by the pwsh standard library
+    if ($function -eq $null -or $aliases -eq $null) {  return  }
+
+    $ErrorActionPreference = "Stop"     # Needs to be set so the possible error throws
 
     foreach($alias in $aliases) {
         try {
-            $ErrorActionPreference = "Stop"     # Needs to be set so the possible error throws
-            Set-Alias -Name $alias -Value $function -Scope Global
+            Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
+            # Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
         }
         catch {
-            if ($_.FullyQualifiedErrorId -eq "AliasAllScopeOptionCannotBeRemoved,Microsoft.PowerShell.Commands.SetAliasCommand") {
-                $isAnAlias = Get-Alias $alias
-                if($isAnAlias) {
-                    Set-Alias $alias $function -Force -Scope Global -Option 'Constant','AllScope' }
-            }
-            else {  throw $_  }
+            writered #
+            WriteDarkRed "If you see this message, please fix Kozubenko.Utils:SetAliases(). Currently using a simpler but experimental version - not every use case may be covered. Still: I suspect it covers more use cases than the last version. I'll still leave it commented out."
         }
-        finally {  $ErrorActionPreference = "Continue"  }
+
+        # try {
+        #     $ErrorActionPreference = "Stop"     # Needs to be set so the possible error throws
+        #     Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
+        #     # $isAnAlias = $(Get-Alias $alias -ErrorAction SilentlyContinue)
+            
+        #     # Set-Alias -Name $alias -Value $function -Scope Global -Option ReadOnly
+        #     # Set-Alias -Name $alias -Value $function -Scope Global -Option 'Constant','AllScope'
+        # }
+        # catch {
+        #     WriteRed $_.FullyQualifiedErrorId $true
+        # }
+        # finally {  $ErrorActionPreference = "Continue"  }
     }
+    # if()
+    # WriteDarkRed "When you see this message, please delete "
 }

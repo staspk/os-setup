@@ -114,6 +114,5 @@
     },
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "git.openRepositoryInParentFolders": "never",
-    "files.autoSaveDelay": 10000,
-    "powershell.promptToUpdatePowerShell": false,
+    "files.autoSaveDelay": 10000
 }
