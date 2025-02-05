@@ -66,7 +66,7 @@ class VsCode {
 
         code --list-extensions > $extensionsFile
 
-        WriteGreen "VsCode: Saved a list of VsCode's current extenions to: " $true; WriteDarkGreen $extensionsFile
+        WriteGreen "VsCode: Saved a list of VsCode's current extenions to: " $false; WriteDarkGreen $extensionsFile
         return $this
     }
     [VsCode] SaveVsCodeSettingsToScriptFiles() {   # Will overwrite settings.json/keybindings.json
