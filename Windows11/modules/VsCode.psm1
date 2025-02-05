@@ -75,11 +75,11 @@ class VsCode {
 
         if (TestPathSilently $codeUserSettings) {
             Copy-Item -Path $codeUserSettings -Destination $toSettings -Force
-            WriteGreen "Saved " $true; WriteDarkGreen $codeUserSettings $true; WriteGreen " to: " $true; WriteDarkGreen $toSettings
+            WriteGreen "Saved " $false; WriteDarkGreen $codeUserSettings $false; WriteGreen " to: " $false; WriteDarkGreen $toSettings
         }
         if (TestPathSilently $codeKeybindings) {
             Copy-Item -Path $codeKeybindings -Destination $toKeybindings -Force
-            WriteGreen "Saved " $true; WriteDarkGreen $codeKeybindings $true; WriteGreen " to: " $true; WriteDarkGreen $toKeybindings
+            WriteGreen "Saved " $false; WriteDarkGreen $codeKeybindings $false; WriteGreen " to: " $false; WriteDarkGreen $toKeybindings
         }
         return $this
     }
