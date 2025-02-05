@@ -1,11 +1,11 @@
-function WriteRed($msg, $noNewLine = $false)      {  if($noNewLine) { Write-Host $msg -ForegroundColor Red -NoNewline } else { Write-Host $msg -ForegroundColor Red }  }
-function WriteDarkRed($msg, $noNewLine = $false)  {  if($noNewLine) { Write-Host $msg -ForegroundColor DarkRed -NoNewline } else { Write-Host $msg -ForegroundColor DarkRed }  }
-function WriteYellow($msg, $noNewLine = $false)   {  if($noNewLine) { Write-Host $msg -ForegroundColor Yellow -NoNewline } else { Write-Host $msg -ForegroundColor Yellow }  }
-function WriteCyan($msg, $noNewLine)              {  if($noNewLine) { Write-Host $msg -ForegroundColor Cyan -NoNewline } else { Write-Host $msg -ForegroundColor Cyan }  }
-function WriteGreen($msg, $noNewLine)             {  if($noNewLine) { Write-Host $msg -ForegroundColor Green -NoNewline } else { Write-Host $msg -ForegroundColor Green }  }
-function WriteDarkGreen($msg, $noNewLine = $false){  if($noNewLine) { Write-Host $msg -ForegroundColor DarkGreen -NoNewline } else { Write-Host $msg -ForegroundColor DarkGreen }  }
-function WriteGray($msg, $noNewLine = $false)     {  if($noNewLine) { Write-Host $msg -ForegroundColor Gray -NoNewline } else { Write-Host $msg -ForegroundColor Gray }  }
-function WriteWhite($msg, $noNewLine = $false)    {  if($noNewLine) { Write-Host $msg -ForegroundColor White -NoNewline } else { Write-Host $msg -ForegroundColor White }  }
+function WriteRed($msg, $newLine = $true)      {  if($newLine) { Write-Host $msg -ForegroundColor Red }      else { Write-Host $msg -ForegroundColor Red -NoNewline }        }
+function WriteDarkRed($msg, $newLine = $true)  {  if($newLine) { Write-Host $msg -ForegroundColor DarkRed }   else { Write-Host $msg -ForegroundColor DarkRed -NoNewline }    }
+function WriteYellow($msg, $newLine = $true)   {  if($newLine) { Write-Host $msg -ForegroundColor Yellow }    else { Write-Host $msg -ForegroundColor Yellow -NoNewline }     }
+function WriteCyan($msg, $newLine = $true)     {  if($newLine) { Write-Host $msg -ForegroundColor Cyan }      else { Write-Host $msg -ForegroundColor Cyan -NoNewline }       }
+function WriteGreen($msg, $newLine = $true)    {  if($newLine) { Write-Host $msg -ForegroundColor Green }     else { Write-Host $msg -ForegroundColor Green -NoNewline }      }
+function WriteDarkGreen($msg, $newLine = $true){  if($newLine) { Write-Host $msg -ForegroundColor DarkGreen } else { Write-Host $msg -ForegroundColor DarkGreen -NoNewline }  }
+function WriteGray($msg, $newLine = $true)     {  if($newLine) { Write-Host $msg -ForegroundColor Gray }      else { Write-Host $msg -ForegroundColor Gray -NoNewline }       }
+function WriteWhite($msg, $newLine = $true)    {  if($newLine) { Write-Host $msg -ForegroundColor White }    else { Write-Host $msg -ForegroundColor White -NoNewline }      }
 
 function TestPathSilently($dirPath, $returnPath = $false) { 
     $exists = Test-Path $dirPath -ErrorAction SilentlyContinue
@@ -43,34 +43,21 @@ function WriteErrorExit([string]$errorMsg) {
     exit
 }
 
-function SetAliases($function, [Array]$aliases) {   # Includes functionality for overriding aliases currently in use by the pwsh standard library
+function SetAliases($function, [Array]$aliases) {   # Throws exception if you try to call twice on same alias
     if ($function -eq $null -or $aliases -eq $null) {  return  }
 
-    $ErrorActionPreference = "Stop"     # Needs to be set so the possible error throws
-
-    foreach($alias in $aliases) {
-        try {
-            Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
-            # Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
-        }
-        catch {
-            writered #
-            WriteDarkRed "If you see this message, please fix Kozubenko.Utils:SetAliases(). Currently using a simpler but experimental version - not every use case may be covered. Still: I suspect it covers more use cases than the last version. I'll still leave it commented out."
-        }
-
-        # try {
-        #     $ErrorActionPreference = "Stop"     # Needs to be set so the possible error throws
-        #     Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
-        #     # $isAnAlias = $(Get-Alias $alias -ErrorAction SilentlyContinue)
-            
-        #     # Set-Alias -Name $alias -Value $function -Scope Global -Option ReadOnly
-        #     # Set-Alias -Name $alias -Value $function -Scope Global -Option 'Constant','AllScope'
-        # }
-        # catch {
-        #     WriteRed $_.FullyQualifiedErrorId $true
-        # }
-        # finally {  $ErrorActionPreference = "Continue"  }
+    $ErrorActionPreference = "Stop"     # A relic of a past implementation. Want everything that can be thrown, thrown. Can likely remove in the future.
+    foreach ($alias in $aliases) {
+        Set-Alias -Name $alias -Value $function -Scope Global -Option Constant,AllScope -Force
     }
-    # if()
-    # WriteDarkRed "When you see this message, please delete "
+    $ErrorActionPreference = "Continue"
+}
+
+function FolderSizes {
+    $colItems = Get-ChildItem $startFolder | Where-Object {$_.PSIsContainer -eq $true} | Sort-Object
+    foreach ($i in $colItems)
+    {
+        $subFolderItems = Get-ChildItem $i.FullName -recurse -force | Where-Object {$_.PSIsContainer -eq $false} | Measure-Object -property Length -sum | Select-Object Sum
+        WriteGreen "$($i.Name)" $false; WriteGray " --> " $false; WriteDarkRed "$("{0:N2}" -f ($subFolderItems.sum / 1MB))MB"
+    }
 }

@@ -91,7 +91,8 @@ function SetStartLocation($path = $PWD.Path) {
         WriteRed "Given `$path is not a real directory. `$path == $path"; WriteRed "Exiting SetLocation..."; return
 	}
 	SaveToGlobals "startLocation" $path
-	Restart
+    LoadInGlobals
+    Set-Location $startLocation
 }
 
 function Display($directory) {
