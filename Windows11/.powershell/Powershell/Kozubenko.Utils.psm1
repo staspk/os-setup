@@ -53,7 +53,7 @@ function SetAliases($function, [Array]$aliases) {   # Throws exception if you tr
     $ErrorActionPreference = "Continue"
 }
 
-function FolderSizes {
+function DisplayFolderSizes {
     $colItems = Get-ChildItem $startFolder | Where-Object {$_.PSIsContainer -eq $true} | Sort-Object
     foreach ($i in $colItems)
     {

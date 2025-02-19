@@ -13,7 +13,7 @@ AddMethods(
         "Kozubenko.Python: venvInstallRequirements",
         "Kozubenko.Python: venvFreeze",
         "Kozubenko.Python: KillPythonProcesses",
-        "Kozubenko.Git: Push",
+        "Kozubenko.Git: Push(`$msg)",
         "Kozubenko.Git: Github"
     )
 )
@@ -28,7 +28,12 @@ function Open($path = $PWD.Path) {
     else {  explorer.exe $path  }
 }
 function VsCode($path = $PWD.Path) {
-    if (-not(TestPathSilently($path))) { WriteRed "`$path is not a valid path. `$path == $path"; return; }
+    if ($path -eq "..") {
+        $path = "$PWD.Path\.."
+    }
+
+    if (-not(TestPathSilently($path))) { WriteRed "`$path is not a valid path. `$path == $path";  return; }
+
     if (IsFile($path)) {  $containingDir = [System.IO.Path]::GetDirectoryName($path); code $containingDir; return; }
     else { code $path }
 }
@@ -95,13 +100,6 @@ function SetStartLocation($path = $PWD.Path) {
     Set-Location $startLocation
 }
 
-function Display($directory) {
-    if(IsDirectory($directory)) {  $directory | Get-ChildItem  }
-    else {
-        WriteRed "`$directory must be a valid directory. `$directory: $directory"
-    }
-}
-
 function CheckGlobalsFile() {
     if (-not(TestPathSilently($GLOBALS))) {
         WriteRed "Globals file not found. `$GLOBALS == $GLOBALS"; WriteRed "Disabling Functions: { LoadInGlobals, SaveToGlobals, NewVar, SetVar, DeleteVar } "
@@ -140,3 +138,16 @@ function OnOpen() {
     SetAliases "C:\Program Files\Notepad++\notepad++.exe" @("note", "npp")
 }
 OnOpen
+
+function Bible($string) {       # BIBLE John:10
+    $array = $string.Split(":")
+    
+    if($array.Count -ne 2) {
+        WriteRed "Bible(`$input) => input must follow format: Matthew:10"
+        return
+    }
+
+    $version = "kjv;nasb;rsv;rusv;nrt"
+
+    Start-Process microsoft-edge:"https://www.biblegateway.com/passage/?search=$($array[0])$($array[1])&version=$version" -WindowStyle maximized
+}

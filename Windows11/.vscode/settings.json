@@ -44,7 +44,7 @@
     },
     "editor.tokenColorCustomizations": {
         "comments": "#8d8d8d",
-        "functions": "#a2fff3",
+        "functions": "#bdfaf2",
         "variables": "#f2d9ff",
         "types": "#bda1ff",
         "strings": "#ffffff",
@@ -67,6 +67,38 @@
                 "scope":   [ "variable.language", "variable.other", "variable.parameter", "variable.other.property" ],
                 "settings": { "foreground": "#f2d9ff", }
             },
+
+
+            // -------------------------------------------------------------------------------------------------------------
+            //      JavaScript
+            // -------------------------------------------------------------------------------------------------------------
+            {
+                "scope":   [ "meta.definition.variable.js", "meta.var-single-variable.expr.js", "meta.var.expr.js" ],
+                "settings": { "foreground": "#f0f9ff", }
+            },
+            {
+                "scope":   [ "variable.other.constant.js", "variable.other.object.js", ],
+                "settings": { "foreground": "#f0f9ff", }
+            },
+            {
+                "scope":   [ "punctuation.definition.template-expression.begin.js", "punctuation.definition.template-expression.end.js" ],
+                "settings": { "foreground": "#ffefe2", }
+            },
+            {
+                "scope":   [ "entity.name.function.js", ],
+                "settings": { "foreground": "#f0f9ff", }
+            },
+            {
+                "scope":   [ "storage.type.js", "support.function.js", "variable.other.property.js", "variable.other.readwrite.js", "variable.parameter.js", "punctuation.definition.block.js" ],
+                "settings": { "foreground": "#ffefe2", }
+            },
+
+            
+            
+
+            // -------------------------------------------------------------------------------------------------------------
+            //      Powershell
+            // -------------------------------------------------------------------------------------------------------------
             {
                 "scope":   [ "meta.scriptblock.powershell" ],
                 "settings": { "foreground": "#D7ECFF", }
@@ -86,7 +118,43 @@
             {
                 "scope":   [ "constant.numeric.integer.powershell" ],
                 "settings": { "foreground": "#fff6ef", }
-            }
+            },
+
+            // -------------------------------------------------------------------------------------------------------------
+            //      C#
+            // -------------------------------------------------------------------------------------------------------------
+            {
+                "scope":   [ "storage.modifier.static.cs", "storage.type.class.cs", "keyword.type.void.cs" ],
+                "settings": { "foreground": "#fff6ef", }
+            },
+            {
+                "scope":   [ "entity.name.type.namespace.cs", "entity.name.function.cs" ],
+                "settings": { "foreground": "#dafdff", }
+            },
+            {
+                "scope":   [ "keyword.other.directive.using.cs" ],
+                "settings": { "foreground": "#fff6ef", }
+            },
+            {   
+                "scope":   [ "keyword.operator.expression.new.cs" ],
+                "settings": { "foreground": "#fff6ef", }
+            },
+            {
+                "scope":   [ "keyword.type.object.cs", "entity.name.type.cs", "variable.language.this.cs", "variable.other.object.cs", "entity.name.type.class.cs", "entity.name.type.type-parameter.cs" ],
+                "settings": { "foreground": "#defbff", }
+            },
+            {
+                "scope":   [  "entity.name.variable.field.cs", "entity.name.variable.parameter.cs", "variable.other.readwrite.cs", "entity.name.variable.local.cs" ],
+                "settings": { "foreground": "#f8ecff", }
+            },
+            {
+                "scope":   [ "entity.name.variable.property.cs", "variable.other.object.property.cs",   ],
+                "settings": { "foreground": "#f1e0fc", }
+            },
+            {
+                "scope":   [ "keyword.type.bool.cs", "keyword.type.string.cs", "keyword.type.int.cs", "constant.language.boolean.true.cs", "constant.language.boolean.false.cs", "constant.language.null.cs"  ],
+                "settings": { "foreground": "#ffffe3", }
+            },
         ]
     },
     "workbench.preferredDarkColorTheme": "One Monokai",
