@@ -1,4 +1,18 @@
-using module ".\Kozubenko.Utils.psm1"
+using module .\classes\FunctionRegistry.psm1
+using module .\Kozubenko.Utils.psm1
+class KozubenkoGit {   
+    static [FunctionRegistry] GetFunctionRegistry() {
+        return [FunctionRegistry]::new(
+            "Kozubenko.Git",
+            @(
+                "Github()                      -->  goes to the github page",
+                "GitHistory()                  -->  git log --oneline",
+                "Push(`$commitMsg = 'no_msg')   -->  push to github repo. does not work with branches",
+                "GitConfig(`$email, `$name)      -->  git config --global user.email `$email; etc."
+            ));
+    }
+}
+
 
 function GitConfig ($email, $name) {
     git config --global user.email $email

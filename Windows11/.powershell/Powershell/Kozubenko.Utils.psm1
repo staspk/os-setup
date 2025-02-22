@@ -1,11 +1,24 @@
+using module .\classes\FunctionRegistry.psm1
+
+$WhiteRed = $PSStyle.Foreground.FromRgb(255, 196, 201);
+$LiteRed = $PSStyle.Foreground.FromRgb(223, 96, 107);
+
+function WriteWhiteRed($msg, $newLine = $true)  {  if($newLine) { Write-Host ${WhiteRed}$msg }      else { Write-Host ${WhiteRed}$msg -NoNewline }  }
+function WriteLiteRed($msg, $newLine = $true)  {  if($newLine) { Write-Host ${LiteRed}$msg -ForegroundColor Red }      else { Write-Host ${LiteRed}$msg -ForegroundColor Red -NoNewline }  }
 function WriteRed($msg, $newLine = $true)      {  if($newLine) { Write-Host $msg -ForegroundColor Red }      else { Write-Host $msg -ForegroundColor Red -NoNewline }        }
 function WriteDarkRed($msg, $newLine = $true)  {  if($newLine) { Write-Host $msg -ForegroundColor DarkRed }   else { Write-Host $msg -ForegroundColor DarkRed -NoNewline }    }
 function WriteYellow($msg, $newLine = $true)   {  if($newLine) { Write-Host $msg -ForegroundColor Yellow }    else { Write-Host $msg -ForegroundColor Yellow -NoNewline }     }
 function WriteCyan($msg, $newLine = $true)     {  if($newLine) { Write-Host $msg -ForegroundColor Cyan }      else { Write-Host $msg -ForegroundColor Cyan -NoNewline }       }
+function WriteDarkCyan($msg, $newLine = $true) {  if($newLine) { Write-Host $msg -ForegroundColor DarkCyan }    else { Write-Host $msg -ForegroundColor DarkCyan -NoNewline }      }
 function WriteGreen($msg, $newLine = $true)    {  if($newLine) { Write-Host $msg -ForegroundColor Green }     else { Write-Host $msg -ForegroundColor Green -NoNewline }      }
 function WriteDarkGreen($msg, $newLine = $true){  if($newLine) { Write-Host $msg -ForegroundColor DarkGreen } else { Write-Host $msg -ForegroundColor DarkGreen -NoNewline }  }
+function WriteDarkGray($msg, $newLine = $true)    {  if($newLine) { Write-Host $msg -ForegroundColor DarkGray }    else { Write-Host $msg -ForegroundColor DarkGray -NoNewline }      }
 function WriteGray($msg, $newLine = $true)     {  if($newLine) { Write-Host $msg -ForegroundColor Gray }      else { Write-Host $msg -ForegroundColor Gray -NoNewline }       }
 function WriteWhite($msg, $newLine = $true)    {  if($newLine) { Write-Host $msg -ForegroundColor White }    else { Write-Host $msg -ForegroundColor White -NoNewline }      }
+
+
+
+
 
 function TestPathSilently($dirPath, $returnPath = $false) { 
     $exists = Test-Path $dirPath -ErrorAction SilentlyContinue
@@ -53,11 +66,6 @@ function SetAliases($function, [Array]$aliases) {   # Throws exception if you tr
     $ErrorActionPreference = "Continue"
 }
 
-function DisplayFolderSizes {
-    $colItems = Get-ChildItem $startFolder | Where-Object {$_.PSIsContainer -eq $true} | Sort-Object
-    foreach ($i in $colItems)
-    {
-        $subFolderItems = Get-ChildItem $i.FullName -recurse -force | Where-Object {$_.PSIsContainer -eq $false} | Measure-Object -property Length -sum | Select-Object Sum
-        WriteGreen "$($i.Name)" $false; WriteGray " --> " $false; WriteDarkRed "$("{0:N2}" -f ($subFolderItems.sum / 1MB))MB"
-    }
+function WriteCustomColor($msg, $color, $newLine = $true) {     # 
+    if($newLine) {  Write-Host "${color}$msg"  }    else {  Write-Host "${color}$msg" -NoNewline  }
 }

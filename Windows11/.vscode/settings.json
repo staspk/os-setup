@@ -4,6 +4,9 @@
     
     "editor.mouseWheelScrollSensitivity": 1.5,
     "explorer.compactFolders": false,
+
+    "workbench.colorTheme": "One Monokai",
+    // "workbench.preferredDarkColorTheme": "One Monokai",      // fairly certain this is useless////
     
     "workbench.colorCustomizations": {
         "editorBracketHighlight.unexpectedBracket.foreground": "#D7ECFF",
@@ -43,12 +46,12 @@
         "editorWarning.foreground": "#eeff0042",
     },
     "editor.tokenColorCustomizations": {
-        "comments": "#8d8d8d",
-        "functions": "#bdfaf2",
-        "variables": "#f2d9ff",
-        "types": "#bda1ff",
+        "comments": "#aaa7a7d2",
+        "functions": "#dffffb",
+        "variables": "#f8eaff",
+        "types": "#dacaff",
         "strings": "#ffffff",
-        "keywords": "#F3E4D7",
+        "keywords": "#fcefe3",
         "numbers": "#ffffff",
         "textMateRules": [
             {
@@ -78,7 +81,7 @@
             },
             {
                 "scope":   [ "variable.other.constant.js", "variable.other.object.js", ],
-                "settings": { "foreground": "#f0f9ff", }
+                "settings": { "foreground": "#f8eaff", }
             },
             {
                 "scope":   [ "punctuation.definition.template-expression.begin.js", "punctuation.definition.template-expression.end.js" ],
@@ -86,7 +89,7 @@
             },
             {
                 "scope":   [ "entity.name.function.js", ],
-                "settings": { "foreground": "#f0f9ff", }
+                "settings": { "foreground": "#dffffb", }
             },
             {
                 "scope":   [ "storage.type.js", "support.function.js", "variable.other.property.js", "variable.other.readwrite.js", "variable.parameter.js", "punctuation.definition.block.js" ],
@@ -101,15 +104,15 @@
             // -------------------------------------------------------------------------------------------------------------
             {
                 "scope":   [ "meta.scriptblock.powershell" ],
-                "settings": { "foreground": "#D7ECFF", }
+                "settings": { "foreground": "#d7ecff", }
             },
             {
                 "scope":   [ "source.powershell" ],
                 "settings": { "foreground": "#d7ecff", }
             },
             {
-                "scope":   [ "entity.name.function" ],
-                "settings": { "foreground": "#aff8fd", }
+                "scope":   [ "entity.name.function", "variable.other.member.powershell" ],
+                "settings": { "foreground": "#c8fbff", }
             },
             {
                 "scope":   [ "support.function.attribute.powershell" ],
@@ -119,6 +122,12 @@
                 "scope":   [ "constant.numeric.integer.powershell" ],
                 "settings": { "foreground": "#fff6ef", }
             },
+            {
+                "scope":   [ "variable.other.readwrite.powershell" ],
+                "settings": { "foreground": "#f8eaff", }
+            },
+
+            
 
             // -------------------------------------------------------------------------------------------------------------
             //      C#
@@ -157,9 +166,8 @@
             },
         ]
     },
-    "workbench.preferredDarkColorTheme": "One Monokai",
+
     "security.workspace.trust.untrustedFiles": "open",
-    "workbench.colorTheme": "One Monokai",
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
             "source": "PowerShell",
@@ -182,5 +190,6 @@
     },
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "git.openRepositoryInParentFolders": "never",
-    "files.autoSaveDelay": 10000
+
+    "editor.unicodeHighlight.ambiguousCharacters": false    // Necessary to remove pop-in of yellow rectangles around russian text
 }
