@@ -1,5 +1,5 @@
 ﻿<Themes>
-  <Theme Name="KozubenkoTheme (8)" GUID="{e36d0058-0a4c-436f-8f05-ac88e0703eb7}" BaseGUID="{0024020f-bba3-4365-9ea1-63b23313d509}">
+  <Theme Name="KozubenkoTheme (9)" GUID="{81ac8859-2fee-46fb-935d-37c2f8bd9aad}" BaseGUID="{0024020f-bba3-4365-9ea1-63b23313d509}">
     <Category Name="ACDCOverview" GUID="{c8887ac6-3c60-4209-9d69-8f4c12a60044}">
       <Color Name="Body">
         <Background Type="CT_RAW" Source="FF282C34" />
@@ -2203,7 +2203,7 @@
       </Color>
       <Color Name="HTML Tag Delimiter">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="FFBBBBBB" />
+        <Foreground Type="CT_RAW" Source="FFEBEBEB" />
       </Color>
       <Color Name="VBScript Keyword">
         <Background Type="CT_COLORINDEX" Source="00000001" />
@@ -2319,7 +2319,7 @@
       </Color>
       <Color Name="punctuation">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="FFBBBBBB" />
+        <Foreground Type="CT_RAW" Source="FFEBEBEB" />
       </Color>
       <Color Name="interface name">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
@@ -8766,7 +8766,7 @@
       </Color>
       <Color Name="XAML Delimiter">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="FFBBBBBB" />
+        <Foreground Type="CT_RAW" Source="FFEBEBEB" />
       </Color>
       <Color Name="XAML Comment">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
@@ -8794,7 +8794,7 @@
       </Color>
       <Color Name="XAML Attribute Quotes">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="FFBBBBBB" />
+        <Foreground Type="CT_RAW" Source="FFEBEBEB" />
       </Color>
       <Color Name="XAML Markup Extension Class">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
@@ -8818,7 +8818,7 @@
       </Color>
       <Color Name="XML Delimiter">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="FFBBBBBB" />
+        <Foreground Type="CT_RAW" Source="FFEBEBEB" />
       </Color>
       <Color Name="XML Name">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
@@ -8933,11 +8933,11 @@
         <Foreground Type="CT_RAW" Source="FFE3D8F6" />
       </Color>
       <Color Name="Track Changes before save">
-        <Background Type="CT_RAW" Source="FF88BC19" />
+        <Background Type="CT_RAW" Source="FF3A4A18" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Track Changes after save">
-        <Background Type="CT_RAW" Source="FF587C0C" />
+        <Background Type="CT_RAW" Source="FF3A4A18" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Brace Matching (Rectangle)">

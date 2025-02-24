@@ -11,4 +11,5 @@ D2ACE499 - text editor warning underline
 CAF35952 - text editor error underline
 D43F93D3 - track modifications background
 F95C8F5C - track additions background
+FF3A4A18 - track changes before/after save background	
 FF848993 - comments
