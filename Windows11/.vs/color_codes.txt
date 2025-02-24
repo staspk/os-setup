@@ -7,9 +7,12 @@ FFE3D8F6 - variables
 FFF2E3C8 - class names
 FFD7ECFF - functions
 FF272B32 - New Project Dialog, secondary
-D2ACE499 - text editor warning underline
+A4536F4A - text editor warning underline
 CAF35952 - text editor error underline
-D43F93D3 - track modifications background
-F95C8F5C - track additions background
+FF315775 - track modifications background
+FF4D684D - track additions in documents under source control background
 FF3A4A18 - track changes before/after save background	
 FF848993 - comments
+
+FFCCCCCC - collapsed text indicator foreground
+FF303540 - collapsed text indicator background

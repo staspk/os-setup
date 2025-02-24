@@ -1,5 +1,5 @@
 ﻿<Themes>
-  <Theme Name="KozubenkoTheme (9)" GUID="{81ac8859-2fee-46fb-935d-37c2f8bd9aad}" BaseGUID="{0024020f-bba3-4365-9ea1-63b23313d509}">
+  <Theme Name="KozubenkoTheme (10)" GUID="{b172745c-b38d-4885-94c9-a1ed2f4408bd}" BaseGUID="{0024020f-bba3-4365-9ea1-63b23313d509}">
     <Category Name="ACDCOverview" GUID="{c8887ac6-3c60-4209-9d69-8f4c12a60044}">
       <Color Name="Body">
         <Background Type="CT_RAW" Source="FF282C34" />
@@ -2894,11 +2894,11 @@
         <Foreground Type="CT_RAW" Source="FFEBEBEB" />
       </Color>
       <Color Name="Track additions in documents under source control">
-        <Background Type="CT_RAW" Source="F95C8F5C" />
+        <Background Type="CT_RAW" Source="FF4D684D" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Track modifications in documents under source control">
-        <Background Type="CT_RAW" Source="D43F93D3" />
+        <Background Type="CT_RAW" Source="FF315775" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Track deletions in documents under source control">
@@ -2914,12 +2914,12 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="outlining.chevron.expanded">
-        <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="FF303540" />
+        <Foreground Type="CT_RAW" Source="FFCCCCCC" />
       </Color>
       <Color Name="outlining.chevron.collapsed">
-        <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="FF303540" />
+        <Foreground Type="CT_RAW" Source="FFCCCCCC" />
       </Color>
       <Color Name="Selected Text in High Contrast">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -3454,7 +3454,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="inline diagnostics - compiler warning">
-        <Background Type="CT_RAW" Source="D2ACE499" />
+        <Background Type="CT_RAW" Source="A4536F4A" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="inline diagnostics - Edit and Continue">
@@ -8918,7 +8918,7 @@
       </Color>
       <Color Name="compiler warning">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="D2ACE499" />
+        <Foreground Type="CT_RAW" Source="A4536F4A" />
       </Color>
       <Color Name="Code Snippet Field">
         <Background Type="CT_RAW" Source="FF5B5B5B" />
