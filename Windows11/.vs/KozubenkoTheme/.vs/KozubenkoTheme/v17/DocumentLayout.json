@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E36D0058-0A4C-436F-8F05-AC88E0703EB7}|KozubenkoTheme.csproj|c:\\users\\stasp\\desktop\\os-setup\\windows11\\.vs\\kozubenkotheme\\customtheme.vstheme||{6BF3EA12-98BB-41E2-BA01-8662F713D293}",
+      "RelativeMoniker": "D:0:0:{E36D0058-0A4C-436F-8F05-AC88E0703EB7}|KozubenkoTheme.csproj|solutionrelative:customtheme.vstheme||{6BF3EA12-98BB-41E2-BA01-8662F713D293}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomTheme.vstheme",
+              "DocumentMoniker": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\CustomTheme.vstheme",
+              "RelativeDocumentMoniker": "CustomTheme.vstheme",
+              "ToolTip": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\CustomTheme.vstheme",
+              "RelativeToolTip": "CustomTheme.vstheme",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|",
+              "WhenOpened": "2025-02-24T12:07:30.556Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

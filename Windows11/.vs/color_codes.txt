@@ -1,0 +1,14 @@
+21252b
+FF282C34
+
+
+FFEBEBEB - normal text
+FFE3D8F6 - variables
+FFF2E3C8 - class names
+FFD7ECFF - functions
+FF272B32 - New Project Dialog, secondary
+D2ACE499 - text editor warning underline
+CAF35952 - text editor error underline
+D43F93D3 - track modifications background
+F95C8F5C - track additions background
+FF848993 - comments

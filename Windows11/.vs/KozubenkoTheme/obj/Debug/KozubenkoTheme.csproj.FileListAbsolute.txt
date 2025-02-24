@@ -1,0 +1,13 @@
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\bin\Debug\KozubenkoTheme.dll
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\bin\Debug\KozubenkoTheme.pdb
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\bin\Debug\KozubenkoTheme.vsix
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\bin\Debug\extension.vsixmanifest
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\KozubenkoTheme.csproj.AssemblyReference.cache
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\_EmptyResource.resources
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\KozubenkoTheme.csproj.GenerateResource.cache
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\KozubenkoTheme.csproj.CoreCompileInputs.cache
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\KozubenkoTheme.dll
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\KozubenkoTheme.pdb
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\extension.vsixmanifest
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\files.json
+C:\Users\stasp\Desktop\OS-Setup\Windows11\.vs\KozubenkoTheme\obj\Debug\createTemplateManifests.cache
