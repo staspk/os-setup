@@ -192,5 +192,5 @@
     "git.openRepositoryInParentFolders": "never",
 
     "editor.unicodeHighlight.ambiguousCharacters": false,
-    "debug.javascript.autoAttachFilter": "always" // Necessary to remove pop-in of yellow rectangles around russian text
+    "debug.javascript.autoAttachFilter": "disabled" // Necessary to remove pop-in of yellow rectangles around russian text
 }
