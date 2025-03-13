@@ -1,0 +1,33 @@
+# Ignore Visual Studio temporary and cache files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output folders (adjust if you use different ones)
+bin/
+obj/
+Debug/
+Release/
+
+# NuGet generated files
+*.nupkg
+*.snupkg
+project.assets.json
+project.nuget.cache
+*.nuget.g.props
+*.nuget.g.targets
+*.nuget.dgspec.json
+
+# Assembly cache files
+DesignTimeResolveAssemblyReferencesInput.cache
+*.AssemblyReference.cache
+
+# Temporary/backup files for layout or settings
+DocumentLayout.backup.json
+DocumentLayout.json
+
+# Ignore other common temporary files
+*.tmp
+*.log
