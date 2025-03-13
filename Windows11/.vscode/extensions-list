@@ -1,12 +1,14 @@
 azemoh.one-monokai
 christian-kohler.npm-intellisense
 jasonnutter.search-node-modules
+mhutchie.git-graph
 ms-dotnettools.csdevkit
 ms-dotnettools.csharp
 ms-dotnettools.vscode-dotnet-runtime
 ms-python.debugpy
 ms-python.python
 ms-python.vscode-pylance
+ms-vscode-remote.remote-wsl
 ms-vscode.js-debug-nightly
 ms-vscode.powershell
 ms-vscode.vscode-typescript-next

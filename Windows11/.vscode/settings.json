@@ -5,9 +5,12 @@
     "editor.mouseWheelScrollSensitivity": 1.5,
     "explorer.compactFolders": false,
 
-    "workbench.colorTheme": "One Monokai",
-    // "workbench.preferredDarkColorTheme": "One Monokai",      // fairly certain this is useless////
+    "git.openRepositoryInParentFolders": "never",                                   // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
+    "editor.unicodeHighlight.ambiguousCharacters": false,                           // Removes pop-in of yellow rectangles around russian text
+
+    "security.workspace.trust.untrustedFiles": "open",
     
+    "workbench.colorTheme": "One Monokai",
     "workbench.colorCustomizations": {
         "editorBracketHighlight.unexpectedBracket.foreground": "#D7ECFF",
         "editorBracketHighlight.foreground1": "#D7ECFF",
@@ -48,7 +51,7 @@
     "editor.tokenColorCustomizations": {
         "comments": "#aaa7a7d2",
         "functions": "#dffffb",
-        "variables": "#f8eaff",
+        "variables": "#ffedea",
         "types": "#dacaff",
         "strings": "#ffffff",
         "keywords": "#fcefe3",
@@ -73,31 +76,51 @@
 
 
             // -------------------------------------------------------------------------------------------------------------
-            //      JavaScript
+            //      JAVASCRIPT
             // -------------------------------------------------------------------------------------------------------------
             {
                 "scope":   [ "meta.definition.variable.js", "meta.var-single-variable.expr.js", "meta.var.expr.js" ],
                 "settings": { "foreground": "#f0f9ff", }
             },
             {
-                "scope":   [ "variable.other.constant.js", "variable.other.object.js", ],
-                "settings": { "foreground": "#f8eaff", }
+                "scope":   [ "variable.other.constant.js", "variable.other.object.js", "variable.parameter.js", "variable.other.property.js", "variable.other.readwrite.js",
+                             "variable.other.object.ts", "variable.other.constant.ts" ],
+                "settings": { "foreground": "#efdff8", }
             },
             {
                 "scope":   [ "punctuation.definition.template-expression.begin.js", "punctuation.definition.template-expression.end.js" ],
-                "settings": { "foreground": "#ffefe2", }
+                "settings": { "foreground": "#f2d9ff", }
             },
             {
-                "scope":   [ "entity.name.function.js", ],
-                "settings": { "foreground": "#dffffb", }
+                "scope":   [ "entity.name.function.js", "punctuation.definition.block.js"  ],
+                "settings": { "foreground": "#ccf7f1", }
             },
             {
-                "scope":   [ "storage.type.js", "support.function.js", "variable.other.property.js", "variable.other.readwrite.js", "variable.parameter.js", "punctuation.definition.block.js" ],
-                "settings": { "foreground": "#ffefe2", }
+                "scope":   [ "string.template.js", "storage.type.js", "support.function.js" ],
+                "settings": { "foreground": "#ffffff", }
             },
 
-            
-            
+
+            // -------------------------------------------------------------------------------------------------------------
+            //      TYPESCRIPT
+            // -------------------------------------------------------------------------------------------------------------
+            {
+                "scope":   [ "meta.brace.round.ts"  ],
+                "settings": { "foreground": "#C8FBFF", }
+            },
+            {
+                "scope":   [ "punctuation.definition.template-expression", "meta.brace.round.ts" ],
+                "settings": { "foreground": "#FCEFE3", }
+            },
+            {
+                "scope":   [ "variable.other.object.ts", "variable.other.constant.ts", "variable.other.object.property.ts" ],
+                "settings": { "foreground": "#efdff8", }
+            },
+            {
+                "scope":   [ "support.constant.json.ts", "constant.language.null.ts" ],
+                "settings": { "foreground": "#73c8d3", }
+            },
+
 
             // -------------------------------------------------------------------------------------------------------------
             //      Powershell
@@ -128,7 +151,6 @@
             },
 
             
-
             // -------------------------------------------------------------------------------------------------------------
             //      C#
             // -------------------------------------------------------------------------------------------------------------
@@ -163,34 +185,18 @@
             {
                 "scope":   [ "keyword.type.bool.cs", "keyword.type.string.cs", "keyword.type.int.cs", "constant.language.boolean.true.cs", "constant.language.boolean.false.cs", "constant.language.null.cs"  ],
                 "settings": { "foreground": "#ffffe3", }
-            },
+            }
         ]
     },
 
-    "security.workspace.trust.untrustedFiles": "open",
-    "terminal.integrated.profiles.windows": {
-        "PowerShell": {
-            "source": "PowerShell",
-            "icon": "terminal-powershell"
-        },
-        "Command Prompt": {
-            "path": [
-                "${env:windir}\\Sysnative\\cmd.exe",
-                "${env:windir}\\System32\\cmd.exe"
-            ],
-            "args": [],
-            "icon": "terminal-cmd"
-        },
-        "Git Bash": {
-            "source": "Git Bash"
-        },
-        "Windows PowerShell": {
-            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    "[python]": {
+        "editor.semanticHighlighting.enabled": true,
+    },
+    "editor.semanticTokenColorCustomizations": {
+        "rules": {
+            "variable": { "foreground": "#e7e3e2e1" },
+            "selfParameter": { "foreground": "#dacaff" },
+            "module": "#a3ebf0"
         }
     },
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
-    "git.openRepositoryInParentFolders": "never",
-
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "debug.javascript.autoAttachFilter": "disabled" // Necessary to remove pop-in of yellow rectangles around russian text
 }

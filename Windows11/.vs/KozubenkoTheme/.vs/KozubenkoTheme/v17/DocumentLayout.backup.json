@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E36D0058-0A4C-436F-8F05-AC88E0703EB7}|KozubenkoTheme.csproj|c:\\users\\stasp\\desktop\\os-setup\\windows11\\.vs\\kozubenkotheme\\source.extension.vsixmanifest||{2868F8ED-DE25-439D-9F59-AD52458E9328}",
+      "RelativeMoniker": "D:0:0:{E36D0058-0A4C-436F-8F05-AC88E0703EB7}|KozubenkoTheme.csproj|solutionrelative:source.extension.vsixmanifest||{2868F8ED-DE25-439D-9F59-AD52458E9328}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E36D0058-0A4C-436F-8F05-AC88E0703EB7}|KozubenkoTheme.csproj|c:\\users\\stasp\\desktop\\os-setup\\windows11\\.vs\\kozubenkotheme\\customtheme.vstheme||{6BF3EA12-98BB-41E2-BA01-8662F713D293}",
       "RelativeMoniker": "D:0:0:{E36D0058-0A4C-436F-8F05-AC88E0703EB7}|KozubenkoTheme.csproj|solutionrelative:customtheme.vstheme||{6BF3EA12-98BB-41E2-BA01-8662F713D293}"
     }
@@ -19,6 +23,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "source.extension.vsixmanifest [Design]",
+              "DocumentMoniker": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\source.extension.vsixmanifest",
+              "RelativeDocumentMoniker": "source.extension.vsixmanifest",
+              "ToolTip": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\source.extension.vsixmanifest [Design]*",
+              "RelativeToolTip": "source.extension.vsixmanifest [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
+              "WhenOpened": "2025-02-24T18:23:22.887Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CustomTheme.vstheme",
               "DocumentMoniker": "C:\\Users\\stasp\\Desktop\\OS-Setup\\Windows11\\.vs\\KozubenkoTheme\\CustomTheme.vstheme",
               "RelativeDocumentMoniker": "CustomTheme.vstheme",

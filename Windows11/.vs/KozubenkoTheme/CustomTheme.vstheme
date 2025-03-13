@@ -1,5 +1,5 @@
 ﻿<Themes>
-  <Theme Name="KozubenkoTheme (10)" GUID="{b172745c-b38d-4885-94c9-a1ed2f4408bd}" BaseGUID="{0024020f-bba3-4365-9ea1-63b23313d509}">
+  <Theme Name="KozubenkoTheme (11)" GUID="{5033e0b8-78e3-412b-830f-7c5d9b13372e}" BaseGUID="{0024020f-bba3-4365-9ea1-63b23313d509}">
     <Category Name="ACDCOverview" GUID="{c8887ac6-3c60-4209-9d69-8f4c12a60044}">
       <Color Name="Body">
         <Background Type="CT_RAW" Source="FF282C34" />
@@ -73,7 +73,7 @@
         <Background Type="CT_RAW" Source="FF008000" />
       </Color>
       <Color Name="Error">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="TrendsAssistanceItemHeader">
         <Foreground Type="CT_RAW" Source="FFFFA500" />
@@ -805,7 +805,7 @@
         <Background Type="CT_RAW" Source="FF353941" />
       </Color>
       <Color Name="SnapshotTileErrorText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="SnapshotTileHeader">
         <Background Type="CT_RAW" Source="FF2E323A" />
@@ -898,10 +898,10 @@
         <Foreground Type="CT_RAW" Source="FFFFE4D6" />
       </Color>
       <Color Name="NetworkErrorSelectedText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="NetworkErrorBlurText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="NetworkToolbarButtonTextColor">
         <Foreground Type="CT_RAW" Source="FFBDBDBD" />
@@ -1036,7 +1036,7 @@
         <Background Type="CT_RAW" Source="FFEFEFEF" />
       </Color>
       <Color Name="YouAreHereBackground">
-        <Background Type="CT_RAW" Source="FF960000" />
+        <Background Type="CT_RAW" Source="C6960000" />
       </Color>
       <Color Name="PopupSelectedInactive">
         <Background Type="CT_RAW" Source="FF353941" />
@@ -1652,7 +1652,7 @@
         <Foreground Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="StatusBannerErrorBorder">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="StatusBannerInfo">
         <Background Type="CT_RAW" Source="0A1BA1E2" />
@@ -1905,7 +1905,7 @@
         <Background Type="CT_RAW" Source="FF5B031E" />
       </Color>
       <Color Name="JobViewErrorTabHeaderTopLine">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="JobViewWarning">
         <Background Type="CT_RAW" Source="FFF5A720" />
@@ -1981,7 +1981,7 @@
         <Background Type="CT_RAW" Source="FFFFFFFF" />
       </Color>
       <Color Name="DataFlowGraphErrorHeader">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="DataFlowGraphInput">
         <Background Type="CT_RAW" Source="FF26A9E0" />
@@ -2735,7 +2735,7 @@
       </Color>
       <Color Name="Interactive Window Error Output">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="ShaderLab.Punctuation">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -2787,15 +2787,15 @@
       </Color>
       <Color Name="axml - attribute name">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="FFF1E7CA" />
       </Color>
       <Color Name="axml - attribute quotes">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="FFEAEAEA" />
       </Color>
       <Color Name="axml - attribute value">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="FFEAEAEA" />
       </Color>
       <Color Name="axml - cdata section">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -2807,7 +2807,7 @@
       </Color>
       <Color Name="axml - delimiter">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="FFEAEAEA" />
       </Color>
       <Color Name="axml - entity reference">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -2815,7 +2815,7 @@
       </Color>
       <Color Name="axml - name">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="FFEDE1BC" />
       </Color>
       <Color Name="axml - processing instruction">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -2827,7 +2827,7 @@
       </Color>
       <Color Name="axml - resource url">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="FFEAEAEA" />
       </Color>
       <Color Name="TextMate.Classifier">
         <Background Type="CT_RAW" Source="FFEBEBEB" />
@@ -2847,7 +2847,7 @@
       </Color>
       <Color Name="BidirectionalTextControlCharacter">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_INVALID" Source="00000000" />
+        <Foreground Type="CT_RAW" Source="E2C50F1F" />
       </Color>
       <Color Name="brace pair level one">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -2990,7 +2990,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Mapped (Error)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Call Return">
@@ -3006,7 +3006,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Temporary (Enabled)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Tracepoint - Mapped (Error)">
@@ -3018,7 +3018,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Advanced (Enabled)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Snappoint - Advanced (Enabled)">
@@ -3026,7 +3026,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Advanced (Error)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Logpoint (Warning)">
@@ -3046,7 +3046,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint (Warning)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Logpoint (Disabled)">
@@ -3074,11 +3074,11 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Dependent (Enabled)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Temporary (Warning)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Temporary (Disabled)">
@@ -3138,7 +3138,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint (Error)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Current Statement (new context)">
@@ -3146,7 +3146,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Mapped (Enabled)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Tracepoint (Disabled)">
@@ -3166,11 +3166,11 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Dependent (Warning)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Advanced (Warning)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Snappoint - Advanced (Disabled)">
@@ -3194,15 +3194,15 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Temporary (Error)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint (Enabled)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Mapped (Warning)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Stack Frame (Warning)">
@@ -3226,7 +3226,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint - Dependent (Error)">
-        <Background Type="CT_INVALID" Source="00000000" />
+        <Background Type="CT_RAW" Source="C6960000" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="Breakpoint Group - Dependent (Disabled)">
@@ -3450,7 +3450,7 @@
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="inline diagnostics - syntax error">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
         <Foreground Type="CT_INVALID" Source="00000000" />
       </Color>
       <Color Name="inline diagnostics - compiler warning">
@@ -6230,10 +6230,10 @@
         <Background Type="CT_RAW" Source="FFDEE1E7" />
       </Color>
       <Color Name="ToolWindowValidationErrorBorder">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="ToolWindowValidationErrorText">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
     </Category>
     <Category Name="Find" GUID="{4370282e-987e-4ac4-ad14-5ffed2ad1e14}">
@@ -6242,7 +6242,7 @@
         <Foreground Type="CT_RAW" Source="FFEFEFEF" />
       </Color>
       <Color Name="ErrorBorder">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="AlertBorder">
         <Background Type="CT_RAW" Source="FF3E4249" />
@@ -6560,10 +6560,10 @@
         <Foreground Type="CT_RAW" Source="FFFEFCC8" />
       </Color>
       <Color Name="NetworkErrorSelectedText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="NetworkErrorBlurText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="NetworkToolbarButtonTextColor">
         <Foreground Type="CT_RAW" Source="FFF1F1F1" />
@@ -6637,7 +6637,7 @@
         <Background Type="CT_RAW" Source="FF555555" />
       </Color>
       <Color Name="SnapshotTileErrorText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="SnapshotTileHeader">
         <Background Type="CT_RAW" Source="FF2D2D30" />
@@ -6912,7 +6912,7 @@
         <Background Type="CT_RAW" Source="FF353941" />
       </Color>
       <Color Name="SnapshotTileErrorText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="SnapshotTileHeader">
         <Background Type="CT_RAW" Source="FF2E323A" />
@@ -6996,10 +6996,10 @@
         <Foreground Type="CT_RAW" Source="FFFFE4D6" />
       </Color>
       <Color Name="NetworkErrorSelectedText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="NetworkErrorBlurText">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="NetworkToolbarButtonTextColor">
         <Foreground Type="CT_RAW" Source="FFBDBDBD" />
@@ -7049,7 +7049,7 @@
         <Background Type="CT_RAW" Source="FFE5EBF1" />
       </Color>
       <Color Name="PluginFontConsoleErrorColor">
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="PluginFontConsoleInfoColor">
         <Foreground Type="CT_RAW" Source="FF006400" />
@@ -7061,7 +7061,7 @@
         <Foreground Type="CT_RAW" Source="FF1E7DBA" />
       </Color>
       <Color Name="PluginFontEditorBreakpointBackgroundColor">
-        <Foreground Type="CT_RAW" Source="FF963A46" />
+        <Foreground Type="CT_RAW" Source="C6960000" />
       </Color>
       <Color Name="PluginFontEditorCommentColor">
         <Foreground Type="CT_RAW" Source="FF006400" />
@@ -7076,7 +7076,7 @@
         <Foreground Type="CT_RAW" Source="FF0000FF" />
       </Color>
       <Color Name="PluginFontEditorErroradornmentBackgroundColor">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="PluginFontEditorErroradornmentColor">
         <Foreground Type="CT_RAW" Source="FFEFEFEF" />
@@ -8754,7 +8754,7 @@
       </Color>
       <Color Name="Error">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="XAML Text">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
@@ -8974,7 +8974,7 @@
       </Color>
       <Color Name="Error Message">
         <Background Type="CT_AUTOMATIC" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="Collapsible Text (Collapsed)">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -9119,10 +9119,10 @@
         <Background Type="CT_RAW" Source="FFFFFFFF" />
       </Color>
       <Color Name="ValidationError">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="ValidationErrorText">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="ActionButtonBackground">
         <Background Type="CT_RAW" Source="FF272B32" />
@@ -9882,7 +9882,7 @@
         <Foreground Type="CT_RAW" Source="FFA6A6A6" />
       </Color>
       <Color Name="ErrorControlBorder">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="Form">
         <Background Type="CT_RAW" Source="FF2E323A" />
@@ -10226,7 +10226,7 @@
       </Color>
       <Color Name="Error">
         <Background Type="CT_INVALID" Source="00000000" />
-        <Foreground Type="CT_RAW" Source="D6FC3E36" />
+        <Foreground Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="Fatal">
         <Background Type="CT_INVALID" Source="00000000" />
@@ -10328,13 +10328,13 @@
     </Category>
     <Category Name="Decorative" GUID="{0c37665d-8581-4451-8394-6f4d5abd88b1}">
       <Color Name="RedPrimary">
-        <Background Type="CT_RAW" Source="FFC50F1F" />
+        <Background Type="CT_RAW" Source="E2C50F1F" />
       </Color>
       <Color Name="RedPrimaryAlt">
         <Background Type="CT_RAW" Source="FFB10E1C" />
       </Color>
       <Color Name="RedSecondary">
-        <Background Type="CT_RAW" Source="CCC50F1F" />
+        <Background Type="CT_RAW" Source="89C50F1F" />
       </Color>
       <Color Name="RedTertiary">
         <Background Type="CT_RAW" Source="99C50F1F" />
@@ -10874,7 +10874,7 @@
         <Background Type="CT_RAW" Source="FFFFF4CE" />
       </Color>
       <Color Name="SystemFillCritical">
-        <Background Type="CT_RAW" Source="FFC42B1C" />
+        <Background Type="CT_RAW" Source="E2C50F1F" />
       </Color>
       <Color Name="SystemFillCriticalBackground">
         <Background Type="CT_RAW" Source="FFFDE7E9" />
@@ -11036,7 +11036,7 @@
         <Background Type="CT_RAW" Source="FFF2F2F2" />
       </Color>
       <Color Name="DialogErrorText">
-        <Background Type="CT_RAW" Source="D6FC3E36" />
+        <Background Type="CT_RAW" Source="93FC3E36" />
       </Color>
       <Color Name="EditorColorSwatchBorder">
         <Background Type="CT_RAW" Source="FF808080" />

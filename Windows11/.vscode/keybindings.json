@@ -11,4 +11,6 @@
     { "key": "alt+5",          "command": "editor.foldLevel5",              "when": "editorTextFocus"  },
     { "key": "alt+`",          "command": "editor.foldAll",                 "when": "editorTextFocus"  },
     { "key": "alt+0",          "command": "editor.unfoldAll",               "when": "editorTextFocus"  },
+
+    { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  }
 ]
