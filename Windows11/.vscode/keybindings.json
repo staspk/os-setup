@@ -12,5 +12,7 @@
     { "key": "alt+`",          "command": "editor.foldAll",                 "when": "editorTextFocus"  },
     { "key": "alt+0",          "command": "editor.unfoldAll",               "when": "editorTextFocus"  },
 
-    { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  }
+    { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  },
+
+    { "key": "alt+`",          "command": "workbench.view.explorer",        "when": "viewContainer.workbench.view.explorer.enabled" },
 ]

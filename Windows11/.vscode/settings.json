@@ -194,9 +194,10 @@
     },
     "editor.semanticTokenColorCustomizations": {
         "rules": {
-            "variable": { "foreground": "#e7e3e2e1" },
+            "variable": { "foreground": "#e7e3e2da" },
             "selfParameter": { "foreground": "#dacaff" },
-            "module": "#a3ebf0"
+            "module": "#a3ebf0",
+            "variable.readonly": "#56B6C2"
         }
     },
 }
