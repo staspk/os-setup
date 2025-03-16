@@ -5,5 +5,3 @@ fi
 if [ -f ~/.bash_kozubenko ]; then
     . ~/.bash_kozubenko
 fi
-
-\n\n\n
