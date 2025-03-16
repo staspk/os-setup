@@ -1,8 +1,9 @@
 [![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](./assets/Os_Setup.png)](https://github.com/staspk/OS-Setup)
 ## Ubuntu Instructions
 ### .bashrc
-- Copy/Paste contents of .bashrc to top of systems: ~/.bashrc
+- git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup
 - 
+- Copy/Paste contents of .bashrc to top of systems: ~/.bashrc
 
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
