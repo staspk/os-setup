@@ -1,4 +1,9 @@
 [![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](./assets/Os_Setup.png)](https://github.com/staspk/OS-Setup)
+## Ubuntu Instructions
+### .bashrc
+- Copy/Paste contents of .bashrc to top of systems: ~/.bashrc
+- 
+
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
 - All possible behaviors/values of Enums, are defined right above/alongside Function Definitions that use the Enum in question. Use like so: `TaskBarAlignment ([Alignment]::Left)`
