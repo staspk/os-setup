@@ -1,9 +1,9 @@
 [![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](./assets/Os_Setup.png)](https://github.com/staspk/OS-Setup)
 ## Ubuntu Instructions
 ### .bashrc
-- git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup
-- cp -r $HOME/OS-Setup/Ubuntu/home/. ~
-- cat "$HOME/OS-Setup/Ubuntu/.bashrc" ~/.bashrc > "$HOME/.bashrc.new" && mv "$HOME/.bashrc.new" ~/.bashrc
+- `git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup`
+- `cp -r $HOME/OS-Setup/Ubuntu/home/. ~`
+- `cat "$HOME/OS-Setup/Ubuntu/.bashrc" ~/.bashrc > "$HOME/.bashrc.new" && mv "$HOME/.bashrc.new" ~/.bashrc`
 
 
 ## Windows 11 Instructions
