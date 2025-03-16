@@ -2,8 +2,9 @@
 ## Ubuntu Instructions
 ### .bashrc
 - git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup
-- 
-- Copy/Paste contents of .bashrc to top of systems: ~/.bashrc
+- cp -r $HOME/OS-Setup/Ubuntu/home/. ~
+- cat "$HOME/OS-Setup/Ubuntu/.bashrc" ~/.bashrc > "$HOME/.bashrc.new" && mv "$HOME/.bashrc.new" ~/.bashrc
+
 
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
