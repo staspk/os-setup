@@ -5,3 +5,7 @@ fi
 if [ -f ~/.bash_kozubenko ]; then
     . ~/.bash_kozubenko
 fi
+
+# ---------------------------------
+#   END OF MY SECTION   -----------
+# ---------------------------------
