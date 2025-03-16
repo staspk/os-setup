@@ -6,6 +6,4 @@ if [ -f ~/.bash_kozubenko ]; then
     . ~/.bash_kozubenko
 fi
 
-# ---------------------------------
-#   END OF MY SECTION   -----------
-# ---------------------------------
+\n\n\n
