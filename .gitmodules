@@ -1,0 +1,3 @@
+[submodule "Windows11/.powershell/Powershell"]
+	path = Windows11/.powershell/Powershell
+	url = https://github.com/staspk/Powershell
