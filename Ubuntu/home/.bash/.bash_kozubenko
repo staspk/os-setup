@@ -35,8 +35,7 @@ setup_python_project() {
 setup_ubuntu() {
     cp -r "$HOME/OS-Setup/Ubuntu/boilerplate" "$HOME/boilerplate"
 
-    sudo ln -sf /home/staspk/.bashrc /root/.bashrc
-
     sudo apt update -y
     sudo apt install -y python3-pip
+    sudo apt install -y python3-venv
 }
