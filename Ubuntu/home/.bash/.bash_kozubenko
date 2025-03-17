@@ -1,12 +1,33 @@
 #!/bin/bash
 
+KOZUBENKO=(
+    setup_python_project,
+    setup_ubuntu
+)
 
-setup_basic_python_project() {
+BOILERPLATE_PYTHON_PROJECT="$HOME/boilerplate/python_minimum_vscode_setup"
+
+# setup_python_project(
+#   $path -> defaults to $pwd
+# )
+setup_python_project() {
     local path="${1:-$(pwd)}"
 
-    echo path
-}
+    if [ ! -d "$path" ]; then
+        print_red "given path not a real directory: $path"
+        return 1
+    fi
 
+    python3 -m venv .venv
+
+    source .venv/bin/activate
+
+    python -m pip install --upgrade pip
+
+    cp -r "$BOILERPLATE_PYTHON_PROJECT/"* "$path/"
+
+    clear
+}
 
 setup_ubuntu() {
     cp -r "$HOME/OS-Setup/Ubuntu/boilerplate" "$HOME/boilerplate"

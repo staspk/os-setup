@@ -68,3 +68,15 @@ print_blue() {
     local newline="${2:-true}"
     if [ "$newline" = true ]; then echo -e "\033[36m${text}\033[0m"; else echo -en "\033[36m${text}\033[0m"; fi
 }
+
+print_file() {
+    local file="$1"
+    if [ -f "$file" ]; then
+        while IFS= read -r line; do
+            print_yellow "\033[93m${line}\033[0m"
+        done < "$file"
+    else
+        echo "Error: File '$file' does not exist." >&2
+        return 1
+    fi
+}
