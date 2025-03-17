@@ -1,0 +1,32 @@
+#!/bin/bash
+BOILERPLATE_PYTHON_PROJECT="$HOME/boilerplate/python_minimum_vscode_setup"
+
+# setup_python_project(
+#   $path -> defaults to $pwd
+# )
+setup_python_project() {
+    local path="${1:-$PWD}"
+
+    if [ ! -d "$path" ]; then
+        print_red "given path not a real directory: $path"
+        return 1
+    fi
+
+    cd $path
+
+    python3 -m venv .venv
+
+    source .venv/bin/activate
+
+    python -m pip install --upgrade pip
+
+    cp -r "$BOILERPLATE_PYTHON_PROJECT/"* "$path/"
+
+    # clear
+}
+
+activate_venv() {
+    if [ -f "./.venv/bin/activate" ]; then
+        source .venv/bin/activate
+    fi
+}

@@ -1,0 +1,36 @@
+#!/bin/bash
+GLOBALS="$HOME/.bash/.env"
+
+
+# setStartLocation(
+#   $path -> defaults to $pwd
+# )
+setStartLocation() {
+    local path="${1:-$PWD}"
+
+    if [ ! -d "$path" ]; then
+        print_red "given path not a real directory: $path"
+        return 1
+    fi
+
+    {
+      echo "start_location=$path"                               # Write or overwrite the first line of ~/.bash/.env with start_location
+      
+      [ -f "$GLOBALS" ] && tail -n +2 "$GLOBALS"                # If $GLOBALS exists, output everything from line 2 onward
+    } > "$GLOBALS.tmp" && mv "$GLOBALS.tmp" "$GLOBALS"
+}
+
+
+
+onStart() {
+    source $HOME/.bash/.env
+
+    if [ -n "$start_location" ]; then       # if string not empty 
+        if [ -d "$start_location" ]; then   # if is real directory
+            cd "$start_location"
+        else
+            print_red "start_location does not exist anymore: $start_location"
+        fi
+    fi
+}
+onStart

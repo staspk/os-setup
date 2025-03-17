@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # print_{color} "hello world"           <---- standard print (with new line)
 # print_{color} "hello world" false     <---- no new line
