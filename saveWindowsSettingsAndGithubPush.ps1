@@ -10,5 +10,4 @@ if($commitMessage -eq $null) {
     $commitMessage = "VsCode Settings Backup"
 }
 
-
 Push $commitMessage
