@@ -1,4 +1,3 @@
-[![OS-Setup:Collection of scripts/files to setup/debloat/configure a clean OS Install.](./assets/Os_Setup.png)](https://github.com/staspk/OS-Setup)
 ## Ubuntu Instructions
 ### .bashrc
 - `git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup`
@@ -9,11 +8,12 @@
 
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
-- All possible behaviors/values of Enums, are defined right above/alongside Function Definitions that use the Enum in question. Use like so: `TaskBarAlignment ([Alignment]::Left)`
+- In powershell, function calls with parentheses will only work with 1 param. Unexpected behavior will follow with 2+ params.
+- Enums and classes are called like so:  `TaskBarAlignment [Alignment]::Left`
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
 
-### PowershellConfigurer
-- `.powershell\` is where you should place your profile files and custom libraries, if doing manually.
+### Powershell
+- My powershell git is under $profile now, and this git has it as a submodule. Running scripts for synchronization is now unnecessary. Will cleanup OS-Setup and the rest of this readme sometime when I have extra time.
 	- `[PowershellConfigurer]::PrintCorrectFolderStruture()` --> Use this static method see how .powershell should be structured.
 	- `[PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()` --> Pulls CurrentUser files for Powershell5 and Powershell7+ (Core) into OS-Setup ScriptPackages.
 	Will implement pulling AllUsers if I ever need the functionality.
