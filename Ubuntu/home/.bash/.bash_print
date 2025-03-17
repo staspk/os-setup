@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# print_{color} "hello world"           <---- standard print (with new line)
+# print_{color} "hello world" false     <---- no new line
+
+print_green() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[92m${text}\033[0m"; else echo -en "\033[92m${text}\033[0m"; fi
+}
+
+print_dark_green() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[32m${text}\033[0m"; else echo -en "\033[32m${text}\033[0m"; fi
+}
+
+print_red() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[91m${text}\033[0m"; else echo -en "\033[91m${text}\033[0m"; fi
+}
+
+print_dark_red() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[31m${text}\033[0m"; else echo -en "\033[31m${text}\033[0m"; fi
+}
+
+print_yellow() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[93m${text}\033[0m"; else echo -en "\033[93m${text}\033[0m"; fi
+}
+
+print_dark_yellow() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[33m${text}\033[0m"; else echo -en "\033[33m${text}\033[0m"; fi
+}
+
+print_cyan() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[96m${text}\033[0m"; else echo -en "\033[96m${text}\033[0m"; fi
+}
+
+print_white() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[97m${text}\033[0m"; else echo -en "\033[97m${text}\033[0m"; fi
+}
+
+print_gray() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[37m${text}\033[0m"; else echo -en "\033[37m${text}\033[0m"; fi
+}
+
+print_dark_gray() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[90m${text}\033[0m"; else echo -en "\033[90m${text}\033[0m"; fi
+}
+
+print_blue() {
+    local text="$1"
+    local newline="${2:-true}"
+    if [ "$newline" = true ]; then echo -e "\033[36m${text}\033[0m"; else echo -en "\033[36m${text}\033[0m"; fi
+}

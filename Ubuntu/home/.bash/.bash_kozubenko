@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+setup_basic_python_project() {
+    local path="${1:-$(pwd)}"
+
+    echo path
+}
+
+
+setup_ubuntu() {
+    cp -r "$HOME/OS-Setup/Ubuntu/boilerplate" "$HOME/boilerplate"
+}
