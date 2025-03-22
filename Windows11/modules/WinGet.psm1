@@ -7,7 +7,8 @@ $TO_INSTALL =
 	"Python.Python.3.13",
 	"OpenJS.NodeJS",
 	"Rustlang.Rustup",
-	"7zip.7zip"
+	"7zip.7zip",
+	"ffmpeg"
 
 $TO_UNINSTALL =
 	"Copilot",
