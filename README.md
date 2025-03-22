@@ -8,7 +8,8 @@
 
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
-- In powershell, function calls with parentheses will only work with 1 param. Unexpected behavior will follow with 2+ params.
+- In powershell, function calls with parentheses will only work with 1 param./
+  Unexpected behavior will follow with 2+ params.
 - Enums and classes are called like so:  `TaskBarAlignment [Alignment]::Left`
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
 
