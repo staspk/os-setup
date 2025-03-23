@@ -2,7 +2,7 @@
 	path = Windows11/.powershell/PowerShell
 	url = https://github.com/staspk/PowerShell.git
 	branch = main
-[submodule "Ubuntu/boilerplate/python_vscode_setup/kozubenko"]
-	path = Ubuntu/boilerplate/python_vscode_setup/kozubenko
+[submodule "ubuntu/boilerplate/python_vscode_setup/kozubenko"]
+	path = ubuntu/boilerplate/python_vscode_setup/kozubenko
 	url = https://github.com/staspk/Python.git
 	branch = main
