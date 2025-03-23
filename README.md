@@ -1,6 +1,6 @@
 ## Ubuntu Instructions
 ### .bashrc
-- `git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup`
+- ```git clone https://github.com/staspk/OS-Setup.git $HOME/OS-Setup```
 - `cp -r $HOME/OS-Setup/Ubuntu/home/. ~`
 - `(cat "$HOME/OS-Setup/Ubuntu/.bashrc"; printf "\n\n\n"; cat ~/.bashrc) > "$HOME/.bashrc.new" && mv "$HOME/.bashrc.new" ~/.bashrc`
 - Restart terminal. Finally: `setup_ubuntu`
