@@ -1,5 +1,6 @@
 #!/bin/bash
 GLOBALS="$HOME/.bash/.env"
+PYTHON_SCRIPTS="$HOME/.bash/python"
 
 
 # setStartLocation(
@@ -20,6 +21,18 @@ setStartLocation() {
     } > "$GLOBALS.tmp" && mv "$GLOBALS.tmp" "$GLOBALS"
 }
 
+checkIp() {
+    curl --proxy socks5h://localhost:9050 https://api.ipify.org
+}
+
+
+ls_permissions() {
+    local path="${1:-$PWD}"
+    # %A Access rights in human readable form
+    # %a Access rights in octal
+    # %n File name
+    stat -c '%A %a %n' $path/* #"$path/*"
+}
 
 
 onStart() {

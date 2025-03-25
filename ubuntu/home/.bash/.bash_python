@@ -1,5 +1,5 @@
 #!/bin/bash
-BOILERPLATE_PYTHON_PROJECT="$HOME/boilerplate/python_minimum_vscode_setup"
+BOILERPLATE_PYTHON_PROJECT="$HOME/boilerplate/python_vscode_setup"
 
 # setup_python_project(
 #   $path -> defaults to $pwd
