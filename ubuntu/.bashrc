@@ -5,7 +5,7 @@ if [ -f ~/.bash/.bash_runtime ];    then . ~/.bash/.bash_runtime;     fi
 
 
 setup_ubuntu() {
-    cp -r "$HOME/OS-Setup/Ubuntu/boilerplate" "$HOME/boilerplate"
+    cp -r "$HOME/os-setup/ubuntu/boilerplate" "$HOME/boilerplate"
 
     sudo apt update -y
     sudo apt install -y python3-pip
