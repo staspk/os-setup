@@ -79,11 +79,11 @@ class VsCode {
 
         if (TestPathSilently $codeUserSettings) {
             Copy-Item -Path $codeUserSettings -Destination $toSettings -Force
-            Write-Host "Saved " -ForegroundColor Green -NoNewline; Write-Host $codeUserSettings -ForegroundColor DarkGreen -NoNewline; Write-Host " to: " -ForegroundColor Green -NoNewline; Write-Host $toSettings -ForegroundColor DarkGreen
+            Write-Host "Saved: " -ForegroundColor Green -NoNewline; Write-Host $codeUserSettings -ForegroundColor DarkGreen -NoNewline; Write-Host " to: " -ForegroundColor Green -NoNewline; Write-Host $toSettings -ForegroundColor DarkGreen
         }
         if (TestPathSilently $codeKeybindings) {
             Copy-Item -Path $codeKeybindings -Destination $toKeybindings -Force
-            Write-Host "Saved " -ForegroundColor Green -NoNewline; Write-Host $codeKeybindings -ForegroundColor DarkGreen -NoNewline; Write-Host " to: " -ForegroundColor DarkGreen -NoNewline; Write-Host $toKeybindings -ForegroundColor DarkGreen
+            Write-Host "Saved: " -ForegroundColor Green -NoNewline; Write-Host $codeKeybindings -ForegroundColor DarkGreen -NoNewline; Write-Host " to: " -ForegroundColor DarkGreen -NoNewline; Write-Host $toKeybindings -ForegroundColor DarkGreen
         }
         return $this
     }
