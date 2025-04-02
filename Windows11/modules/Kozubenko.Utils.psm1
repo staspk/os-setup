@@ -1,29 +1,3 @@
-function WriteObjBackup($varName, $obj) {
-    Write-Host
-    Write-Host "`$$varName" -ForegroundColor Yellow -NoNewline; Write-Host " {" -ForegroundColor DarkYellow
-    foreach ($_ in $obj | Select-Object) {
-        Write-Host "  type:" -ForegroundColor DarkYellow -NoNewline;  Write-Host "$($_.GetType())"  -NoNewline -ForegroundColor Yellow
-        Write-Host "  value: " -ForegroundColor DarkYellow -NoNewline;  Write-Host $_ -ForegroundColor Yellow;
-
-    }
-    Write-Host "}" -ForegroundColor DarkYellow
-    Write-Host
-}
-function WriteObj($varName, $obj) {
-    Write-Host
-    Write-Host "--------------------------------------------------" -ForegroundColor DarkYellow
-    Write-Host "`$$varName" -ForegroundColor Yellow;
-    Write-Host "`$$varName.getType() == " -ForegroundColor DarkYellow -NoNewline; Write-Host $obj.GetType() -ForegroundColor Yellow -NoNewline; Write-Host " {" -ForegroundColor DarkYellow
-    foreach ($_ in $obj | Select-Object) {
-        Write-Host "  type:" -ForegroundColor DarkYellow -NoNewline;  Write-Host "$($_.GetType())"  -NoNewline -ForegroundColor Yellow
-        Write-Host "  value: " -ForegroundColor DarkYellow -NoNewline;  Write-Host $_ -ForegroundColor Yellow;
-
-    }
-    Write-Host "}" -ForegroundColor DarkYellow
-    Write-Host "--------------------------------------------------" -ForegroundColor DarkYellow
-    Write-Host
-}
-
 function WriteRed($msg, $newLine = $true)      {  if($newLine) { Write-Host $msg -ForegroundColor Red }      else { Write-Host $msg -ForegroundColor Red -NoNewline }        }
 function WriteDarkRed($msg, $newLine = $true)  {  if($newLine) { Write-Host $msg -ForegroundColor DarkRed }   else { Write-Host $msg -ForegroundColor DarkRed -NoNewline }    }
 function WriteYellow($msg, $newLine = $true)   {  if($newLine) { Write-Host $msg -ForegroundColor Yellow }    else { Write-Host $msg -ForegroundColor Yellow -NoNewline }     }

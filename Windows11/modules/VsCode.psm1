@@ -25,8 +25,8 @@ class VsCode {
     }
 
     static [void] PrintPathsToVsCodeSettingFiles() {
-        WriteCyan "VsCode: UserSettings: $([VsCode]::VSCODE_USER_SETTINGS)"
-        WriteCyan "VsCode: Keybindings: $([VsCode]::VSCODE_KEYBINDINGS)"
+        Write-Host "VsCode: UserSettings: $([VsCode]::VSCODE_USER_SETTINGS)" -ForegroundColor Cyan
+        Write-Host "VsCode: Keybindings: $([VsCode]::VSCODE_KEYBINDINGS)" -ForegroundColor Cyan
     }
 
     [void] SetupVsCode() {
@@ -39,11 +39,11 @@ class VsCode {
 
         if (TestPathSilently $settings) {
             Copy-Item -Path $settings -Destination "$([VsCode]::VSCODE_USER_SETTINGS)"
-            WriteGreen "VsCode: Copied Into VsCode App Data Settings from: " $true; WriteDarkGreen $settings
+            Write-Host "VsCode: Copied Into VsCode App Data Settings from: " -ForegroundColor Green -NoNewline; Write-Host $settings -ForegroundColor DarkGreen
         }
         if (TestPathSilently $keybindings) {
             Copy-Item -Path $keybindings -Destination "$([VsCode]::VSCODE_KEYBINDINGS)"
-            WriteGreen "VsCode: Copied Into VsCode App Data Settings from: " $true; WriteDarkGreen $keybindings
+            Write-Host "VsCode: Copied Into VsCode App Data Settings from: " -ForegroundColor Green -NoNewline; Write-Host $keybindings -ForegroundColor DarkGreen
         }
         return $this
     }
@@ -51,7 +51,7 @@ class VsCode {
         $extensionsFile = $this.Extensions_List_File()
         $exists = TestPathSilently $extensionsFile
         if (-not($exists)) {
-            WriteRed "extensions-list file not found. Skipping InstallExtensions()" 
+            Write-Host "extensions-list file not found. Skipping InstallExtensions()" -ForegroundColor Red
             return $this
         }
 
@@ -70,7 +70,7 @@ class VsCode {
 
         code --list-extensions > $extensionsFile
 
-        WriteGreen "VsCode: Saved a list of VsCode's current extenions to: " $false; WriteDarkGreen $extensionsFile
+        Write-Host "VsCode: Saved a list of VsCode's current extenions to: " -ForegroundColor Green -NoNewline; Write-Host $extensionsFile -ForegroundColor DarkGreen
         return $this
     }
     [VsCode] SaveVsCodeSettingsToScriptFiles() {                                            # Will overwrite settings.json/keybindings.json
@@ -79,11 +79,11 @@ class VsCode {
 
         if (TestPathSilently $codeUserSettings) {
             Copy-Item -Path $codeUserSettings -Destination $toSettings -Force
-            WriteGreen "Saved " $false; WriteDarkGreen $codeUserSettings $false; WriteGreen " to: " $false; WriteDarkGreen $toSettings
+            Write-Host "Saved " -ForegroundColor Green -NoNewline; Write-Host $codeUserSettings -ForegroundColor DarkGreen -NoNewline; Write-Host " to: " -ForegroundColor Green -NoNewline; Write-Host $toSettings -ForegroundColor DarkGreen
         }
         if (TestPathSilently $codeKeybindings) {
             Copy-Item -Path $codeKeybindings -Destination $toKeybindings -Force
-            WriteGreen "Saved " $false; WriteDarkGreen $codeKeybindings $false; WriteGreen " to: " $false; WriteDarkGreen $toKeybindings
+            Write-Host "Saved " -ForegroundColor Green -NoNewline; Write-Host $codeKeybindings -ForegroundColor DarkGreen -NoNewline; Write-Host " to: " -ForegroundColor DarkGreen -NoNewline; Write-Host $toKeybindings -ForegroundColor DarkGreen
         }
         return $this
     }

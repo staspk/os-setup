@@ -9,6 +9,8 @@
     "editor.unicodeHighlight.ambiguousCharacters": false,                           // Removes pop-in of yellow rectangles around russian text
 
     "security.workspace.trust.untrustedFiles": "open",
+
+    // "git.detectSubmodules": false,
     
     "workbench.colorTheme": "One Monokai",
     "workbench.colorCustomizations": {
