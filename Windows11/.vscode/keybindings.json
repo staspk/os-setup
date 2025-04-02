@@ -1,8 +1,5 @@
 [
-    { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus"  },
-    { "key": "alt+left",       "command": "cursorLineStart",                "when": "editorTextFocus"  },
-    { "key": "alt+right",      "command": "cursorLineEnd",                  "when": "editorTextFocus"  },
-    { "key": "alt+backspace",  "command": "editor.action.deleteLines",      "when": "editorTextFocus"  },
+    { "key": "alt+`",          "command": "workbench.view.explorer",        "when": "viewContainer.workbench.view.explorer.enabled" },
 
     { "key": "alt+1",          "command": "editor.foldLevel1",              "when": "editorTextFocus"  },
     { "key": "alt+2",          "command": "editor.foldLevel2",              "when": "editorTextFocus"  },
@@ -12,7 +9,10 @@
     { "key": "alt+`",          "command": "editor.foldAll",                 "when": "editorTextFocus"  },
     { "key": "alt+0",          "command": "editor.unfoldAll",               "when": "editorTextFocus"  },
 
-    { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  },
+    { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus"  },
+    { "key": "alt+left",       "command": "cursorLineStart",                "when": "editorTextFocus"  },
+    { "key": "alt+right",      "command": "cursorLineEnd",                  "when": "editorTextFocus"  },
+    { "key": "alt+backspace",  "command": "editor.action.deleteLines",      "when": "editorTextFocus"  },
 
-    { "key": "alt+`",          "command": "workbench.view.explorer",        "when": "viewContainer.workbench.view.explorer.enabled" },
+    { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  },
 ]
