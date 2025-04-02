@@ -4,10 +4,14 @@ class VsCode {
     static [string] $VSCODE_KEYBINDINGS   = "$([VsCode]::VSCODE_APP_DATA)\keybindings.json"
 
     [string] $installFilesDir
-    [string] getExtensionsListFile() {  return "$($this.installFilesDir)\extensions-list"  }
-    [string] getSettingsFile()       {  return "$($this.installFilesDir)\settings.json"    }
-    [string] getKeybindingsFile()    {  return "$($this.installFilesDir)\keybindings.json" }
+    [string] Extensions_List_File() {  return "$($this.installFilesDir)\extensions-list"  }
+    [string] Settings_Json()        {  return "$($this.installFilesDir)\settings.json"    }
+    [string] Keybindings_Json()     {  return "$($this.installFilesDir)\keybindings.json" }
 
+<#
+    VsCode()                  =>  $installFilesDir == VsCode.psm1\..\.vscode
+    VsCode($installFilesDir)  =>  $installFilesDir == $(whatever you pass in)
+#>
     VsCode() {
         $DEFAULT_INSTALL_FILES_DIRECTORY = "$PsScriptRoot\..\.vscode"
 
@@ -30,8 +34,8 @@ class VsCode {
         $this.InstallUserSettings()
     }
     [VsCode] InstallUserSettings() {
-        $settings = $this.getSettingsFile()
-        $keybindings = $this.getKeybindingsFile()
+        $settings = $this.Settings_Json()
+        $keybindings = $this.Keybindings_Json()
 
         if (TestPathSilently $settings) {
             Copy-Item -Path $settings -Destination "$([VsCode]::VSCODE_USER_SETTINGS)"
@@ -44,7 +48,7 @@ class VsCode {
         return $this
     }
     [VsCode] InstallExtensions() {
-        $extensionsFile = $this.getExtensionsListFile()
+        $extensionsFile = $this.Extensions_List_File()
         $exists = TestPathSilently $extensionsFile
         if (-not($exists)) {
             WriteRed "extensions-list file not found. Skipping InstallExtensions()" 
@@ -57,21 +61,21 @@ class VsCode {
         return $this
     }
 
-    [void] BackupVsCode() {     # Will overwrite files in .vscode
+    [void] BackupVsCode() {                                                                 # Will overwrite files in Windows11\.vscode
         $this.SaveExtensionListToScriptFiles()
         $this.SaveVsCodeSettingsToScriptFiles()
     }
-    [VsCode] SaveExtensionListToScriptFiles() {     # Will overwrite extensions-list
-        $extensionsFile = $this.getExtensionsListFile()
+    [VsCode] SaveExtensionListToScriptFiles() {                                             # Will overwrite extensions-list
+        $extensionsFile = $this.Extensions_List_File()
 
         code --list-extensions > $extensionsFile
 
         WriteGreen "VsCode: Saved a list of VsCode's current extenions to: " $false; WriteDarkGreen $extensionsFile
         return $this
     }
-    [VsCode] SaveVsCodeSettingsToScriptFiles() {   # Will overwrite settings.json/keybindings.json
+    [VsCode] SaveVsCodeSettingsToScriptFiles() {                                            # Will overwrite settings.json/keybindings.json
         $codeUserSettings = [VsCode]::VSCODE_USER_SETTINGS; $codeKeybindings = [VsCode]::VSCODE_KEYBINDINGS
-        $toSettings = $this.getSettingsFile(); $toKeybindings = $this.getKeybindingsFile()
+        $toSettings = $this.Settings_Json(); $toKeybindings = $this.Keybindings_Json()
 
         if (TestPathSilently $codeUserSettings) {
             Copy-Item -Path $codeUserSettings -Destination $toSettings -Force
