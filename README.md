@@ -8,22 +8,16 @@
 
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
-- In powershell, function calls with parentheses will only work with 1 param./
-  Unexpected behavior will follow with 2+ params.
-- Enums and classes are called like so:  `TaskBarAlignment [Alignment]::Left`
+- Beware: pwsh function calls including parentheses only work with exactly 1 param. 
+- Uncomment desired functionality in main.psm1.
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
 
-### Powershell
-- My powershell git is under $profile now, and this git has it as a submodule. Running scripts for synchronization is now unnecessary. Will cleanup OS-Setup and the rest of this readme sometime when I have extra time.
-	- `[PowershellConfigurer]::PrintCorrectFolderStruture()` --> Use this static method see how .powershell should be structured.
-	- `[PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()` --> Pulls CurrentUser files for Powershell5 and Powershell7+ (Core) into OS-Setup ScriptPackages.
-	Will implement pulling AllUsers if I ever need the functionality.
-	- `[PowershellConfigurer]::new().Install_forCurrentUser().Install_forAllUsers()`
-
-### VsCode
-- VsCode Configuration has been automated.
-	- `VsCode::new().InstallUserSettings().InstallExtensions()`, Short Version: `VsCode::new().SetupVsCode()`
-	- `VsCode::new().BackupVsCode()`, save the VsCode settings on your computer to OS-Setup ScriptPackage. 
+### Powershell & OneDrive Warning!
+- PowershellConfigurer (Powershell.psm1) module deprecated as of 2025:Q2.
+- Beware: the OneDrive default installation will likely do exactly what the [Microsoft Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.5) explicitly advises against, messing with where the "automatic variable" $profile ends up pointing to in the process. My module accomodated both states in the past.\
+Do not bother.\
+- If battling OneDrive again, uncomment "UninstallAndAttemptAnnihilationOfOneDrive", run './main.ps1'. Works 90% of the time, every time.
+- Clone your [PowerShell Git](https://github.com/staspk/PowerShell.git) directly into: 'C:\Users\stasp\Documents'.  
 
 ### Final Notes
 - Run Powershell as Admin. CD into Windows11 folder and run: './main.ps1'. Note: Powershell 5.1+ required, the standard default pre-installed version on modern Windows machines.
