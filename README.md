@@ -11,6 +11,7 @@
 - Note: pwsh function calls with parentheses work "correctly" with only 1 param. Do not try: `FuncCall("p1", "p2")`
 - Uncomment desired functionality in Windows11\main.psm1.
 - Change List of bloat/software to uninstall/install at top of file: `.\modules\Winget.psm1`
+- In Console: `./main.ps1`
 
 ### Powershell & OneDrive Warning!
 - PowershellConfigurer (Powershell.psm1) module deprecated as of 2025:Q2.
