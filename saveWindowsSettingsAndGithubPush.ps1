@@ -1,3 +1,4 @@
+using module ".\Windows11\modules\Kozubenko.Utils.psm1"
 using module ".\Windows11\modules\VsCode.psm1"
 
 param(
