@@ -111,11 +111,15 @@ function SetVerticalScrollSpeed([int]$scrollSpeed = 3) {
 	WriteCyan "Registry: Vertical Scroll Speed set to $scrollSpeed. Changes will take effect after Computer Restart"
 }
 
-function RestoreClassicContextMenu {
+function RestoreClassicContextMenu([bool]$reverse = $false) {
 	$guid = "{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}" 
-	New-Item -Path "HKCU:\Software\Classes\CLSID\" -Name $guid | Out-Null
-	New-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Name InprocServer32 -Value "" | Out-Null
-	Get-Process explorer | Stop-Process -ErrorAction Ignore
+	if(-not($reverse)) {
+		New-Item -Path "HKCU:\Software\Classes\CLSID\" 		-Name $guid 					| Out-Null
+		New-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Name InprocServer32 -Value "" 	| Out-Null
+	}
+	else {
+		Remove-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Recurse -Force -ErrorAction SilentlyContinue
+	}
 }
 
 function RestartExplorer {
