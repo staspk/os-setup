@@ -2,7 +2,6 @@
 #Requires -Version 5.1
 
 using module ".\modules\Kozubenko.Utils.psm1"
-using module ".\modules\Powershell.psm1"
 using module ".\modules\Registry.psm1"
 using module ".\modules\VsCode.psm1"
 Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
@@ -22,7 +21,7 @@ Clear-Host
 # TaskBarRemoveTaskView
 # DisableAdsInSearchBar
 # DisableWidgets
-# RestartExplorer
+RestartExplorer                                                                 # Leave uncommented.
 
 
 # SetVerticalScrollSpeed 9
@@ -32,20 +31,15 @@ Clear-Host
 # UninstallAndAttemptAnnihilationOfOneDrive
 
 
-# $configurer = [PowershellConfigurer]::PrintCorrectFolderStruture()
-# $configurer = [PowershellConfigurer]::new().SaveProfileFilesToScriptPackage()
-# $configurer = [PowershellConfigurer]::new().Install_forCurrentUser()
+
+# $VsCode = [VsCode]::new().BackupVsCode()
 
 
-$VsCode = [VsCode]::new().BackupVsCode()
-
-
-function GitConfig ($email, $names) {
-    git config --global user.email $email
-    git config --global user.name $name
-}
-# GitConfig("someone@gmail.com", "George CarMichael")
-
+# function GitConfig ($email, $names) {
+#     git config --global user.email $email
+#     git config --global user.name $name
+# }
+# GitConfig("staspk@gmail.com", "Stanislav Kozubenko")
 
 
 
