@@ -21,7 +21,7 @@ Clear-Host
 # TaskBarRemoveTaskView
 # DisableAdsInSearchBar
 # DisableWidgets
-# RestartExplorer
+RestartExplorer                                                                 # Leave uncommented.
 
 
 # SetVerticalScrollSpeed 9
