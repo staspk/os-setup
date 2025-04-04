@@ -1,0 +1,10 @@
+Registry
+
+
+
+[HKEY_CLASSES_ROOT\.txt\ShellNew]
+	ItemName to a REG_EXPAND_SZ value:
+
+
+[HKEY_CLASSES_ROOT\.txt]
+
