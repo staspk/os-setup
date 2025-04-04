@@ -19,7 +19,7 @@ function MoveOneDriveDirectoryContentsToUserHome {
 }
 
 function RemoveReferencesToOneDriveInRegistry {
-    $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
+    $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"   # HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
 
     Get-Item -Path $path |
     Select-Object -ExpandProperty Property |
