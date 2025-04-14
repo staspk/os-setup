@@ -31,5 +31,3 @@ Text Editor → AXML Comment → Foreground
 Text Editor → Regex - Comment → Foreground {
 	FF57A64A => FFABB2BF
 }
-
-TODO: change comment color to a variation of FFABB2BF next time you changing something. Very readable and fits very well.
