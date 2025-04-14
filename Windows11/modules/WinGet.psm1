@@ -6,7 +6,6 @@ $TO_INSTALL =
 	"VideoLAN.VLC",
 	"Python.Python.3.13",
 	"OpenJS.NodeJS",
-	"Rustlang.Rustup",
 	"7zip.7zip",
 	"ffmpeg"
 
