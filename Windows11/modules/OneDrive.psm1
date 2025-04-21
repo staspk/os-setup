@@ -4,14 +4,14 @@ function MoveOneDriveDirectoryContentsToUserHome {
         $to_move = @('Desktop', 'Pictures')
         foreach ($folder in $to_move) {
             if (TestPathSilently "$USER_HOME\OneDrive\$folder") {
-                WriteCyan "OneDrive: attempting to move $folder from OneDrive directory to: $USER_HOME"
+                PrintCyan "OneDrive: attempting to move $folder from OneDrive directory to: $USER_HOME"
                 Move-Item -Path "$USER_HOME\OneDrive\$folder" -Destination "$USER_HOME"
             }
         }
         $path_to_documents = $([Environment]::GetFolderPath("MyDocuments"))
         foreach ($folder in $path_to_documents.Split("\")) {
             if ($folder -ieq "OneDrive") {
-                WriteCyan "OneDrive: Environment confirmed MyDocuments primary residence under OneDrive. Attempting to move to: $USER_HOME"
+                PrintCyan "OneDrive: Environment confirmed MyDocuments primary residence under OneDrive. Attempting to move to: $USER_HOME"
                 Move-Item -Path "$USER_HOME\OneDrive\Documents" -Destination "$USER_HOME"
             }
         }
@@ -35,7 +35,7 @@ function RemoveReferencesToOneDriveInRegistry {
 
         Set-ItemProperty -Path $path -Name $_ -Value $newValue
     }
-    WriteGreen "Removed Path References to OneDrive in: $path"
+    PrintGreen "Removed Path References to OneDrive in: $path"
 }
 
 function CloseAllOpenWindows {
@@ -47,19 +47,20 @@ function CloseAllOpenWindows {
     } | Stop-Process
 }
 
+
 function UninstallAndAttemptAnnihilationOfOneDrive($deleteOneDriveAfter = $false) {
-    WriteCyan "OneDrive: UninstallAndAttemptAnnihilationOfOneDrive..."
+    PrintCyan "OneDrive: UninstallAndAttemptAnnihilationOfOneDrive..."
     Start-Sleep -Seconds 1
-    WriteCyan "OneDrive: MoveOneDriveDirectoryContentsToUserHome..."
+    PrintCyan "OneDrive: MoveOneDriveDirectoryContentsToUserHome..."
     MoveOneDriveDirectoryContentsToUserHome
     Start-Sleep -Seconds 1
     if(TestPathSilently("$USER_HOME\OneDrive")) {
-        WriteCyan "OneDrive: Opening OneDrive directory for manual check..."
+        PrintCyan "OneDrive: Opening OneDrive directory for manual check..."
         Start-Sleep -Seconds 1
         explorer.exe "$USER_HOME\OneDrive"
     }
-    WriteRed "Before Continuing, double-check that all important directories have been moved out from under OneDrive. Don't Copy-Paste! Move(select-drag-drop) folders up one level in the hierarchy to: '$env:userprofile'"
-    WriteRed "[Warning: Skipping this step can risk you losing your important dirs (your Desktop, for example!)...]"
+    PrintRed "Before Continuing, double-check that all important directories have been moved out from under OneDrive. Don't Copy-Paste! Move(select-drag-drop) folders up one level in the hierarchy to: '$env:userprofile'"
+    PrintRed "[Warning: Skipping this step can risk you losing your important dirs (your Desktop, for example!)...]"
     do {
         $userInput = Read-Host "Type 'ok' to proceed, or 'exit'"
         if ($userInput -ieq "exit") { exit }

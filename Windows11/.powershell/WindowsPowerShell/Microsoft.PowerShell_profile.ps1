@@ -2,16 +2,16 @@ using module .\Kozubenko.Utils.psm1
 using module .\Kozubenko.Git.psm1
 
 $GLOBALS = "$([System.IO.Path]::GetDirectoryName($PROFILE))\globals"
-$METHODS = @("NewVar(`$name, `$value = `$PWD.Path)", "SetVar(`$name, `$value)", "DeleteVar(`$varName)", "SetLocation(`$path = `$PWD.Path)");  function List { foreach ($method in $METHODS) {  WriteCyan $method }  }
+$METHODS = @("NewVar(`$name, `$value = `$PWD.Path)", "SetVar(`$name, `$value)", "DeleteVar(`$varName)", "SetLocation(`$path = `$PWD.Path)");  function List { foreach ($method in $METHODS) {  PrintCyan $method }  }
 
 function Restart {  Invoke-Item $pshome\powershell.exe; exit  }
 function Open($path = $PWD.Path) {
-    if (-not(TestPathSilently($path))) { WriteRed "`$path is not a valid path. `$path == $path"; return; }
+    if (-not(TestPathSilently($path))) { PrintRed "`$path is not a valid path. `$path == $path"; return; }
     if (IsFile($path)) {  explorer.exe "$([System.IO.Path]::GetDirectoryName($path))"  }
     else {  explorer.exe $path  }
 }
 function VsCode($path = $PWD.Path) {
-    if (-not(TestPathSilently($path))) { WriteRed "`$path is not a valid path. `$path == $path"; return; }
+    if (-not(TestPathSilently($path))) { PrintRed "`$path is not a valid path. `$path == $path"; return; }
     if (IsFile($path)) {  $containingDir = [System.IO.Path]::GetDirectoryName($path); code $containingDir; return; }
     else { code $path }
 }
@@ -19,7 +19,7 @@ function LoadInGlobals($deleteVarName = "") {   # deletes duplicates as well
     $variables = @{}   # Dict{key==varName, value==varValue}
     $_globals = (Get-Content -Path $GLOBALS)
     
-    if(-not($_globals)) {  WriteRed "Globals Empty"; return  }
+    if(-not($_globals)) {  PrintRed "Globals Empty"; return  }
     Clear-Host
 
     $lines = [System.Collections.Generic.List[Object]]::new(); $lines.AddRange($_globals)
@@ -70,7 +70,7 @@ function SetVar($name, $value) {
 function DeleteVar($varName) {  LoadInGlobals $varName  }
 function SetLocation($path = $PWD.Path) {
     if (-not(TestPathSilently($path))) {
-        WriteRed "Given `$path is not a real directory. `$path == $path"; WriteRed "Exiting SetLocation..."; return
+        PrintRed "Given `$path is not a real directory. `$path == $path"; PrintRed "Exiting SetLocation..."; return
 	}
 	SaveToGlobals "startLocation" $path
 	Restart
@@ -78,7 +78,7 @@ function SetLocation($path = $PWD.Path) {
 
 function CheckGlobalsFile() {
     if (-not(TestPathSilently($GLOBALS))) {
-        WriteRed "Globals file not found. `$GLOBALS == $GLOBALS"; WriteRed "Disabling Functions: { LoadInGlobals, SaveToGlobals, NewVar, SetVar, DeleteVar } "
+        PrintRed "Globals file not found. `$GLOBALS == $GLOBALS"; PrintRed "Disabling Functions: { LoadInGlobals, SaveToGlobals, NewVar, SetVar, DeleteVar } "
         Remove-Item Function:LoadInGlobals; Remove-Item Function:SaveToGlobals; Remove-Item Function:NewVar; Remove-Item Function:SetVar; Remove-Item Function:DeleteVar
         return $false
     }
@@ -96,7 +96,7 @@ function OnOpen() {
             elseif (TestPathSilently $startLocation) {
                 Set-Location $startLocation  }
             else {
-                WriteRed "`$startLocation path does not exist anymore. Defaulting to userdirectory..."
+                PrintRed "`$startLocation path does not exist anymore. Defaulting to userdirectory..."
                 Start-Sleep -Seconds 3
                 SetLocation $Env:USERPROFILE
             }

@@ -4,6 +4,7 @@
 using module ".\modules\Kozubenko.Utils.psm1"
 using module ".\modules\Registry.psm1"
 using module ".\modules\VsCode.psm1"
+using module ".\modules\AutoHotkey.psm1"
 Import-Module $PSScriptRoot\modules\WinGet.psm1 -Force
 Import-Module $PSScriptRoot\modules\OneDrive.psm1 -Force
 
@@ -21,15 +22,14 @@ Clear-Host
 # TaskBarRemoveTaskView
 # DisableAdsInSearchBar
 # DisableWidgets
-RestartExplorer                                                                 # Leave uncommented.
 
 
 # SetVerticalScrollSpeed 9
 
+# UninstallAndAttemptAnnihilationOfOneDrive
 # UninstallBloat
 # InstallSoftware
-# curl -o "$HOME\Downloads\AutoHotkey-v2.exe" https://www.autohotkey.com/download/ahk-v2.exe
-# UninstallAndAttemptAnnihilationOfOneDrive
+InstallCustomWindowsHotkeys
 
 
 

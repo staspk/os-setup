@@ -13,7 +13,7 @@ function Push($commitMsg = "No Commit Message") {
 
 function Github ($path = $PWD.Path) {
     $configFile = "$path\.git\config"
-    if (-not(TestPathSilently $configFile)) {  WriteRed "No .git config file found under `$path: $path"; Return; }
+    if (-not(TestPathSilently $configFile)) {  PrintRed "No .git config file found under `$path: $path"; Return; }
 
     $url = git config --file $configFile --get remote.origin.url
 

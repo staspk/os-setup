@@ -1,10 +1,10 @@
 function NewRegistryKey($path, $keyName) {
 	if (-not(Test-Path "$path\$keyName")) {
 		New-Item -Path $path -Name $name | Out-Null
-		# WriteGreen "Registry: Key [$keyName] Created at: $path\$keyName"
+		# PrintGreen "Registry: Key [$keyName] Created at: $path\$keyName"
 	}
 	else {
-		# WriteRed "Registry: NewRegistryKey skipped since Key [$keyName] already exists at: $path\$keyName"
+		# PrintRed "Registry: NewRegistryKey skipped since Key [$keyName] already exists at: $path\$keyName"
 	}
 }
 
@@ -22,7 +22,7 @@ function FileExplorerDefaultOpenTo( [FileExplorerLaunchTo] $launchTo = "Download
 	$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 
 	RegistryPropertyEditOrAdd $path "LaunchTo" $launchTo.value__
-	WriteCyan("FILE EXPLORER: will now default-open to: $launchTo")
+	PrintCyan("FILE EXPLORER: will now default-open to: $launchTo")
 }
 
 function ShowRecentInQuickAccess([bool]$bool = $false ) { 
@@ -31,9 +31,9 @@ function ShowRecentInQuickAccess([bool]$bool = $false ) {
 
 	RegistryPropertyEditOrAdd $path $propName $bool
 
-	if ($bool) { WriteCyan("FILE EXPLORER: Quick Access will now be automatically populated with Recently Used Files [preset win11 behavior]") }
+	if ($bool) { PrintCyan("FILE EXPLORER: Quick Access will now be automatically populated with Recently Used Files [preset win11 behavior]") }
 	else {
-		WriteCyan("FILE EXPLORER: Will stop automatically populating Quick Access with Recently Used Directories/Files")
+		PrintCyan("FILE EXPLORER: Will stop automatically populating Quick Access with Recently Used Directories/Files")
 	}
 }
 
@@ -45,7 +45,7 @@ function VisibleFileExtensions([bool] $bool = $true) {
 
 	RegistryPropertyEditOrAdd $path $propName $propVal
 
-	WriteCyan("FILE EXPLORER: File's format/extension visibility boolean status updated to $bool")
+	PrintCyan("FILE EXPLORER: File's format/extension visibility boolean status updated to $bool")
 }
 
 function VisibleHiddenFiles([bool]$bool = $true) {
@@ -56,7 +56,7 @@ function VisibleHiddenFiles([bool]$bool = $true) {
 
 	RegistryPropertyEditOrAdd $path $propName $propVal
 
-	WriteCyan("FILE EXPLORER: Hidden files & folders boolean status set to: $bool")
+	PrintCyan("FILE EXPLORER: Hidden files & folders boolean status set to: $bool")
 }
 
 
@@ -67,7 +67,7 @@ function TaskBarAlignment([Alignment]$alignment = [Alignment]::Left) {
 
 	RegistryPropertyEditOrAdd $path $propName $alignment.value__
 
-	WriteCyan("TASKBAR: Alignment set to: $alignment")
+	PrintCyan("TASKBAR: Alignment set to: $alignment")
 }
 
 function TaskBarRemoveTaskView {
@@ -76,7 +76,7 @@ function TaskBarRemoveTaskView {
 
 	RegistryPropertyEditOrAdd $path $propName 0
 
-	WriteCyan("TASKBAR: Task View Removed")
+	PrintCyan("TASKBAR: Task View Removed")
 }
 
 function DisableAdsInSearchBar {
@@ -87,7 +87,7 @@ function DisableAdsInSearchBar {
 	NewRegistryKey $path $keyName
 	RegistryPropertyEditOrAdd "$path\$keyName" $propName 1
 
-	WriteCyan("TASKBAR: Ads disabled in Search Bar")
+	PrintCyan("TASKBAR: Ads disabled in Search Bar")
 }
 
 function DisableWidgets($enable = $false) {
@@ -99,7 +99,7 @@ function DisableWidgets($enable = $false) {
 
 	if ($enable) {  Remove-Item  "$path\$key" }
 	else {
-		WriteGreen "Disabled Widgets. Please RESTART Computer to finalize."
+		PrintGreen "Disabled Widgets. Please RESTART Computer to finalize."
 	}
 }
 
@@ -108,7 +108,7 @@ function SetVerticalScrollSpeed([int]$scrollSpeed = 3) {
 	$propName = "WheelScrollLines"
 
 	Set-ItemProperty -Path $path -Name $propName -Value $scrollSpeed
-	WriteCyan "Registry: Vertical Scroll Speed set to $scrollSpeed. Changes will take effect after Computer Restart"
+	PrintCyan "Registry: Vertical Scroll Speed set to $scrollSpeed. Changes will take effect after Computer Restart"
 }
 
 function RestoreClassicContextMenu([bool]$reverse = $false) {

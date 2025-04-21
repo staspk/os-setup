@@ -1,14 +1,14 @@
-function WriteRed($msg, $noNewLine = $false)      {  if($noNewLine) { Write-Host $msg -ForegroundColor Red -NoNewline } else { Write-Host $msg -ForegroundColor Red }  }
-function WriteDarkRed($msg, $noNewLine = $false)  {  if($noNewLine) { Write-Host $msg -ForegroundColor DarkRed -NoNewline } else { Write-Host $msg -ForegroundColor DarkRed }  }
-function WriteYellow($msg, $noNewLine = $false)   {  if($noNewLine) { Write-Host $msg -ForegroundColor Yellow -NoNewline } else { Write-Host $msg -ForegroundColor Yellow }  }
-function WriteCyan($msg, $noNewLine)              {  if($noNewLine) { Write-Host $msg -ForegroundColor Cyan -NoNewline } else { Write-Host $msg -ForegroundColor Cyan }  }
-function WriteGreen($msg, $noNewLine)             {  if($noNewLine) { Write-Host $msg -ForegroundColor Green -NoNewline } else { Write-Host $msg -ForegroundColor Green }  }
-function WriteDarkGreen($msg, $noNewLine = $false){  if($noNewLine) { Write-Host $msg -ForegroundColor DarkGreen -NoNewline } else { Write-Host $msg -ForegroundColor DarkGreen }  }
-function WriteGray($msg, $noNewLine = $false)     {  if($noNewLine) { Write-Host $msg -ForegroundColor Gray -NoNewline } else { Write-Host $msg -ForegroundColor Gray }  }
-function WriteWhite($msg, $noNewLine = $false)    {  if($noNewLine) { Write-Host $msg -ForegroundColor White -NoNewline } else { Write-Host $msg -ForegroundColor White }  }
-function WriteErrorExit([string]$errorMsg) {
-    WriteDarkRed $errorMsg
-    WriteDarkRed "Exiting Script..."
+function PrintRed($msg, $noNewLine = $false)      {  if($noNewLine) { Write-Host $msg -ForegroundColor Red -NoNewline } else { Write-Host $msg -ForegroundColor Red }  }
+function PrintDarkRed($msg, $noNewLine = $false)  {  if($noNewLine) { Write-Host $msg -ForegroundColor DarkRed -NoNewline } else { Write-Host $msg -ForegroundColor DarkRed }  }
+function PrintYellow($msg, $noNewLine = $false)   {  if($noNewLine) { Write-Host $msg -ForegroundColor Yellow -NoNewline } else { Write-Host $msg -ForegroundColor Yellow }  }
+function PrintCyan($msg, $noNewLine)              {  if($noNewLine) { Write-Host $msg -ForegroundColor Cyan -NoNewline } else { Write-Host $msg -ForegroundColor Cyan }  }
+function PrintGreen($msg, $noNewLine)             {  if($noNewLine) { Write-Host $msg -ForegroundColor Green -NoNewline } else { Write-Host $msg -ForegroundColor Green }  }
+function PrintDarkGreen($msg, $noNewLine = $false){  if($noNewLine) { Write-Host $msg -ForegroundColor DarkGreen -NoNewline } else { Write-Host $msg -ForegroundColor DarkGreen }  }
+function PrintGray($msg, $noNewLine = $false)     {  if($noNewLine) { Write-Host $msg -ForegroundColor Gray -NoNewline } else { Write-Host $msg -ForegroundColor Gray }  }
+function PrintWhite($msg, $noNewLine = $false)    {  if($noNewLine) { Write-Host $msg -ForegroundColor White -NoNewline } else { Write-Host $msg -ForegroundColor White }  }
+function PrintErrorExit([string]$errorMsg) {
+    PrintDarkRed $errorMsg
+    PrintDarkRed "Exiting Script..."
     exit
 }
 function TestPathSilently($dirPath, $returnPath = $false) { 

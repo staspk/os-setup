@@ -25,8 +25,8 @@ class VsCode {
     }
 
     static [void] PrintPathsToVsCodeSettingFiles() {
-        WriteCyan "VsCode: UserSettings: $([VsCode]::VSCODE_USER_SETTINGS)"
-        WriteCyan "VsCode: Keybindings: $([VsCode]::VSCODE_KEYBINDINGS)"
+        PrintCyan "VsCode: UserSettings: $([VsCode]::VSCODE_USER_SETTINGS)"
+        PrintCyan "VsCode: Keybindings: $([VsCode]::VSCODE_KEYBINDINGS)"
     }
 
     [void] SetupVsCode() {
@@ -39,11 +39,11 @@ class VsCode {
 
         if (TestPathSilently $settings) {
             Copy-Item -Path $settings -Destination "$([VsCode]::VSCODE_USER_SETTINGS)"
-            WriteGreen "VsCode: Copied Into VsCode App Data Settings from: " $false; WriteDarkGreen $settings
+            PrintGreen "VsCode: Copied Into VsCode App Data Settings from: " $false; PrintDarkGreen $settings
         }
         if (TestPathSilently $keybindings) {
             Copy-Item -Path $keybindings -Destination "$([VsCode]::VSCODE_KEYBINDINGS)"
-            WriteGreen "VsCode: Copied Into VsCode App Data Settings from: " $false; WriteDarkGreen $keybindings
+            PrintGreen "VsCode: Copied Into VsCode App Data Settings from: " $false; PrintDarkGreen $keybindings
         }
         return $this
     }
@@ -51,7 +51,7 @@ class VsCode {
         $extensionsFile = $this.Extensions_List_File()
         $exists = TestPathSilently $extensionsFile
         if (-not($exists)) {
-            WriteRed "extensions-list file not found. Skipping InstallExtensions()" 
+            PrintRed "extensions-list file not found. Skipping InstallExtensions()" 
             return $this
         }
 
@@ -70,7 +70,7 @@ class VsCode {
 
         code --list-extensions > $extensionsFile
 
-        WriteGreen "VsCode: Saved a list of VsCode's current extenions to: " $false; WriteDarkGreen $extensionsFile
+        PrintGreen "VsCode: Saved a list of VsCode's current extenions to: " $false; PrintDarkGreen $extensionsFile
         return $this
     }
     [VsCode] SaveVsCodeSettingsToScriptFiles() {                                            # Will overwrite settings.json/keybindings.json
@@ -79,11 +79,11 @@ class VsCode {
 
         if (TestPathSilently $codeUserSettings) {
             Copy-Item -Path $codeUserSettings -Destination $toSettings -Force
-            WriteGreen "Saved " $false; WriteDarkGreen "$codeUserSettings" $false; WriteGreen " to: " $false; WriteDarkGreen $toSettings
+            PrintGreen "Saved " $false; PrintDarkGreen "$codeUserSettings" $false; PrintGreen " to: " $false; PrintDarkGreen $toSettings
         }
         if (TestPathSilently $codeKeybindings) {
             Copy-Item -Path $codeKeybindings -Destination $toKeybindings -Force
-            WriteGreen "Saved " $false; WriteDarkGreen "$codeKeybindings" $false; WriteGreen " to: " $false; WriteDarkGreen $toKeybindings
+            PrintGreen "Saved " $false; PrintDarkGreen "$codeKeybindings" $false; PrintGreen " to: " $false; PrintDarkGreen $toKeybindings
         }
         return $this
     }
