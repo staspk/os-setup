@@ -79,6 +79,14 @@ function TaskBarRemoveTaskView {
 	PrintCyan("TASKBAR: Task View Removed")
 }
 
+function DisableRecommendedAdsInStartMenu() {
+	$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings"
+	$propName = "HideRecommendedSection"
+	$value = 1
+
+	RegistryPropertyEditOrAdd $path $propName 1
+}
+
 function DisableAdsInSearchBar {
 	$path = "HKCU:\Software\Policies\Microsoft\Windows"
 	$keyName = "Explorer"
@@ -129,7 +137,7 @@ function RestartExplorer {
 
 
 Export-ModuleMember -Function FileExplorerDefaultOpenTo, ShowRecentInQuickAccess, VisibleFileExtensions, VisibleHiddenFiles,
-TaskBarAlignment, TaskBarRemoveTaskView, DisableAdsInSearchBar, DisableWidgets,
+TaskBarAlignment, TaskBarRemoveTaskView, DisableRecommendedAdsInStartMenu, DisableAdsInSearchBar, DisableWidgets,
 SetVerticalScrollSpeed, RestoreClassicContextMenu,
 RestartExplorer
 

@@ -20,6 +20,7 @@ Clear-Host
 
 # TaskBarAlignment ([Alignment]::Left)
 # TaskBarRemoveTaskView
+# DisableRecommendedAdsInStartMenu
 # DisableAdsInSearchBar
 # DisableWidgets
 
