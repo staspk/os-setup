@@ -1,9 +1,7 @@
-$HOTKEYS = "$PWD\.keyboard\hotkeys.ahk"
+using module .\Kozubenko.Utils.psm1
 
-function RunningAsAdmin {  
-    $user = [Security.Principal.WindowsIdentity]::GetCurrent()
-    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
-}
+$HOTKEYS = "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"                # Where the hotkeys are stored in the os-setup project
+$STARTUP = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"        # Where hotkeys.ahk are moved to affect computer
 
 function InstallCustomWindowsHotkeys() {
     if(-not(Test-Path $HOTKEYS)) {
@@ -17,13 +15,13 @@ function InstallCustomWindowsHotkeys() {
 
         if(-not(RunningAsAdmin)) {
             PrintRed "Script running w/o admin rights, expect an install elevation prompt..."
-            Start-Sleep .75
+            Start-Sleep 1
         } 
 
         Start-Process -Wait -FilePath "$HOME\Downloads\AutoHotkey-v2.exe" -ArgumentList "/silent", "/Elevate" -PassThru
         
         if(-not(Test-Path "C:\Program Files\AutoHotkey")) {
-            PrintRed "Unable to install AutoHotkeyV2. Please install manually. Will still place .ahk file in Startup folder..."
+            PrintRed "Unable to install AutoHotkeyV2. Aborting...InstallCustomWindowsHotkeys"
             RETURN;
         }
     }
@@ -31,4 +29,17 @@ function InstallCustomWindowsHotkeys() {
     Copy-Item -Path $HOTKEYS -Destination "C:\Users\stasp\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 
     PrintGreen "InstallCustomWindowsHotkeys Complete"
+}
+
+function BackupAutoHotkey() {
+    $toBackup = "$STARTUP\hotkeys.ahk"
+
+    if(-not(Test-Path $toBackup)) {  PrintRed "BackupAutoHotkey(): `$toBackup not found. `$toBackup: $toBackup"; RETURN;  }
+
+    try {
+        Copy-Item $toBackup $(ParentDir $HOTKEYS)
+    }
+    catch {  PrintRed "BackupAutoHotkey(): Failure! Reason: $($_.Exception.Message)"; RETURN; }
+
+    PrintGreen "BackupAutoHotkey(): Success"
 }
