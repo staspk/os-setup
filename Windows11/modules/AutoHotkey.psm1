@@ -1,11 +1,12 @@
 using module .\Kozubenko.Utils.psm1
 
-$HOTKEYS = "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"                # Where the hotkeys are stored in the os-setup project
+$HOTKEYS = "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"                # $MyInvocation.MyCommand.Path == abspath(AutoHotkey.psm1), when run from ./main.ps1
 $STARTUP = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"        # Where hotkeys.ahk are moved to affect computer
 
 function InstallCustomWindowsHotkeys() {
     if(-not(Test-Path $HOTKEYS)) {
-        PrintDarkRed "Hotkeys.ahk not found under: .\Windows11\.keyboard. Quitting InstallCustomWindowsHotkeys..."
+        PrintDarkRed "Hotkeys.ahk not found. `$HOTKEYS: $HOTKEYS"
+        PrintDarkRed "Quitting InstallCustomWindowsHotkeys...`n"
         RETURN;
     }
 
