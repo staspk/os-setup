@@ -16,6 +16,14 @@ function ParentDir($path) {
     return [System.IO.Path]::GetDirectoryName($path)
 }
 
+function ResolvePath($path) {
+    if (-not(Test-Path $path)) {  Write-Host "`$path is not a valid path. `$path == $path" -ForegroundColor Red;  RETURN;  }
+
+    $path = (Resolve-Path $path).Path
+
+    return $path
+}
+
 function RunningAsAdmin() {  
     $user = [Security.Principal.WindowsIdentity]::GetCurrent()
     (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
@@ -62,4 +70,5 @@ function CheckIfGivenStringIsPotentialFilePath([string] $potentialPath) {   # Re
 
 
 Export-ModuleMember -Function WriteObj, PrintCyan, PrintGreen, PrintDarkGreen, PrintRed, PrintDarkRed, PrintYellow, PrintGray, PrintWhite, PrintErrorExit,
+ParentDir, ResolvePath, RunningAsAdmin,
 NumberOfItemsInDir, NumberOfFoldersInDir, NumberOfFilesInDir, TestPathSilently, RemoveFromEnvironmentPath

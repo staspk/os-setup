@@ -1,6 +1,6 @@
 using module .\Kozubenko.Utils.psm1
 
-$HOTKEYS = "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"                # $MyInvocation.MyCommand.Path == abspath(AutoHotkey.psm1), when run from ./main.ps1
+$HOTKEYS = ResolvePath "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"    # $MyInvocation.MyCommand.Path == abspath(AutoHotkey.psm1), when run from ./main.ps1
 $STARTUP = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"        # Where hotkeys.ahk are moved to affect computer
 
 function InstallCustomWindowsHotkeys() {
@@ -33,14 +33,15 @@ function InstallCustomWindowsHotkeys() {
 }
 
 function BackupAutoHotkey() {
-    $toBackup = "$STARTUP\hotkeys.ahk"
+    $toBackup   = "$STARTUP\hotkeys.ahk"
+    $backupDest = $(ParentDir $HOTKEYS)
 
     if(-not(Test-Path $toBackup)) {  PrintRed "BackupAutoHotkey(): `$toBackup not found. `$toBackup: $toBackup"; RETURN;  }
 
     try {
-        Copy-Item $toBackup $(ParentDir $HOTKEYS)
+        Copy-Item $toBackup $backupDest
     }
     catch {  PrintRed "BackupAutoHotkey(): Failure! Reason: $($_.Exception.Message)"; RETURN; }
 
-    PrintGreen "BackupAutoHotkey(): Success"
+    PrintGreen "BackupAutoHotkey(): Success!  `$backupDest: $backupDest"
 }
