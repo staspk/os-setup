@@ -7,9 +7,9 @@
 
 !Esc::Return												; Disabling Windows' "Tab through windows" default shortcut: Alt+Esc
 #HotIf WinActive("ahk_exe msedge.exe")						; If Edge Browser active
-!Esc::Send("^w")											; 	"Remapping" 'Close Current Tab', on Alt+Esc, send signal to actual shortcut (Ctrl+w) 
+!Esc::Send("^w")											; 	"Remapping": 'Close Current Tab', on Alt+Esc, send signal to actual shortcut (Ctrl+w)
+!s::Send("!d")												; 	"Remapping": 'Jump to Navigation Bar', on Alt+s, send signal to actual shortcut (Alt+d)
+!t::Send("^t")												; 	"Remapping": 'New Tab', on Alt+t, send signal to actual shortcut (Ctrl+t)
 #HotIf
 
-#HotIf WinActive("ahk_exe msedge.exe")						; If Edge Browser active
-!s::Send("!d")												; 	"Remapping" 'Jump to Navigation Bar', on Alt+s, send signal to actual shortcut (Alt+d) 
-#HotIf
+~LWin::Send "{Blind}{vkE8}"									; Disables WindowsKey, but not WindowsKey+Combinations
