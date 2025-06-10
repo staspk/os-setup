@@ -14,4 +14,6 @@ if($commitMessage -eq $null) {
     $commitMessage = "Automatic Settings Backup"
 }
 
-Push $commitMessage
+git add .
+git commit -a -m $commitMessage
+git push
