@@ -32,6 +32,7 @@ Clear-Host
 # InstallSoftware
 InstallCustomWindowsHotkeys
 
+# RestartExplorer                                                       # Call this if you don't want to restart your computer to effect changes
 
 
 # $VsCode = [VsCode]::new().BackupVsCode()
