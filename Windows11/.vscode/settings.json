@@ -13,6 +13,15 @@
     "terminal.integrated.scrollback": 10000,
 
     // "git.detectSubmodules": false,
+
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
     
     "workbench.colorTheme": "One Monokai",
     "workbench.colorCustomizations": {
