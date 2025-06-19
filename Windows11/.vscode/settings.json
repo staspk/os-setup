@@ -5,10 +5,12 @@
     "editor.mouseWheelScrollSensitivity": 1.5,
     "explorer.compactFolders": false,
 
-    "git.openRepositoryInParentFolders": "never",                                   // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
-    "editor.unicodeHighlight.ambiguousCharacters": false,                           // Removes pop-in of yellow rectangles around russian text
+    "git.openRepositoryInParentFolders": "never",                             // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
+    "editor.unicodeHighlight.ambiguousCharacters": false,                     // Removes pop-in of yellow rectangles around russian text
 
     "security.workspace.trust.untrustedFiles": "open",
+
+    "terminal.integrated.scrollback": 10000,
 
     // "git.detectSubmodules": false,
     

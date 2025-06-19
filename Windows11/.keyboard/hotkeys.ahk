@@ -11,3 +11,5 @@
 !s::Send("!d")												; 	"Remapping": 'Jump to Navigation Bar', on Alt+s, send signal to actual shortcut (Alt+d)
 !t::Send("^t")												; 	"Remapping": 'New Tab', on Alt+t, send signal to actual shortcut (Ctrl+t)
 #HotIf
+
+~LWin::Send "{Blind}{vkE8}"									; Disables WindowsKey, but not WindowsKey+Combinations
