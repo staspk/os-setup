@@ -1,7 +1,11 @@
 ﻿#Requires AutoHotkey v2.0
 
-#1::Run("C:\Program Files\PowerShell\7\pwsh.exe")    							; WinKey+1		=> Opens PowerShell
+F1:: Run("C:\Program Files\PowerShell\7\pwsh.exe")								; F1			=> Opens PowerShell
+#1:: Run("C:\Program Files\PowerShell\7\pwsh.exe")  							; WinKey+1		=> Opens PowerShell
+
+F2::Run("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")  		; F2 			=> Opens Edge Browser
 #2::Run("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")			; WinKey+2		=> Opens Edge Browser
+
 #Esc::WinClose("A")                                    							; WinKey+Esc	=> Close Currently Open Program
 
 
@@ -13,3 +17,19 @@
 #HotIf
 
 ~LWin::Send "{Blind}{vkE8}"									; Disables WindowsKey, but not WindowsKey+Combinations
+
+
+Esc::
+{
+    proc := WinGetProcessName("A")
+    
+    if (proc = "Code.exe")
+    {
+        Send "{Esc}"							; Keep original behavior of Esc ehavior
+    }
+    else
+    {
+        ; Close the active window
+        WinClose("A")
+    }
+}
