@@ -43,5 +43,5 @@ function BackupAutoHotkey() {
     }
     catch {  PrintRed "BackupAutoHotkey(): Failure! Reason: $($_.Exception.Message)"; RETURN; }
 
-    PrintGreen "BackupAutoHotkey(): Success!  `$backupDest: $backupDest"
+    PrintGreen "BackupAutoHotkey($toBackup): Success! `$backupDest: $backupDest"
 }
