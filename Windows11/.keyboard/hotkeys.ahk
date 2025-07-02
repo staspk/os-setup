@@ -12,7 +12,10 @@ F3:: Run("calc.exe")  														   ; F3 			=> Opens Calculator
 #Esc:: WinClose("A")                                    					   ; WinKey+Esc		=> Close Active Window
 #HotIf WinExist("A")														   ; Esc			=> Close Active Window, except: VsCode
 	Esc:: { 
-		if WinActive("ahk_exe Code.exe") {
+		if WinActive("ahk_exe WindowsTerminal.exe") and ProcessExist("vim.exe") {
+			Send("{Esc}")
+		}
+		else if WinActive("ahk_exe Code.exe") {
 			Send("{Esc}")
 		}
 		else {
@@ -32,4 +35,16 @@ F3:: Run("calc.exe")  														   ; F3 			=> Opens Calculator
 !Esc::Return												; DISABLES DEFAULT: Alt+Esc 	["Tab Through Windows"] 
 ~LWin::Send "{Blind}{vkE8}"									; DISABLES DEFAULT: WindowsKey  ["Open Start Menu"], but not WinKey+Combos
 
+
+^+i:: {  ; Ctrl+Shift+I
+    hwnd := WinActive("A")
+    title := WinGetTitle(hwnd)
+    class := WinGetClass(hwnd)
+    exe := WinGetProcessName(hwnd)
+
+    MsgBox "Active Window Info:`n`n" 
+        . "Title: " title "`n"
+        . "Class: " class "`n"
+        . "EXE: " exe
+}
 
