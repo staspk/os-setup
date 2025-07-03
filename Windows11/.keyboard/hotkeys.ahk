@@ -2,12 +2,9 @@
 
 
 F1:: Run("C:\Program Files\PowerShell\7\pwsh.exe")							   ; F1				=> Opens PowerShell
-#1:: Run("C:\Program Files\PowerShell\7\pwsh.exe")  						   ; WinKey+1		=> Opens PowerShell
-
 F2:: Run("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")  	   ; F2 			=> Opens Edge Browser
-#2:: Run("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")	   ; WinKey+2		=> Opens Edge Browser
-
-F3:: Run("calc.exe")  														   ; F3 			=> Opens Calculator
+F3:: Run("code")                                                               ; F3             => Opens VS Code
+F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 
 #Esc:: WinClose("A")                                    					   ; WinKey+Esc		=> Close Active Window
 #HotIf WinExist("A")														   ; Esc			=> Close Active Window, except: VsCode

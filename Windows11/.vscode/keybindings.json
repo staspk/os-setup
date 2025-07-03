@@ -1,4 +1,7 @@
 [
+    { "key": "alt+escape",     "command": "workbench.action.closeActiveEditor" },
+    { "key": "alt+`",          "command": "workbench.view.explorer",        "when": "viewContainer.workbench.view.explorer.enabled" },
+    
     { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus"  },
     { "key": "alt+left",       "command": "cursorLineStart",                "when": "editorTextFocus"  },
     { "key": "alt+right",      "command": "cursorLineEnd",                  "when": "editorTextFocus"  },
@@ -14,7 +17,7 @@
 
     { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  },
 
-    { "key": "alt+`",          "command": "workbench.view.explorer",        "when": "viewContainer.workbench.view.explorer.enabled" },
-
     { "key": "ctrl+.",         "command": "editor.action.rename",           "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly" },
+
+    { "key": "ctrl+\\",        "command": "-workbench.action.splitEditor" },    // Keep splitting accidentally. Turning off for a while...
 ]
