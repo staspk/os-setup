@@ -1,5 +1,7 @@
 [
-    { "key": "alt+escape",     "command": "workbench.action.closeActiveEditor" },
+    
+    /* AHK2: 'Alt+Esc' sends signal 'ctrl+w' to VsCode. Do not change default: ctrl+w->workbench.action.closeActiveEditor  */      
+    
     { "key": "alt+`",          "command": "workbench.view.explorer",        "when": "viewContainer.workbench.view.explorer.enabled" },
     
     { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus"  },
@@ -20,4 +22,5 @@
     { "key": "ctrl+.",         "command": "editor.action.rename",           "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly" },
 
     { "key": "ctrl+\\",        "command": "workbench.action.terminal.focusNext", "when": "terminalHasBeenCreated" },
+    { "key": "alt+\\",        "command": "workbench.action.terminal.focusNext", "when": "terminalHasBeenCreated" },
 ]

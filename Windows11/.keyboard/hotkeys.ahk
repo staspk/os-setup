@@ -22,6 +22,9 @@ F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 #HotIf
 
 
+#HotIf WinActive("ahk_exe code.exe")
+	!Esc::Send("^w")										;                   Alt+Esc  => 'Close Current Tab'      ["remapped", by sending signal to actual shortcut: Ctrl+w ]
+#HotIf
 #HotIf WinActive("ahk_exe msedge.exe")						; When MsEdge Open:
 	!Esc::Send("^w")										;				  	Alt+Esc  => 'Close Current Tab'      ["remapped", by sending signal to actual shortcut: Ctrl+w ]
 	!s::Send("!d")											;				    Alt+s    => 'Jump to Navigation Bar' ["remapped", by sending signal to actual shortcut: Alt+d  ]
@@ -29,7 +32,8 @@ F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 #HotIf
 
 
-!Esc::Return												; DISABLES DEFAULT: Alt+Esc 	["Tab Through Windows"] 
+
+!Esc::Return												; DISABLES DEFAULT: Alt+Esc 	["Tab Through Windows"]
 ~LWin::Send "{Blind}{vkE8}"									; DISABLES DEFAULT: WindowsKey  ["Open Start Menu"], but not WinKey+Combos
 
 
