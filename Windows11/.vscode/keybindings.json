@@ -19,5 +19,5 @@
 
     { "key": "ctrl+.",         "command": "editor.action.rename",           "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly" },
 
-    { "key": "ctrl+\\",        "command": "-workbench.action.splitEditor" },    // Keep splitting accidentally. Turning off for a while...
+    { "key": "ctrl+\\",        "command": "workbench.action.terminal.focusNext", "when": "terminalHasBeenCreated" },
 ]
