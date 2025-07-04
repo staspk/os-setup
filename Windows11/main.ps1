@@ -24,13 +24,13 @@ Clear-Host
 # DisableAdsInSearchBar
 # DisableWidgets
 
-
 # SetVerticalScrollSpeed 9
 
 # UninstallAndAttemptAnnihilationOfOneDrive
 # UninstallBloat
 # InstallSoftware
-InstallCustomWindowsHotkeys
+# InstallAutoHotkeyV2
+
 
 # RestartExplorer                                                       # Call this if you don't want to restart your computer to effect changes
 
