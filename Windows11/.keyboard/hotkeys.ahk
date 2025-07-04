@@ -3,7 +3,7 @@
 
 F1:: Run("C:\Program Files\PowerShell\7\pwsh.exe")							   ; F1				=> Opens PowerShell
 F2:: Run("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")  	   ; F2 			=> Opens Edge Browser
-F3:: Run("code")                                                               ; F3             => Opens VS Code
+F3:: Run("C:\Users\stasp\AppData\Local\Programs\Microsoft VS Code\code.exe")   ; F3             => Opens VS Code
 F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 
 #Esc:: WinClose("A")                                    					   ; WinKey+Esc		=> Close Active Window
