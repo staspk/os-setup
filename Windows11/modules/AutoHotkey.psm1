@@ -1,50 +1,62 @@
 using module .\Kozubenko.Utils.psm1
 
-$HOTKEYS = ResolvePath "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"    # $MyInvocation.MyCommand.Path == abspath(AutoHotkey.psm1), when run from ./main.ps1
-$STARTUP = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"        # Where hotkeys.ahk are moved to affect computer
+$STARTUP_DIR = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"        # ahk scripts moved here, so they're always on
+$AHK_SCRIPTS = @(
+    $(ResolvePath "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotkeys.ahk"),               # $MyInvocation.MyCommand.Path == abspath(AutoHotkey.psm1), when pwsh starting point is ./main.ps1
+    $(ResolvePath "$($MyInvocation.MyCommand.Path)\..\..\.keyboard\hotstrings.ahk")
+)
 
-function InstallCustomWindowsHotkeys() {
-    if(-not(Test-Path $HOTKEYS)) {
-        PrintDarkRed "Hotkeys.ahk not found. `$HOTKEYS: $HOTKEYS"
-        PrintDarkRed "Quitting InstallCustomWindowsHotkeys...`n"
-        RETURN;
-    }
-
+function InstallAutoHotkeyV2() {
     if(-not(Test-Path "C:\Program Files\AutoHotkey")) {
         PrintRed "AutoHotkey not found. Installing..."
         curl -o "$HOME\Downloads\AutoHotkey-v2.exe" https://www.autohotkey.com/download/ahk-v2.exe
 
         if(-not(RunningAsAdmin)) {
             PrintRed "Script running w/o admin rights, expect an install elevation prompt..."
-            Start-Sleep 1
+            Start-Sleep 2
         } 
 
         Start-Process -Wait -FilePath "$HOME\Downloads\AutoHotkey-v2.exe" -ArgumentList "/silent", "/Elevate" -PassThru
         
         if(-not(Test-Path "C:\Program Files\AutoHotkey")) {
-            PrintRed "Unable to install AutoHotkeyV2. Aborting...InstallCustomWindowsHotkeys"
+            PrintRed "Was unable to install AutoHotkeyV2. Aborting InstallAutoHotkeyV2()..."
             RETURN;
         }
     }
 
-    Copy-Item -Path $HOTKEYS -Destination "C:\Users\stasp\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+    foreach($file in $AHK_SCRIPTS) {
+        $copied = 0;
+        try {
+            Copy-Item $file $backupDest -ErrorAction Stop
+            $copied++;
+        }
+        catch {  PrintRed "_TryCopyFilesToDestination(): Failure! Reason: $($_.Exception.Message)";  }
+    }
 
-    PrintGreen "InstallCustomWindowsHotkeys Complete"
+    PrintGreen "InstallAutoHotkeyV2 Complete. $copied/$($toBackup.Count) .ahk files copied into:" $false; PrintDarkGreen $STARTUP_DIR
 }
 
 function BackupAutoHotkey() {
-    $toBackup   = "$STARTUP\hotkeys.ahk"
-    $backupDest = $(ParentDir $HOTKEYS)
+    $backupDest = ParentDir $AHK_SCRIPTS[0]
+    $toBackup = @(
+        "$STARTUP_DIR\hotkeys.ahk"
+        "$STARTUP_DIR\hotstrings.ahk"
+    )
 
-    if(-not(Test-Path $toBackup)) {  PrintRed "BackupAutoHotkey(): `$toBackup not found. `$toBackup: $toBackup"; RETURN;  }
-
-    try {
-        Copy-Item $toBackup $backupDest
+    $copied = 0;
+    foreach($file in $toBackup) {
+        try {
+            Copy-Item $file $backupDest -ErrorAction Stop
+            $copied++;
+        }
+        catch {  PrintRed "BackupAutoHotkey(): Failure! Reason: $($_.Exception.Message)";  }
     }
-    catch {  PrintRed "BackupAutoHotkey(): Failure! Reason: $($_.Exception.Message)"; RETURN; }
 
-    PrintGreen "BackupAutoHotkey(" $false
-    PrintDarkGreen $toBackup $false;
-    PrintGreen "): Success! `$backupDest: " $false
-    PrintDarkGreen $backupDest
+    $mainColor = "Green"; $offColor = "DarkGreen";
+    if($copied -eq $toBackup.Count) {
+        Write-Host "BackupAutoHotkey(" -ForegroundColor $mainColor -NoNewline
+        Write-Host "$copied/$($toBackup.Count)" -ForegroundColor $offColor -NoNewline
+        Write-Host "): Success! `$backupDest: " -ForegroundColor $mainColor -NoNewline;
+        Write-Host $backupDest -ForegroundColor $offColor;
+    }
 }
