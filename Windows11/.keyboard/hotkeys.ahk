@@ -7,17 +7,18 @@ F3:: Run("C:\Users\stasp\AppData\Local\Programs\Microsoft VS Code\code.exe")   ;
 F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 
 #Esc:: WinClose("A")                                    					   ; WinKey+Esc		=> Close Active Window
-#HotIf WinExist("A")														   ; Esc			=> Close Active Window, except: VsCode
+#HotIf WinExist("A")														   ; Esc			=> Close Active Window, except: VsCode, Vim-Terminal, Edge-Browser
 	Esc:: { 
-		if WinActive("ahk_exe WindowsTerminal.exe") and ProcessExist("vim.exe") {
+		if WinActive("ahk_exe WindowsTerminal.exe") and ProcessExist("vim.exe")
 			Send("{Esc}")
-		}
-		else if WinActive("ahk_exe Code.exe") {
+		else if WinActive("ahk_exe Code.exe")
 			Send("{Esc}")
-		}
-		else {
+		else if WinActive("ahk_exe msedge.exe")
+			Send("{Esc}")
+		else if WinActive("ahk_exe vlc.exe")
+			Send("{Esc}")
+		else
 			WinClose("A")
-		}
 	}
 #HotIf
 
@@ -35,6 +36,8 @@ F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 
 !Esc::Return												; DISABLES DEFAULT: Alt+Esc 	["Tab Through Windows"]
 ~LWin::Send "{Blind}{vkE8}"									; DISABLES DEFAULT: WindowsKey  ["Open Start Menu"], but not WinKey+Combos
+
+
 
 
 ^+i:: {  ; Ctrl+Shift+I
