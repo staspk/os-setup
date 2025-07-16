@@ -1,4 +1,3 @@
-#!/bin/bash
 BOILERPLATE_PYTHON_PROJECT="$HOME/boilerplate/python_vscode_setup"
 
 # setup_python_project(

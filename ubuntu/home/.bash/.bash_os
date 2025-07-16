@@ -1,0 +1,34 @@
+test_path() {
+	local path="$1"
+	[ -e "$path" ] && return 0 || return 1
+}
+
+is_file() {
+	local path="$1"
+	[ -f "$path" ] && return 0 || return 1
+}
+
+is_directory() {
+	local path="$1"
+	[ -d "$path" ] && return 0 || return 1
+}
+
+# technically: -z checks 'is zero length', ie: 'is unset/empty'
+is_falsy() {		
+	local var="$1"
+	[ -z "$var" ] && return 0 || return 1
+}
+
+allow_execute() {
+    local file="$1"
+    if ! is_file "$file"; then print_red "Given param is not a file. \$file: $file"; return 1; fi
+    chmod +x "$file"
+}
+
+ls_permissions() {
+    local path="${1:-$PWD}"
+    # %A Access rights in human readable form
+    # %a Access rights in octal
+    # %n File name
+    stat -c '%A %a %n' "$path/*"
+}
