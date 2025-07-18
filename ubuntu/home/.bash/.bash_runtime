@@ -3,13 +3,11 @@ source $HOME/.bash/.bash_os
 
 
 GLOBALS="$HOME/.bash/.env"
+COMMANDS="$HOME/.bash/.commands"
 PYTHON_SCRIPTS="$HOME/.bash/python"
 
 
-# setStartLocation(
-#   $path -> defaults to $pwd
-# )
-setStartLocation() {
+setStartDirectory() {
     local path="${1:-$PWD}"
 
     if ! test_path "$path"; then
@@ -24,8 +22,64 @@ setStartLocation() {
     } > "$GLOBALS.tmp" && mv "$GLOBALS.tmp" "$GLOBALS"
 }
 
+newCommand() {
+    local command="$1"
+    local file="$COMMANDS"
+
+    if is_falsy "$command"; then print_red "\$command [param1] is falsy, and cannot be used as command. \$command: $command"; return 1; fi
+    
+    local key="$PWD"
+    local value="$command"
+    
+    # If file doesn't exist or is empty, write and return
+    if [ ! -s "$file" ]; then echo "$key=$value" > "$file"; return 0; fi
+
+    local found=0
+    local tmpfile
+    tmpfile=$(mktemp)
+
+    while IFS= read -r line || [ -n "$line" ]; do
+        current_key="${line%%=*}"
+        if [ "$current_key" = "$key" ]; then
+            echo "$key=$value" >> "$tmpfile"
+            found=1
+        else
+            echo "$line" >> "$tmpfile"
+        fi
+    done < "$file"
+
+    if [ "$found" -eq 0 ]; then echo "$key=$value" >> "$tmpfile"; fi
+
+    mv "$tmpfile" "$file"
+}
+getCommand() {
+    local key="$PWD"
+    local value
+
+    if ! is_file "$COMMANDS"; then print_red "\$COMMANDS file not found. \$COMMANDS: $COMMANDS"; return 1; fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ "$line" == "$key="* ]]; then
+        value="${line#*=}"
+        echo "$value"
+        return
+        fi
+    done < "$COMMANDS"
+
+    echo ""
+}
+
+print_to_buffer() {
+    local string="$1"
+    
+    READLINE_LINE="$string"
+    READLINE_POINT=${#READLINE_LINE}
+}
+
+
+
 onStart() {
-    source $HOME/.bash/.env
+    source $GLOBALS
 
     if [ "$start_location" ]; then       # if string not empty 
         if is_directory "$start_location"; then
@@ -36,13 +90,53 @@ onStart() {
     fi
 }
 onStart
+bind -x '"\e[24~": print_to_buffer "$(getCommand)"'
 
 
 
 
 
 
-# Some stuff I should probably delete
+
+
+# ────────────────────────────────────────────────
+#   Some stuff I should probably delete
+# ────────────────────────────────────────────────
+
+print_default_prompt() {
+    local buffer="$1"
+    local user=$(whoami)
+    local host=$(hostname -s)
+    local cwd=$([[ "$PWD" == "$HOME"* ]] && echo "~${PWD#$HOME}" || echo "$PWD")
+
+    echo -e "\033[01;32m${user}@${host}\033[00m:\033[01;34m${cwd}\033[00m\$ ${buffer}"
+}
+
+# one of my drafts for an handle_enter. broken, but the closest I could get in a reasonable amount of time.
+# doesn't show the correct dir after commands like: 'cd ..''
+# my custom aliases don't work, ie: 'z' [clear]
+handle_ENTER() {
+    if [[ -z "$READLINE_LINE" ]]; then
+        READLINE_LINE="$(default_action)"
+        READLINE_POINT=${#READLINE_LINE}
+        echo | $READLINE_LINE
+        READLINE_LINE=""
+        return
+    fi
+
+    # print_default_prompt_with_buffer
+    # # echo ""
+    # eval "$READLINE_LINE"
+    # READLINE_LINE=""
+    # return
+
+    local buffer="$READLINE_LINE"
+
+    print_default_prompt "$buffer"
+    echo | $READLINE_LINE
+    READLINE_LINE=""
+    return
+}
 
 checkIp() {
     curl --proxy socks5h://localhost:9050 https://api.ipify.org
