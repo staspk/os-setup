@@ -213,5 +213,8 @@
             "variable.readonly": "#56B6C2"
         }
     },
+    "remote.SSH.remotePlatform": {
+        "server.us-west1-c.endless-bounty-233218": "linux"
+    },
 
 }
