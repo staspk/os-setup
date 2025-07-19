@@ -34,7 +34,7 @@ Clear-Host
 
 # RestartExplorer                                                       # Call this if you don't want to restart your computer to effect changes
 
-
+[VsCode]::new().SetupVsCode()
 # $VsCode = [VsCode]::new().BackupVsCode()
 
 
