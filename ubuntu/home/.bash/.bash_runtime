@@ -81,11 +81,13 @@ print_to_buffer() {
 onStart() {
     source $GLOBALS
 
-    if [ "$start_location" ]; then       # if string not empty 
-        if is_directory "$start_location"; then
-            cd "$start_location"
-        else
-            print_red "start_location does not exist anymore: $start_location"
+    if [ "$start_location" ]; then 
+        if [ "$PWD" = "$HOME" ]; then
+            if is_directory "$start_location"; then
+                cd "$start_location"
+            else
+                print_red "start_location does not exist anymore: $start_location"
+            fi
         fi
     fi
 }
