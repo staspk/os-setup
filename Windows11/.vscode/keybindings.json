@@ -19,8 +19,10 @@
 
     { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  },
     
-    { "key": "ctrl+.",         "command": "editor.action.rename",           "when": "!editorHasCodeActionsProvider && editorHasRenameProvider && editorTextFocus && !editorReadonly" },
-    { "key": "ctrl+.",         "command": "editor.action.quickFix",         "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly" },
+    // { "key": "ctrl+.",         "command": "editor.action.rename",           "when": "!editorHasCodeActionsProvider && editorHasRenameProvider && editorTextFocus && !editorReadonly" },
+    // { "key": "ctrl+.",         "command": "editor.action.quickFix",         "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly" },
+
+    { "key": "ctrl+.",         "command": "vsc-augment:keybind-combine:rename-quickFix"  },
 
     
     { "key": "ctrl+f",         "command": "actions.find" },
