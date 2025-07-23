@@ -216,5 +216,6 @@
     "remote.SSH.remotePlatform": {
         "server.us-west1-c.endless-bounty-233218": "linux"
     },
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
 
 }
