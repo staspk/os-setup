@@ -2,10 +2,10 @@
 ### .bashrc
 - `sudo apt update && sudo apt install -y git`
 - `git clone https://github.com/staspk/os-setup.git $HOME/os-setup`
-- `cp -r $HOME/os-setup/ubuntu/home/. ~`
+- `cp -r "$HOME/os-setup/ubuntu/home/." ~`
 - `(cat "$HOME/os-setup/ubuntu/.bashrc"; printf "\n\n\n"; cat ~/.bashrc) > "$HOME/.bashrc.new" && mv "$HOME/.bashrc.new" ~/.bashrc`
-- Restart terminal. Finally: `setup_ubuntu`
-
+- `cp -r "$HOME/os-setup/ubuntu/boilerplate" "$HOME/boilerplate"`
+- `rm -rf "$HOME/os-setup"`
 
 ## Windows 11 Instructions
 ### Uncomment desired functionality in: .\main.ps1.
