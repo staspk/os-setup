@@ -23,13 +23,14 @@ F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 #HotIf
 
 
-#HotIf WinActive("ahk_exe code.exe")
-	!Esc::Send("^w")										;                   Alt+Esc  => 'Close Current Tab'      ["remapped", by sending signal to actual shortcut: Ctrl+w ]
+#HotIf WinActive("ahk_exe code.exe")                        ; When VsCode Open:
+	!Esc::Send("^w")										;      Alt+Esc  =>  Close Current Tab       ["remapped", by sending signal to actual shortcut: Ctrl+w ]
 #HotIf
 #HotIf WinActive("ahk_exe msedge.exe")						; When MsEdge Open:
-	!Esc::Send("^w")										;				  	Alt+Esc  => 'Close Current Tab'      ["remapped", by sending signal to actual shortcut: Ctrl+w ]
-	!s::Send("!d")											;				    Alt+s    => 'Jump to Navigation Bar' ["remapped", by sending signal to actual shortcut: Alt+d  ]
-	!t::Send("^t")											;				    Alt+t    => 'New Tab'                ["remapped", by sending signal to actual shortcut: Ctrl+t ]
+	!Esc::Send("^w")										;      Alt+Esc  =>  Close Current Tab       ["remapped", by sending signal to actual shortcut: Ctrl+w ]
+	!s::Send("!d")											;      Alt+s    =>  Jump to Navigation Bar  ["remapped", by sending signal to actual shortcut: Alt+d  ]
+	!t::Send("^t")											;      Alt+t    =>  New Tab                 ["remapped", by sending signal to actual shortcut: Ctrl+t ]
+	!f::Send("^f")                                          ;      Alt+f    =>  Find                    ["remapped", by sending signal to actual shortcut: Ctrl+f ]
 #HotIf
 
 

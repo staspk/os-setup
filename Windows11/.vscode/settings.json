@@ -214,8 +214,16 @@
         }
     },
     "remote.SSH.remotePlatform": {
-        "server.us-west1-c.endless-bounty-233218": "linux"
+        "server.us-west1-c.endless-bounty-233218": "linux",
+        "server.us-west1-b.endless-bounty-233218": "linux",
+        "balanced-persistent-disk-instance.us-central1-c.endless-bounty-233218": "linux",
+        "ssd-persistent-disk-instance.us-central1-c.endless-bounty-233218": "linux",
+        "standard-persistent-disk-instance.us-central1-c.endless-bounty-233218": "linux"
     },
     "workbench.secondarySideBar.defaultVisibility": "hidden",
 
+    "customWindowZoom.zoomLevelChangeValue": 0.17,
+    "window.zoomLevel": -0.17,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    // building up to: "window.zoomLevel": -0.19 
 }

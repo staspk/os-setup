@@ -1,6 +1,9 @@
 azemoh.one-monokai
 chouzz.vscode-better-align
 christian-kohler.npm-intellisense
+craigb85.custom-window-zoom
+github.copilot
+github.copilot-chat
 kozubenko.vsc-augment
 ms-dotnettools.csdevkit
 ms-dotnettools.csharp
@@ -18,5 +21,4 @@ ms-vscode.cpptools-themes
 ms-vscode.js-debug-nightly
 ms-vscode.powershell
 ms-vscode.remote-explorer
-ms-vscode.vscode-typescript-next
 ryuta46.multi-command
