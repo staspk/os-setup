@@ -218,4 +218,7 @@
     },
     "workbench.secondarySideBar.defaultVisibility": "hidden",
 
+    "customWindowZoom.zoomLevelChangeValue": 0.19,
+    "window.zoomLevel": -0.19,
+    // "window.zoomLevel": -0.11
 }
