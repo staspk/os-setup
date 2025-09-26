@@ -1,8 +1,8 @@
 [
-    
-    /* AHK2: 'Alt+Esc' sends signal 'ctrl+w' to VsCode. Do not change default: ctrl+w->workbench.action.closeActiveEditor  */
+    /* AHK2: 'Alt+Esc' sends signal 'ctrl+w', when in VsCode. Do not change default: ctrl+w->workbench.action.closeActiveEditor  */
 
     { "key": "ctrl+.",         "command": "vsc-augment:keybind-combine:rename-quickFix"  },     // vsc-augment: "editor.action.rename" ++ "editor.action.quickFix"
+    { "key": "ctrl+f",         "command": "vsc-augment:keybind-combine:find-findReplace"  },    // vsc-augment: "actions.find" ++ "editor.action.startFindReplaceAction"
 
 
     { "key": "alt+q",          "command": "editor.action.indentLines",      "when": "editorTextFocus"  },
@@ -21,9 +21,6 @@
     { "key": "alt+0",          "command": "editor.unfoldAll",               "when": "editorTextFocus"  },
 
     { "key": "ctrl+shift+/",   "command": "editor.action.blockComment",     "when": "editorTextFocus"  },
-    
-    { "key": "ctrl+f",         "command": "actions.find" },
-    { "key": "ctrl+f",         "command": "editor.action.startFindReplaceAction", "when": "!editorReadonly" },
 
     { "key": "ctrl+\\",        "command": "workbench.action.terminal.focusNext", "when": "terminalHasBeenCreated" },
     { "key": "alt+\\",         "command": "workbench.action.terminal.focusNext", "when": "terminalHasBeenCreated" },
