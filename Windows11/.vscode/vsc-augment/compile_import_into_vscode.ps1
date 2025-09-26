@@ -4,6 +4,7 @@ Compiles, builds and installs vsc-augment extension into VsCode.
 
 .NOTES
 - Requires: node npx vsce.
+- Note: Yes, future Stan, this script works. Past Stan меня не подвёл, it seems...  
 #>
 if (-not (Get-Command npx -ErrorAction SilentlyContinue) -or -not (Get-Command vsce -ErrorAction SilentlyContinue)) {
     Write-Host "npx or vsce missing. cannot compile and build the .vsix" -ForegroundColor Red; exit 1

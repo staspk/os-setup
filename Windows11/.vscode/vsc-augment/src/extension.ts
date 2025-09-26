@@ -1,21 +1,21 @@
 import * as vscode from 'vscode';
+import { LastOpenedEditorAction } from './enums/LastOpenedEditorAction';
 
 
-// COMMANDS
-const COMBINE_RENAME_QUICKFIX = 'vsc-augment:keybind-combine:rename-quickFix';
-
-
-let counter = 0;
+let lastOpened = LastOpenedEditorAction.None;
 
 export function activate(context:vscode.ExtensionContext) {
 	
-	const disposable = vscode.commands.registerTextEditorCommand(COMBINE_RENAME_QUICKFIX, async (editor, edit, args) => {
-		// if (counter % 2 === 1)
+	/* vsc-augment:keybind-combine:rename-quickFix also registered in package.json to: ctrl+. */
+	const disposable = vscode.commands.registerTextEditorCommand("vsc-augment:keybind-combine:rename-quickFix", async (editor, edit, args) => {
+		if (lastOpened === LastOpenedEditorAction.None || lastOpened === LastOpenedEditorAction.QuickFix) {
 			await vscode.commands.executeCommand('editor.action.rename');
-		// else
+			lastOpened = LastOpenedEditorAction.Rename
+		}
+		else if(lastOpened == LastOpenedEditorAction.Rename) {
 			await vscode.commands.executeCommand('editor.action.quickFix');
-
-		counter++;
+			lastOpened = LastOpenedEditorAction.QuickFix
+		}
 	});
 	
 	context.subscriptions.push(disposable);

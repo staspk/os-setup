@@ -3,7 +3,7 @@
    "publisher": "Kozubenko",
    "displayName": "VsCode Augment",
    "description": "Extend VsCode Functionality for Me",
-   "version": "0.1.0",
+   "version": "0.1.1",
    "engines": {
       "vscode": "^1.102.0"
    },
