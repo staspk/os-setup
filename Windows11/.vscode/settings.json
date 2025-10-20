@@ -1,4 +1,12 @@
 {
+    "search.exclude": {
+        "**/.vscode": true,
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/bible_txt": true
+    },
+    
+
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
     
@@ -21,6 +29,12 @@
     "[typescript]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+
+    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.diagnosticSeverityOverrides": {
+        
     },
     
     "workbench.colorTheme": "One Monokai",
@@ -133,6 +147,11 @@
                 "scope":   [ "support.constant.json.ts", "constant.language.null.ts" ],
                 "settings": { "foreground": "#73c8d3", }
             },
+            {
+                "scope":   [ "variable.other.readwrite.alias.ts"],
+                "settings": { "foreground": "#DACAFF", }
+            },
+            
 
 
             // -------------------------------------------------------------------------------------------------------------
@@ -223,7 +242,8 @@
     "workbench.secondarySideBar.defaultVisibility": "hidden",
 
     "customWindowZoom.zoomLevelChangeValue": 0.17,
-    "window.zoomLevel": -0.17,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    // building up to: "window.zoomLevel": -0.19 
+    // "window.zoomLevel": -0.17,
+    "window.zoomLevel": -0.10,
+
+    // building up to: "window.zoomLevel": -0.19
 }

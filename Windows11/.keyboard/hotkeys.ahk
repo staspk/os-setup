@@ -7,7 +7,7 @@ F3:: Run("C:\Users\stasp\AppData\Local\Programs\Microsoft VS Code\code.exe")   ;
 F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 
 #Esc:: WinClose("A")                                    					   ; WinKey+Esc		=> Close Active Window
-#HotIf WinExist("A")														   ; Esc			=> Close Active Window, except: VsCode, Vim-Terminal, Edge-Browser
+#HotIf WinExist("A")														   ; Esc			=> Close Active Window, except VsCode, Vim-Terminal, Edge-Browser, VLC, Photoshop
 	Esc:: { 
 		if WinActive("ahk_exe WindowsTerminal.exe") and ProcessExist("vim.exe")
 			Send("{Esc}")
@@ -16,6 +16,10 @@ F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 		else if WinActive("ahk_exe msedge.exe")
 			Send("{Esc}")
 		else if WinActive("ahk_exe vlc.exe")
+			Send("{Esc}")
+		else if WinActive("ahk_exe Photoshop.exe")
+			Send("{Esc}")
+		else if WinActive("ahk_exe Illustrator.exe")
 			Send("{Esc}")
 		else
 			WinClose("A")
