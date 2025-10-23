@@ -226,7 +226,7 @@
     },
     "editor.semanticTokenColorCustomizations": {
         "rules": {
-            "variable": { "foreground": "#dcd5db" },
+            "variable": { "foreground": "#dcd5dbf4" },
             "selfParameter": { "foreground": "#dacaff" },
             "module": "#a3ebf0",
             "variable.readonly": "#56B6C2",
