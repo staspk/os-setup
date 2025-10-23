@@ -32,7 +32,7 @@
     },
     "typescript.updateImportsOnFileMove.enabled": "always",
 
-    "python.analysis.typeCheckingMode": "standard",
+    "python.analysis.typeCheckingMode": "off",
     "python.analysis.diagnosticSeverityOverrides": {
         
     },
@@ -226,10 +226,12 @@
     },
     "editor.semanticTokenColorCustomizations": {
         "rules": {
-            "variable": { "foreground": "#e7e3e2da" },
+            "variable": { "foreground": "#dcd5db" },
             "selfParameter": { "foreground": "#dacaff" },
             "module": "#a3ebf0",
-            "variable.readonly": "#56B6C2"
+            "variable.readonly": "#56B6C2",
+            // "keyword.control.flow.python": "#f8e9db",
+            // "storage.type": "#f1dac5"
         }
     },
     "remote.SSH.remotePlatform": {
