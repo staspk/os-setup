@@ -36,7 +36,9 @@ F4:: Run("calc.exe")  														   ; F4 			=> Opens Calculator
 	!t::Send("^t")											;      Alt+t    =>  New Tab                 ["remapped", by sending signal to actual shortcut: Ctrl+t ]
 	!f::Send("^f")                                          ;      Alt+f    =>  Find                    ["remapped", by sending signal to actual shortcut: Ctrl+f ]
 #HotIf
-
+#HotIf WinActive("ahk_exe notepad++.exe")                   ; When Notepad++ Open:
+	!Esc::Send("^w")                                        ;      Alt+Esc  =>  Close Current Tab       ["remapped" via sending signal to actual shortcut: Ctrl+W ] 
+#HotIf
 
 
 !Esc::Return												; DISABLES DEFAULT: Alt+Esc 	["Tab Through Windows"]
