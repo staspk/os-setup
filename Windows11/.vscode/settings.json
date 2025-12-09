@@ -76,7 +76,7 @@
         "editorWarning.foreground": "#eeff0042",
     },
     "editor.tokenColorCustomizations": {
-        "comments": "#aaa7a7d2",
+        "comments": "#bdbdbddc",
         "functions": "#dffffb",
         "variables": "#ffedea",
         "types": "#dacaff",
@@ -246,6 +246,5 @@
     "customWindowZoom.zoomLevelChangeValue": 0.17,
     // "window.zoomLevel": -0.17,
     "window.zoomLevel": -0.10,
-
     // building up to: "window.zoomLevel": -0.19
 }
