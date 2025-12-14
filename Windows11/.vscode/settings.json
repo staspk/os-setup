@@ -5,7 +5,15 @@
         "**/dist": true,
         "**/bible_txt": true
     },
-    
+
+    /* Trying to destroy all things AI */
+    "chat.disableAIFeatures": true,
+    "editor.inlineSuggest.enabled": false,
+    "github.copilot.enable": {
+        "*": false
+    },
+
+    "terminal.integrated.suggest.enabled": false,       // The terminal hints more often cause the wrong thing to be selected, than help
 
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
@@ -13,8 +21,8 @@
     "editor.mouseWheelScrollSensitivity": 1.5,
     "explorer.compactFolders": false,
 
-    "git.openRepositoryInParentFolders": "never",                             // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
-    "editor.unicodeHighlight.ambiguousCharacters": false,                     // Removes pop-in of yellow rectangles around russian text
+    "git.openRepositoryInParentFolders": "never",             // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
+    "editor.unicodeHighlight.ambiguousCharacters": false,     // Removes pop-in of yellow rectangles around russian text
 
     "security.workspace.trust.untrustedFiles": "open",
 
@@ -220,7 +228,6 @@
             }
         ]
     },
-
     "[python]": {
         "editor.semanticHighlighting.enabled": true,
     },
