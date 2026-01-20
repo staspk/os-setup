@@ -4,6 +4,7 @@ chouzz.vscode-better-align
 christian-kohler.npm-intellisense
 craigb85.custom-window-zoom
 cseitel.open-in-npp
+dustypomerleau.rust-syntax
 includable.file-duplicate
 kozubenko.vsc-augment
 ms-dotnettools.csdevkit
@@ -19,4 +20,5 @@ ms-vscode-remote.remote-wsl
 ms-vscode.js-debug-nightly
 ms-vscode.powershell
 ms-vscode.remote-explorer
+rust-lang.rust-analyzer
 ryuta46.multi-command

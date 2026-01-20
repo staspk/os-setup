@@ -21,7 +21,7 @@
     "editor.mouseWheelScrollSensitivity": 1.5,
     "explorer.compactFolders": false,
 
-    "git.openRepositoryInParentFolders": "never",             // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
+    "git.openRepositoryInParentFolders": "always",             // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
     "editor.unicodeHighlight.ambiguousCharacters": false,     // Removes pop-in of yellow rectangles around russian text
 
     "security.workspace.trust.untrustedFiles": "open",
@@ -253,5 +253,8 @@
     "customWindowZoom.zoomLevelChangeValue": 0.17,
     // "window.zoomLevel": -0.17,
     "window.zoomLevel": -0.10,
+    "files.associations": {
+        "identify_titled_form()": "plaintext"
+    },
     // building up to: "window.zoomLevel": -0.19
 }
