@@ -239,6 +239,7 @@
             "variable.readonly": "#56B6C2",
             // "keyword.control.flow.python": "#f8e9db",
             // "storage.type": "#f1dac5"
+            "constant.readonly": { "foreground": "#fac9cb" } //e8c890
         }
     },
     "remote.SSH.remotePlatform": {
@@ -254,7 +255,10 @@
     // "window.zoomLevel": -0.17,
     "window.zoomLevel": -0.10,
     "files.associations": {
-        "identify_titled_form()": "plaintext"
+        "identify_titled_form()": "plaintext",
+        "identify_titled_trait()": "plaintext",
+        "identify_missing_verses": "plaintext",
+        "identify_scrape_failure": "plaintext"
     },
     // building up to: "window.zoomLevel": -0.19
 }
