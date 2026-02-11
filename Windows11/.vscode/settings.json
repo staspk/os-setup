@@ -13,22 +13,23 @@
         "*": false
     },
 
-    "terminal.integrated.suggest.enabled": false,       // The terminal hints more often cause the wrong thing to be selected, than help
-
+    "explorer.compactFolders": false,
+    "editor.mouseWheelScrollSensitivity": 1.5,
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
-    
-    "editor.mouseWheelScrollSensitivity": 1.5,
-    "explorer.compactFolders": false,
-
-    "git.openRepositoryInParentFolders": "always",             // If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one.
-    "editor.unicodeHighlight.ambiguousCharacters": false,     // Removes pop-in of yellow rectangles around russian text
-
-    "security.workspace.trust.untrustedFiles": "open",
-
     "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.suggest.enabled": false,             /* The terminal hints more often cause the wrong thing to be selected, than help */
+    "workbench.editor.languageDetection": false,              /* VsCode keeps turning on Ruby on my dict plain-texts */
+    "editor.unicodeHighlight.ambiguousCharacters": false,     /* Removes pop-in of yellow rectangles around russian text */
+    
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "customWindowZoom.zoomLevelChangeValue": 0.17,
+    "window.zoomLevel": -0.19,
+
+    "git.openRepositoryInParentFolders": "always",      /* If you open a folder that itself is not a Git repository, VS Code won't traverse upward in the directory structure to find one. */
 
     // "git.detectSubmodules": false,
+
 
     "[javascript]": {
         "editor.tabSize": 4,
@@ -249,16 +250,4 @@
         "ssd-persistent-disk-instance.us-central1-c.endless-bounty-233218": "linux",
         "standard-persistent-disk-instance.us-central1-c.endless-bounty-233218": "linux"
     },
-    "workbench.secondarySideBar.defaultVisibility": "hidden",
-
-    "customWindowZoom.zoomLevelChangeValue": 0.17,
-    // "window.zoomLevel": -0.17,
-    "window.zoomLevel": -0.10,
-    "files.associations": {
-        "identify_titled_form()": "plaintext",
-        "identify_titled_trait()": "plaintext",
-        "identify_missing_verses": "plaintext",
-        "identify_scrape_failure": "plaintext"
-    },
-    // building up to: "window.zoomLevel": -0.19
 }
