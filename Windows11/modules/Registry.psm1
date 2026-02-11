@@ -122,8 +122,8 @@ function SetVerticalScrollSpeed([int]$scrollSpeed = 3) {
 function RestoreClassicContextMenu([bool]$reverse = $false) {
 	$guid = "{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}" 
 	if(-not($reverse)) {
-		New-Item -Path "HKCU:\Software\Classes\CLSID\" 		-Name $guid 					| Out-Null
-		New-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Name InprocServer32 -Value "" 	| Out-Null
+		New-Item -Path "HKCU:\Software\Classes\CLSID\"      -Name $guid                     | Out-Null
+		New-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Name InprocServer32 -Value ""  | Out-Null
 	}
 	else {
 		Remove-Item -Path "HKCU:\Software\Classes\CLSID\$guid" -Recurse -Force -ErrorAction SilentlyContinue
